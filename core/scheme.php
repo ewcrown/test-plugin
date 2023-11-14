@@ -1,10 +1,10 @@
 <?php
 
 /**
- * WP Link Status Core Scheme class
+ * Juriys Digital Core Scheme class
  *
- * @package WP Link Status
- * @subpackage WP Link Status Core
+ * @package Juriys Digital
+ * @subpackage Juriys Digital Core
  */
 class WPLNST_Core_Scheme {
 
@@ -39,7 +39,7 @@ class WPLNST_Core_Scheme {
 		
 		// Remove each one
 		foreach ($tables as $name)
-			$wpdb->query('DROP TABLE '.$wpdb->prefix.'wplnst_'.esc_sql($name));
+			$wpdb->query('DROP TABLE '.$wpdb->prefix.'jrdigi_'.esc_sql($name));
 	}
 
 
@@ -60,7 +60,7 @@ class WPLNST_Core_Scheme {
 		
 		// Check each table
 		foreach ($tables as $name) {
-			$result = $wpdb->get_var('SHOW TABLES LIKE "'.$wpdb->prefix.'wplnst_'.esc_sql($name).'"');
+			$result = $wpdb->get_var('SHOW TABLES LIKE "'.$wpdb->prefix.'jrdigi_'.esc_sql($name).'"');
 			if (empty($result))
 				$create[] = $name;
 		}
@@ -84,7 +84,7 @@ class WPLNST_Core_Scheme {
 		
 		// URLs table
 		if (in_array('urls', $tables)) {
-			$wpdb->query('CREATE TABLE IF NOT EXISTS `'.$wpdb->prefix.'wplnst_urls` (
+			$wpdb->query('CREATE TABLE IF NOT EXISTS `'.$wpdb->prefix.'jrdigi_urls` (
 				`url_id` 				BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
 				`url` 					TEXT CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT "",
 				`hash`					VARCHAR(64) NOT NULL DEFAULT "",
@@ -117,7 +117,7 @@ class WPLNST_Core_Scheme {
 		
 		// URLs and locations relationship table
 		if (in_array('urls_locations', $tables)) {
-			$wpdb->query('CREATE TABLE IF NOT EXISTS `'.$wpdb->prefix.'wplnst_urls_locations` (
+			$wpdb->query('CREATE TABLE IF NOT EXISTS `'.$wpdb->prefix.'jrdigi_urls_locations` (
 				`loc_id` 				BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
 				`url_id` 				BIGINT(20) UNSIGNED NOT NULL DEFAULT 0,
 				`scan_id` 				BIGINT(20) UNSIGNED NOT NULL DEFAULT 0,
@@ -167,7 +167,7 @@ class WPLNST_Core_Scheme {
 		
 		// URLs locations and attributes relationship table
 		if (in_array('urls_locations_att', $tables)) {
-			$wpdb->query('CREATE TABLE IF NOT EXISTS `'.$wpdb->prefix.'wplnst_urls_locations_att` (
+			$wpdb->query('CREATE TABLE IF NOT EXISTS `'.$wpdb->prefix.'jrdigi_urls_locations_att` (
 				`att_id` 				BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
 				`loc_id` 				BIGINT(20) UNSIGNED NOT NULL DEFAULT 0,
 				`scan_id` 				BIGINT(20) UNSIGNED NOT NULL DEFAULT 0,
@@ -183,7 +183,7 @@ class WPLNST_Core_Scheme {
 		
 		// URLs status and scans relationship table
 		if (in_array('urls_status', $tables)) {
-			$wpdb->query('CREATE TABLE IF NOT EXISTS `'.$wpdb->prefix.'wplnst_urls_status` (
+			$wpdb->query('CREATE TABLE IF NOT EXISTS `'.$wpdb->prefix.'jrdigi_urls_status` (
 				`url_id` 				BIGINT(20) UNSIGNED NOT NULL,
 				`scan_id` 				BIGINT(20) UNSIGNED NOT NULL,
 				`status_level`			VARCHAR(1) NOT NULL DEFAULT "",
@@ -230,7 +230,7 @@ class WPLNST_Core_Scheme {
 		
 		// Scans table
 		if (in_array('scans', $tables)) {
-			$wpdb->query('CREATE TABLE IF NOT EXISTS `'.$wpdb->prefix.'wplnst_scans` (
+			$wpdb->query('CREATE TABLE IF NOT EXISTS `'.$wpdb->prefix.'jrdigi_scans` (
 				`scan_id` 				BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
 				`type`					VARCHAR(20)  NOT NULL DEFAULT "scan",
 				`name`					VARCHAR(255) NOT NULL DEFAULT "",
@@ -263,7 +263,7 @@ class WPLNST_Core_Scheme {
 		
 		// Scans objects
 		if (in_array('scans_objects', $tables)) {
-			$wpdb->query('CREATE TABLE IF NOT EXISTS `'.$wpdb->prefix.'wplnst_scans_objects` (
+			$wpdb->query('CREATE TABLE IF NOT EXISTS `'.$wpdb->prefix.'jrdigi_scans_objects` (
 				`scan_id` 				BIGINT(20) UNSIGNED NOT NULL DEFAULT 0,
 				`object_id`				BIGINT(20) UNSIGNED NOT NULL DEFAULT 0,
 				`object_type`			VARCHAR(50) NOT NULL DEFAULT "",

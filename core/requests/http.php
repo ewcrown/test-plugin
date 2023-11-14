@@ -4,10 +4,10 @@
 if (!class_exists('WPLNST_Core_HTTP_Request') && !function_exists('wplnst_http_read_stream')) :
 
 /**
- * WP Link Status Core HTTP request class
+ * Juriys Digital Core HTTP request class
  *
- * @package WP Link Status
- * @subpackage WP Link Status Core
+ * @package Juriys Digital
+ * @subpackage Juriys Digital Core
  */
 class WPLNST_Core_HTTP_Request {
 

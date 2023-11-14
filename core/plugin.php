@@ -1,12 +1,12 @@
 <?php
 
 /**
- * WP Link Status Core Plugin class
+ * Juriys Digital Core Plugin class
  *
- * @package WP Link Status
- * @subpackage WP Link Status Core
+ * @package Juriys Digital
+ * @subpackage Juriys Digital Core
  */
-class WPLNST_Core_Plugin {
+class JRDIGI_Core_Plugin {
 
 
 
@@ -18,8 +18,8 @@ class WPLNST_Core_Plugin {
 	/**
 	 * Plugin
 	 */
-	const title = 		'WP Link Status';	
-	const slug = 		'wp-link-status';
+	const title = 		'Juris Digital';	
+	const slug = 		'jurius-digital';
 	const capability = 	'manage_options';
 
 
@@ -110,7 +110,7 @@ class WPLNST_Core_Plugin {
 	 *  Load translation file
 	 */
 	public static function load_plugin_textdomain($lang_dir = '') {
-		load_plugin_textdomain('wplnst', false, basename(WPLNST_PATH).'/'.(empty($lang_dir)? 'languages' : $lang_dir));
+		load_plugin_textdomain('jrdigi', false, basename(JRDIGI_PATH).'/'.(empty($lang_dir)? 'languages' : $lang_dir));
 	}
 
 

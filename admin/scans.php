@@ -1,12 +1,12 @@
 <?php
 
 /**
- * WP Link Status Admin Scans class
+ * Jurius Digital Admin Scans class
  *
- * @package WP Link Status
- * @subpackage WP Link Status Admin
+ * @package Jurius Digital
+ * @subpackage Jurius Digital Admin
  */
-class WPLNST_Admin_Scans {
+class JRDIGI_Admin_Scans {
 
 
 
@@ -119,8 +119,8 @@ class WPLNST_Admin_Scans {
 		$this->admin->screen_view(array(
 			'scans' 		=> $scans,
 			'wp_action'		=> 'wplnst_scans_list_view',
-			'add_item_text'	=> WPLNST_Admin::get_text('scan_new_add'),
-			'add_item_url'  => WPLNST_Core_Plugin::get_url_scans_add(),
+			'add_item_text'	=> JRDIGI_Admin::get_text('scan_new_add'),
+			'add_item_url'  => JRDIGI_Core_Plugin::get_url_scans_add(),
 		));
 	}
 
@@ -132,7 +132,7 @@ class WPLNST_Admin_Scans {
 	public function scans_list_view($args) {
 		
 		// Dependencies
-		wplnst_require('views', 'scans');
+		jrdigi_require('views', 'scans');
 		
 		// Display table
 		$list = new WPLNST_Views_Scans($args['scans']);
@@ -154,7 +154,7 @@ class WPLNST_Admin_Scans {
 		
 		// Atempt to load scan
 		if (false === ($scan = $this->admin->get_scan_by_id($scan_id, true)))
-			return $this->admin->screen_scan_not_found(WPLNST_Admin::get_text('crawler_results'));
+			return $this->admin->screen_scan_not_found(JRDIGI_Admin::get_text('crawler_results'));
 		
 		// Prepare scans data
 		$scans = (object) array(
@@ -178,7 +178,7 @@ class WPLNST_Admin_Scans {
 		$object_post_type = false;
 		$object_type = isset($_GET['otype'])? $_GET['otype'] : false;
 		if (false !== $object_type) {
-			if (!in_array($object_type, array_keys(WPLNST_Core_Types::get_objects_types()))) {
+			if (!in_array($object_type, array_keys(JRDIGI_Core_Types::get_objects_types()))) {
 				if (0 === strpos($object_type, 'posts_') && strlen($object_type) > 6) {
 					$object_post_type_test = mb_substr($object_type, 6);
 					if (in_array($object_post_type_test, $scan->post_types))
@@ -190,42 +190,42 @@ class WPLNST_Admin_Scans {
 		
 		// Check link type param
 		$link_type = isset($_GET['ltype'])? $_GET['ltype'] : false;
-		if (false !== $link_type && !in_array($link_type, array_keys(WPLNST_Core_Types::get_link_types())))
+		if (false !== $link_type && !in_array($link_type, array_keys(JRDIGI_Core_Types::get_link_types())))
 			$link_type = false;
 
 		// Check ignored or not
 		$ignored_type = isset($_GET['ig'])? $_GET['ig'] : false;
-		if (false !== $ignored_type && !in_array($ignored_type, array_keys(WPLNST_Core_Types::get_ignored_types())))
+		if (false !== $ignored_type && !in_array($ignored_type, array_keys(JRDIGI_Core_Types::get_ignored_types())))
 			$ignored_type = false;
 		
 		// Check SEO links
 		$seo_link_type = isset($_GET['slt'])? $_GET['slt'] : false;
-		if (false !== $seo_link_type && !in_array($seo_link_type, array_keys(WPLNST_Core_Types::get_seo_link_types())))
+		if (false !== $seo_link_type && !in_array($seo_link_type, array_keys(JRDIGI_Core_Types::get_seo_link_types())))
 			$seo_link_type = false;
 		
 		// Check protocol
 		$protocol_type = isset($_GET['pt'])? $_GET['pt'] : false;
-		if (false !== $protocol_type && !in_array($protocol_type, array_keys(WPLNST_Core_Types::get_protocol_types())))
+		if (false !== $protocol_type && !in_array($protocol_type, array_keys(JRDIGI_Core_Types::get_protocol_types())))
 			$protocol_type = false;
 		
 		// Check special
 		$special_type = isset($_GET['sp'])? $_GET['sp'] : false;
-		if (false !== $special_type && !in_array($special_type, array_keys(WPLNST_Core_Types::get_special_types())))
+		if (false !== $special_type && !in_array($special_type, array_keys(JRDIGI_Core_Types::get_special_types())))
 			$special_type = false;
 		
 		// Check action
 		$action_type = isset($_GET['ac'])? $_GET['ac'] : false;
-		if (false !== $action_type && !in_array($action_type, array_keys(WPLNST_Core_Types::get_action_types())))
+		if (false !== $action_type && !in_array($action_type, array_keys(JRDIGI_Core_Types::get_action_types())))
 			$action_type = false;
 				
 		// Check destination
 		$dest_type = isset($_GET['dtype'])? $_GET['dtype'] : false;
-		if (false !== $dest_type && !in_array($dest_type, array_keys(WPLNST_Core_Types::get_destination_types())))
+		if (false !== $dest_type && !in_array($dest_type, array_keys(JRDIGI_Core_Types::get_destination_types())))
 			$dest_type = false;
 		
 		// Check order
 		$order_type = isset($_GET['or'])? $_GET['or'] : false;
-		if (false !== $order_type && !in_array($order_type, array_keys(WPLNST_Core_Types::get_crawl_order())) && !in_array($order_type, array_keys(WPLNST_Core_Types::get_order_types())))
+		if (false !== $order_type && !in_array($order_type, array_keys(JRDIGI_Core_Types::get_crawl_order())) && !in_array($order_type, array_keys(JRDIGI_Core_Types::get_order_types())))
 			$order_type = false;
 		
 		// Check search URL
@@ -234,7 +234,7 @@ class WPLNST_Admin_Scans {
 		if (false !== $search_url_test && '' !== $search_url_test) {
 			$search_url = $search_url_test;
 			$search_url_type = isset($_GET['surlt'])? $_GET['surlt'] : false;
-			if (false !== $search_url_type && !in_array($search_url_type, array_keys(WPLNST_Core_Types::get_url_search_filters())))
+			if (false !== $search_url_type && !in_array($search_url_type, array_keys(JRDIGI_Core_Types::get_url_search_filters())))
 				$search_url_type = false;
 		}
 		
@@ -244,7 +244,7 @@ class WPLNST_Admin_Scans {
 		if (false !== $search_anchor_test && '' !== $search_anchor_test) {
 			$search_anchor = $search_anchor_test;
 			$search_anchor_type = isset($_GET['sanct'])? $_GET['sanct'] : false;
-			if (false !== $search_anchor_type && !in_array($search_anchor_type, array_keys(WPLNST_Core_Types::get_anchor_search_filters())))
+			if (false !== $search_anchor_type && !in_array($search_anchor_type, array_keys(JRDIGI_Core_Types::get_anchor_search_filters())))
 				$search_anchor_type = false;
 		}
 		
@@ -273,7 +273,7 @@ class WPLNST_Admin_Scans {
 		
 		// Unknown error
 		if (false === $results)
-			return $this->admin->screen_unknown_error(WPLNST_Admin::get_text('crawler_results'));
+			return $this->admin->screen_unknown_error(JRDIGI_Admin::get_text('crawler_results'));
 		
 		// Define all results
 		$results->is_search = (false !== $object_type) || (false !== $object_post_type) || (false !== $link_type) || (false !== $ignored_type) || (false !== $seo_link_type) || (false !== $protocol_type) || (false !== $special_type) || (false !== $action_type) || (false !== $dest_type) || (false !== $search_url) || (false !== $search_anchor);
@@ -317,9 +317,9 @@ class WPLNST_Admin_Scans {
 			'scans'			=> $scans,
 			'results' 		=> $results,
 			'wp_action'		=> 'wplnst_scans_results_view',
-			'title'			=> WPLNST_Admin::get_text('crawler_results'),
-			'add_item_text'	=> WPLNST_Admin::get_text('scan_new_add'),
-			'add_item_url'  => WPLNST_Core_Plugin::get_url_scans_add(),
+			'title'			=> JRDIGI_Admin::get_text('crawler_results'),
+			'add_item_text'	=> JRDIGI_Admin::get_text('scan_new_add'),
+			'add_item_url'  => JRDIGI_Core_Plugin::get_url_scans_add(),
 		));
 	}
 
@@ -352,7 +352,7 @@ class WPLNST_Admin_Scans {
 	 * Show a list table for scan results
 	 */
 	protected function scans_results_views_table($args) {
-		wplnst_require('views', 'scans-results');
+		jrdigi_require('views', 'scans-results');
 		$list = new WPLNST_Views_Scans_Results($args['results']);
 		$list->prepare_items();
 		$list->display();
@@ -384,7 +384,7 @@ class WPLNST_Admin_Scans {
 		$actions = apply_filters('wplnst_results_actions_url_extended', $actions, $item);
 		
 		// Visit URL
-		$actions['wplnst-action-url-visit'] = '<a href="'.esc_url($item['url']).'" target="_blank">'.__('Visit', 'wplnst').'</a>';
+		$actions['wplnst-action-url-visit'] = '<a href="'.esc_url($item['url']).'" target="_blank">'.__('Visit', 'jrdigi').'</a>';
 		
 		// Done
 		return $actions;
@@ -448,12 +448,12 @@ class WPLNST_Admin_Scans {
 		
 		// Atempt to load scan
 		if (false === ($scan = $this->admin->get_scan_by_id($scan_id, true)))
-			return $this->admin->screen_scan_not_found(WPLNST_Admin::get_text('crawler_action'));
+			return $this->admin->screen_scan_not_found(JRDIGI_Admin::get_text('crawler_action'));
 		
 		// Check valid operation
 		$operation = empty($_GET['operation'])? false : (in_array($_GET['operation'], array('on', 'off'))? $_GET['operation'] : false);
 		if (false === $operation)
-			return $this->admin->screen_invalid_data(WPLNST_Admin::get_text('crawler_action'));
+			return $this->admin->screen_invalid_data(JRDIGI_Admin::get_text('crawler_action'));
 		
 		// Initialize
 		$notice_error = false;
@@ -464,25 +464,25 @@ class WPLNST_Admin_Scans {
 		if (empty($_GET['nonce']) || !wp_verify_nonce($_GET['nonce'], 'scan-crawler-'.$scan->hash)) {
 			
 			// Not valid data
-			return $this->admin->screen_invalid_nonce(WPLNST_Admin::get_text('crawler_action'));
+			return $this->admin->screen_invalid_nonce(JRDIGI_Admin::get_text('crawler_action'));
 			
 		// Check if is playing right now
 		} elseif ('on' == $operation && 'play' == $scan->status) {
 			
 			// Already started
-			$notice_warning = __('The crawling process for this scan is already started.', 'wplnst');
+			$notice_warning = __('The crawling process for this scan is already started.', 'jrdigi');
 			
 		// Check if is stopped right now
 		} elseif ('off' == $operation && in_array($scan->status, array('stop', 'wait'))) {
 			
 			// Already started
-			$notice_warning = __('The crawling process for this scan is already stopped.', 'wplnst');
+			$notice_warning = __('The crawling process for this scan is already stopped.', 'jrdigi');
 			
 		// Avoid ended scans
 		} elseif ('end' == $scan->status) {
 			
 			// Not available scan
-			$notice_warning = __('This scan was completed and it is not possible to start again.', 'wplnst');
+			$notice_warning = __('This scan was completed and it is not possible to start again.', 'jrdigi');
 			
 		// Check submit form
 		} else {
@@ -497,13 +497,13 @@ class WPLNST_Admin_Scans {
 					if (!$this->admin->scans->unqueue_scan($scan->id)) {
 						
 						// Something failed
-						$notice_error = __('Something went wrong and the unqueue process was failed.', 'wplnst');
+						$notice_error = __('Something went wrong and the unqueue process was failed.', 'jrdigi');
 					
 					// Done
 					} else {
 						
 						// Updated
-						$notice_success = __('The crawler for this scan is back to the wait mode.', 'wplnst');
+						$notice_success = __('The crawler for this scan is back to the wait mode.', 'jrdigi');
 					}
 				
 				// Normal mode
@@ -513,13 +513,13 @@ class WPLNST_Admin_Scans {
 					if (!$this->admin->scans->stop_scan($scan->id)) {
 						
 						// Something failed
-						$notice_error = __('Something went wront and the crawler stop was failed.', 'wplnst');
+						$notice_error = __('Something went wront and the crawler stop was failed.', 'jrdigi');
 					
 					// Done
 					} else {
 						
 						// Updated
-						$notice_success = sprintf(__('The crawler for this scan is stopped. You can see its collected data in the <a href="%s">crawler results page</a>.', 'wplnst'), esc_url(WPLNST_Core_Plugin::get_url_scans_results($scan_id)));
+						$notice_success = sprintf(__('The crawler for this scan is stopped. You can see its collected data in the <a href="%s">crawler results page</a>.', 'jrdigi'), esc_url(JRDIGI_Core_Plugin::get_url_scans_results($scan_id)));
 					}
 				}
 				
@@ -530,7 +530,7 @@ class WPLNST_Admin_Scans {
 				if (!$this->admin->scans->can_play_more_scans()) {
 					
 					// Max scans allowed
-					$notice_error = WPLNST_Admin::get_text('max_scans');
+					$notice_error = JRDIGI_Admin::get_text('max_scans');
 					
 					// Queue scan
 					$this->admin->scans->queue_scan($scan->id);
@@ -539,7 +539,7 @@ class WPLNST_Admin_Scans {
 				} elseif (!$scan->ready) {
 					
 					// Something failed
-					$notice_error = sprintf(__('You need to complete some critical values before start the crawler, please <a href="%s">edit this scan</a>.', 'wplnst'), WPLNST_Core_Plugin::get_url_scans_edit($scan->id));
+					$notice_error = sprintf(__('You need to complete some critical values before start the crawler, please <a href="%s">edit this scan</a>.', 'jrdigi'), JRDIGI_Core_Plugin::get_url_scans_edit($scan->id));
 				
 				// Start attempt
 				} else {
@@ -574,14 +574,14 @@ class WPLNST_Admin_Scans {
 					if (!$this->admin->scans->play_scan($scan->id, $continued)) {
 						
 						// Something failed
-						$notice_error = __('Something went wront and the crawler start was failed.', 'wplnst');
+						$notice_error = __('Something went wront and the crawler start was failed.', 'jrdigi');
 					
 					// Done
 					} else {
 						
 						// Check salt file
 						if (empty($notice_warning) && !WPLNST_Core_Nonce::check_salt_file())
-							$notice_warning = WPLNST_Admin::get_text('no_salt');
+							$notice_warning = JRDIGI_Admin::get_text('no_salt');
 						
 						// Update stopped time
 						if (isset($time_stopped))
@@ -598,7 +598,7 @@ class WPLNST_Admin_Scans {
 						$this->scans_crawler_run($scan->id, $scan->hash);
 						
 						// Updated
-						$notice_success = sprintf(__('The crawler is running, you can see its data in the <a href="%s">crawler results page</a>.', 'wplnst'), esc_url(WPLNST_Core_Plugin::get_url_scans_results($scan_id)));
+						$notice_success = sprintf(__('The crawler is running, you can see its data in the <a href="%s">crawler results page</a>.', 'jrdigi'), esc_url(JRDIGI_Core_Plugin::get_url_scans_results($scan_id)));
 					}
 				}
 			}
@@ -606,7 +606,7 @@ class WPLNST_Admin_Scans {
 		
 		// Reload scan
 		if (false === ($scan = $this->admin->get_scan_by_id($scan_id, true, true)))
-			return $this->admin->screen_scan_not_found(WPLNST_Admin::get_text('crawler_action'));
+			return $this->admin->screen_scan_not_found(JRDIGI_Admin::get_text('crawler_action'));
 		
 		// Prepare scans data
 		$scans = (object) array(
@@ -620,13 +620,13 @@ class WPLNST_Admin_Scans {
 		// Screen showing the start crawling process
 		$this->admin->screen_view(array(
 			'scans' 			=> $scans,
-			'title'				=> WPLNST_Admin::get_text('crawler_action'),
+			'title'				=> JRDIGI_Admin::get_text('crawler_action'),
 			'notice_error' 		=> $notice_error,
 			'notice_warning' 	=> $notice_warning,
 			'notice_success' 	=> $notice_success,
 			'wp_action'			=> 'wplnst_scans_crawler_view',
-			'add_item_text'		=> WPLNST_Admin::get_text('scan_new_add'),
-			'add_item_url'  	=> WPLNST_Core_Plugin::get_url_scans_add(),
+			'add_item_text'		=> JRDIGI_Admin::get_text('scan_new_add'),
+			'add_item_url'  	=> JRDIGI_Core_Plugin::get_url_scans_add(),
 		));
 		
 		// Check for queued scans
@@ -663,13 +663,13 @@ class WPLNST_Admin_Scans {
 			
 			// Check nonce
 			if (empty($_GET['nonce']) || !wp_verify_nonce($_GET['nonce'], 'bulk-scans-delete'))
-				return $this->admin->screen_invalid_nonce(WPLNST_Admin::get_text('scan_delete'));
+				return $this->admin->screen_invalid_nonce(JRDIGI_Admin::get_text('scan_delete'));
 			
 			// Check confirmation
 			if (empty($_GET['confirm']) || 'on' != $_GET['confirm']) {
 				
 				// Confirm message
-				$notice_warning = sprintf(__('Sorry, we need a confirmation action. Please click here to <a href="%s" class="wplnst-scan-delete" data-confirm="%s">delete scan</a>', 'wplnst'), esc_url(WPLNST_Core_Plugin::get_url_scans_delete($_GET['scan_id'], 'bulk-scans-delete')), esc_attr(WPLNST_Admin::get_text('scan_delete_confirm')));
+				$notice_warning = sprintf(__('Sorry, we need a confirmation action. Please click here to <a href="%s" class="wplnst-scan-delete" data-confirm="%s">delete scan</a>', 'jrdigi'), esc_url(JRDIGI_Core_Plugin::get_url_scans_delete($_GET['scan_id'], 'bulk-scans-delete')), esc_attr(JRDIGI_Admin::get_text('scan_delete_confirm')));
 			
 			// Done
 			} else {
@@ -689,14 +689,14 @@ class WPLNST_Admin_Scans {
 				
 				// Check data
 				if (empty($scans))
-					return $this->admin->screen_invalid_data(WPLNST_Admin::get_text('scan_delete'));
+					return $this->admin->screen_invalid_data(JRDIGI_Admin::get_text('scan_delete'));
 					
 				// Enum and remove
 				foreach ($scans as $scan_id)
 					$this->admin->scans->delete_scan($scan_id);
 
 				// Success message
-				$notice_success = __('The scans have been removed.', 'wplnst');
+				$notice_success = __('The scans have been removed.', 'jrdigi');
 			}
 		
 		// Single
@@ -704,17 +704,17 @@ class WPLNST_Admin_Scans {
 		
 			// Atempt to load scan
 			if (false === ($scan = $this->admin->get_scan_by_id($scan_id)))
-				return $this->admin->screen_scan_not_found(WPLNST_Admin::get_text('scan_delete'));
+				return $this->admin->screen_scan_not_found(JRDIGI_Admin::get_text('scan_delete'));
 			
 			// Check nonce
 			if (empty($_GET['nonce']) || !wp_verify_nonce($_GET['nonce'], $scan->hash))
-				return $this->admin->screen_invalid_nonce(WPLNST_Admin::get_text('scan_delete'));
+				return $this->admin->screen_invalid_nonce(JRDIGI_Admin::get_text('scan_delete'));
 			
 			// Check confirmation
 			if (empty($_GET['confirm']) || 'on' != $_GET['confirm']) {
 				
 				// Confirm message
-				$notice_warning = sprintf(__('Sorry, we need a confirmation action. Please click here to <a href="%s" class="wplnst-scan-delete-isolated" data-confirm-delete="%s">delete scan</a>', 'wplnst'), esc_url(WPLNST_Core_Plugin::get_url_scans_delete($scan->id, $scan->hash)), esc_attr(WPLNST_Admin::get_text('scan_delete_confirm')));
+				$notice_warning = sprintf(__('Sorry, we need a confirmation action. Please click here to <a href="%s" class="wplnst-scan-delete-isolated" data-confirm-delete="%s">delete scan</a>', 'jrdigi'), esc_url(JRDIGI_Core_Plugin::get_url_scans_delete($scan->id, $scan->hash)), esc_attr(JRDIGI_Admin::get_text('scan_delete_confirm')));
 			
 			// Done
 			} else {
@@ -723,7 +723,7 @@ class WPLNST_Admin_Scans {
 				$this->admin->scans->delete_scan($scan_id);
 				
 				// Success message
-				$notice_success = __('The scan has been removed.', 'wplnst');
+				$notice_success = __('The scan has been removed.', 'jrdigi');
 			}
 		}
 		
@@ -732,12 +732,12 @@ class WPLNST_Admin_Scans {
 		
 		// Show admin screen
 		$this->admin->screen_view(array(
-			'title' 			=> WPLNST_Admin::get_text('scan_delete'),
+			'title' 			=> JRDIGI_Admin::get_text('scan_delete'),
 			'notice_success' 	=> $notice_success,
 			'notice_warning' 	=> $notice_warning,
 			'wp_action'			=> 'wplnst_scans_delete_view',
-			'add_item_text'		=> WPLNST_Admin::get_text('scan_new_add'),
-			'add_item_url'  	=> WPLNST_Core_Plugin::get_url_scans_add(),
+			'add_item_text'		=> JRDIGI_Admin::get_text('scan_new_add'),
+			'add_item_url'  	=> JRDIGI_Core_Plugin::get_url_scans_add(),
 		));
 		
 		// Check for queued scans
@@ -752,7 +752,7 @@ class WPLNST_Admin_Scans {
 	public function scans_delete_view($args) {
 		
 		// Back to the scans screen
-		echo '<p>&nbsp;&nbsp; &laquo; <a href="'.WPLNST_Core_Plugin::get_url_scans().'">'.__('Back to the scans list', 'wplnst').'</a></p>';
+		echo '<p>&nbsp;&nbsp; &laquo; <a href="'.JRDIGI_Core_Plugin::get_url_scans().'">'.__('Back to the scans list', 'jrdigi').'</a></p>';
 	}
 
 
@@ -779,7 +779,7 @@ class WPLNST_Admin_Scans {
 		// Check submit error
 		if ($notice_error) {
 			return $this->admin->screen_view(array(
-				'title' => WPLNST_Admin::get_text('scan_edit'),
+				'title' => JRDIGI_Admin::get_text('scan_edit'),
 				'notice_error' => $notice_error,
 			));
 		}
@@ -789,13 +789,13 @@ class WPLNST_Admin_Scans {
 			
 			// Atempt to load scan
 			if (false === ($scan = $this->admin->get_scan_by_id($scan_id, true)))
-				return $this->admin->screen_scan_not_found(WPLNST_Admin::get_text('scan_edit'));
+				return $this->admin->screen_scan_not_found(JRDIGI_Admin::get_text('scan_edit'));
 			
 			// Check update
 			if (!$notice_success && !empty($_GET['updated']) && 'on' == $_GET['updated']) {
 				
 				// New scan created
-				$notice_success = __('New scan added successfully.', 'wplnst');
+				$notice_success = __('New scan added successfully.', 'jrdigi');
 				
 				// Check started argument
 				if (!empty($_GET['started'])) {
@@ -804,7 +804,7 @@ class WPLNST_Admin_Scans {
 					if ('max_scans' == $_GET['started']) {
 						
 						// Warning message
-						$notice_warning = WPLNST_Admin::get_text('max_scans');
+						$notice_warning = JRDIGI_Admin::get_text('max_scans');
 					
 					// Check error
 					} elseif ('error' == $_GET['started']) {
@@ -816,21 +816,21 @@ class WPLNST_Admin_Scans {
 					} elseif ('on' == $_GET['started']) {
 						
 						// New crawler running
-						$notice_crawler = sprintf(__('The crawler for this new scan is running. You can see its data in the <a href="%s">crawler results page</a>.', 'wplnst'), esc_url(WPLNST_Core_Plugin::get_url_scans_results($scan_id)));
+						$notice_crawler = sprintf(__('The crawler for this new scan is running. You can see its data in the <a href="%s">crawler results page</a>.', 'jrdigi'), esc_url(JRDIGI_Core_Plugin::get_url_scans_results($scan_id)));
 					}
 				
 				// Not started
 				} elseif ('wait' == $scan->status && $this->admin->scans->can_play_more_scans() && true === $this->admin->scans->is_scan_ready($scan)) {
 					
 					// Invite to start the crawler
-					$start_url = esc_url(WPLNST_Core_Plugin::get_url_scans_crawler($scan->id, 'on', $scan->hash));
-					$notice_success .= ' '.sprintf(__('From now on you can <a href="%s">start the crawler</a>.', 'wplnst'), $start_url);
+					$start_url = esc_url(JRDIGI_Core_Plugin::get_url_scans_crawler($scan->id, 'on', $scan->hash));
+					$notice_success .= ' '.sprintf(__('From now on you can <a href="%s">start the crawler</a>.', 'jrdigi'), $start_url);
 				}
 			}
 			
 			// Check salt file
 			if ('play' == $scan->status && empty($notice_warning) && !WPLNST_Core_Nonce::check_salt_file())
-				$notice_warning = WPLNST_Admin::get_text('no_salt');
+				$notice_warning = JRDIGI_Admin::get_text('no_salt');
 		}
 		
 		// Default values
@@ -891,23 +891,23 @@ class WPLNST_Admin_Scans {
 		$this->admin->screen_view(array(
 			'scan' 						=> $scan,
 			'wp_action'					=> 'wplnst_scans_edit_view',
-			'destination_types'			=> WPLNST_Core_Types::get_destination_types(),
-			'time_scopes'				=> WPLNST_Core_Types::get_time_scopes(),
-			'link_types' 				=> WPLNST_Core_Types::get_link_types(),
-			'crawl_order'				=> WPLNST_Core_Types::get_crawl_order(),
-			'custom_fields'				=> WPLNST_Core_Types::get_custom_fields(),
-			'anchor_filters'			=> WPLNST_Core_Types::get_anchor_filters(),
-			'url_filters'				=> WPLNST_Core_Types::get_url_filters(),
-			'html_attributes_having'	=> WPLNST_Core_Types::get_html_attributes_having(),
-			'html_attributes_operators'	=> WPLNST_Core_Types::get_html_attributes_operators(),
-			'post_types' 				=> WPLNST_Core_Types::get_post_types(),
-			'post_status' 				=> WPLNST_Core_Types::get_post_status(),
-			'comment_types'				=> WPLNST_Core_Types::get_comment_types(),
-			'status_levels'				=> WPLNST_Core_Types::get_status_levels(),
-			'status_codes' 				=> WPLNST_Core_Types::get_status_codes(),
+			'destination_types'			=> JRDIGI_Core_Types::get_destination_types(),
+			'time_scopes'				=> JRDIGI_Core_Types::get_time_scopes(),
+			'link_types' 				=> JRDIGI_Core_Types::get_link_types(),
+			'crawl_order'				=> JRDIGI_Core_Types::get_crawl_order(),
+			'custom_fields'				=> JRDIGI_Core_Types::get_custom_fields(),
+			'anchor_filters'			=> JRDIGI_Core_Types::get_anchor_filters(),
+			'url_filters'				=> JRDIGI_Core_Types::get_url_filters(),
+			'html_attributes_having'	=> JRDIGI_Core_Types::get_html_attributes_having(),
+			'html_attributes_operators'	=> JRDIGI_Core_Types::get_html_attributes_operators(),
+			'post_types' 				=> JRDIGI_Core_Types::get_post_types(),
+			'post_status' 				=> JRDIGI_Core_Types::get_post_status(),
+			'comment_types'				=> JRDIGI_Core_Types::get_comment_types(),
+			'status_levels'				=> JRDIGI_Core_Types::get_status_levels(),
+			'status_codes' 				=> JRDIGI_Core_Types::get_status_codes(),
 			'nonce' 					=> wp_create_nonce('scan-edit-'.(empty($scan->id)? '0' : $scan->hash)),
-			'action'					=> ($scan->id > 0)? WPLNST_Core_Plugin::get_url_scans_edit($scan->id) : WPLNST_Core_Plugin::get_url_scans_add(),
-			'title'						=> ($scan->id > 0)? WPLNST_Admin::get_text('scan_edit') : WPLNST_Admin::get_text('scan_new'),
+			'action'					=> ($scan->id > 0)? JRDIGI_Core_Plugin::get_url_scans_edit($scan->id) : JRDIGI_Core_Plugin::get_url_scans_add(),
+			'title'						=> ($scan->id > 0)? JRDIGI_Admin::get_text('scan_edit') : JRDIGI_Admin::get_text('scan_new'),
 			'more_scans'				=> $this->admin->scans->can_play_more_scans(),
 			'notice_success'			=> $notice_success,
 			'notice_crawler'			=> $notice_crawler,
@@ -916,8 +916,8 @@ class WPLNST_Admin_Scans {
 			'default_max_threads'		=> wplnst_get_nsetting('max_threads'),
 			'default_connect_timeout' 	=> wplnst_get_nsetting('connect_timeout'),
 			'default_request_timeout' 	=> wplnst_get_nsetting('request_timeout'),
-			'add_item_text'				=> ($scan->id > 0 && 'wait' != $scan->status)? WPLNST_Admin::get_text('scan_new_add') : '',
-			'add_item_url'  			=> ($scan->id > 0 && 'wait' != $scan->status)? WPLNST_Core_Plugin::get_url_scans_add() : '',
+			'add_item_text'				=> ($scan->id > 0 && 'wait' != $scan->status)? JRDIGI_Admin::get_text('scan_new_add') : '',
+			'add_item_url'  			=> ($scan->id > 0 && 'wait' != $scan->status)? JRDIGI_Core_Plugin::get_url_scans_add() : '',
 		));
 	}
 
@@ -927,7 +927,7 @@ class WPLNST_Admin_Scans {
 	 * Extension view for the edit scan screen
 	 */
 	public function scans_edit_view($args) {
-		wplnst_require('views', 'scans-edit');
+		jrdigi_require('views', 'scans-edit');
 		WPLNST_Views_Scans_Edit::view($args);
 	}
 

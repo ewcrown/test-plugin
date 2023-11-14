@@ -4,10 +4,10 @@
 require_once(dirname(dirname(__FILE__)).'/core/module.php');
 
 /**
- * WP Link Status Core Pro Tools URL class
+ * Juriys Digital Core Pro Tools URL class
  *
- * @package WP Link Status Pro
- * @subpackage WP Link Status Pro Core
+ * @package Juriys Digital Pro
+ * @subpackage Juriys Digital Pro Core
  */
 class WPLNST_Core_Pro_Tools_URL extends WPLNST_Core_Module {
 
@@ -57,14 +57,14 @@ class WPLNST_Core_Pro_Tools_URL extends WPLNST_Core_Module {
 				
 				// Parse error
 				$response['status'] = 'error';
-				$response['reason'] = __('Empty URLs pack', 'wplnst');
+				$response['reason'] = __('Empty URLs pack', 'jrdigi');
 				
 			// Process data
 			} elseif (false === ($response['data'] = $this->process($_POST['urls'], $_POST['op'], !empty($_POST['db'])))) {
 
 				// Parse error
 				$response['status'] = 'error';
-				$response['reason'] = __('Error when process URLs pack', 'wplnst');
+				$response['reason'] = __('Error when process URLs pack', 'jrdigi');
 			}
 		}
 		
@@ -159,7 +159,7 @@ class WPLNST_Core_Pro_Tools_URL extends WPLNST_Core_Module {
 		$data = array();
 		
 		// Prepare array of status codes
-		$status_codes = WPLNST_Core_Types::get_status_codes_raw();
+		$status_codes = JRDIGI_Core_Types::get_status_codes_raw();
 		
 		// Enum all			
 		foreach ($urls as $variations) {
@@ -216,7 +216,7 @@ class WPLNST_Core_Pro_Tools_URL extends WPLNST_Core_Module {
 										'previous' 			=> '',
 										'redirect_url' 		=> '',
 										'redirect_error' 	=> '',
-										'result' 			=> '<b style="color: grey;">'.__('Removed object element', 'wplnst').'</b>'
+										'result' 			=> '<b style="color: grey;">'.__('Removed object element', 'jrdigi').'</b>'
 									);
 								}
 							}
@@ -242,7 +242,7 @@ class WPLNST_Core_Pro_Tools_URL extends WPLNST_Core_Module {
 								// Initialize
 								$previous = false;
 								$link = $link_new = $match[1];
-								$result = '<i>'.__('nofollow exists', 'wplnst').'</i>';
+								$result = '<i>'.__('nofollow exists', 'jrdigi').'</i>';
 								
 								// Add new rel attribute to a
 								if (false === stripos($link, 'rel=')) {
@@ -257,7 +257,7 @@ class WPLNST_Core_Pro_Tools_URL extends WPLNST_Core_Module {
 								if ($link != $link_new) {
 
 									// Default response
-									$result = '<b>'.__('Changed to nofollow', 'wplnst').'</b>';
+									$result = '<b>'.__('Changed to nofollow', 'jrdigi').'</b>';
 									
 									// Compose new chunk
 									$chunk = $link_new.$match[5].$match[6];
@@ -269,7 +269,7 @@ class WPLNST_Core_Pro_Tools_URL extends WPLNST_Core_Module {
 									// No replacement
 									if ($content_check == $content) {
 										$previous = true;
-										$result = '<b style="color: grey;">'.__('Set nofollow previously', 'wplnst').'</b>';
+										$result = '<b style="color: grey;">'.__('Set nofollow previously', 'jrdigi').'</b>';
 									}
 								}
 							
@@ -279,7 +279,7 @@ class WPLNST_Core_Pro_Tools_URL extends WPLNST_Core_Module {
 								// Initialize
 								$previous = false;
 								$link = $link_new = $match[1];
-								$result = '<i>'.__('nofollow not exists', 'wplnst').'</i>';
+								$result = '<i>'.__('nofollow not exists', 'jrdigi').'</i>';
 								
 								// Check existing nofollow
 								if (false !== stripos($link, 'nofollow')) {
@@ -295,7 +295,7 @@ class WPLNST_Core_Pro_Tools_URL extends WPLNST_Core_Module {
 								if ($link != $link_new) {
 									
 									// Default response
-									$result = '<b>'.__('Removed nofollow', 'wplnst').'</b>';
+									$result = '<b>'.__('Removed nofollow', 'jrdigi').'</b>';
 									
 									// Compose new chunk
 									$chunk = $link_new.$match[5].$match[6];
@@ -307,7 +307,7 @@ class WPLNST_Core_Pro_Tools_URL extends WPLNST_Core_Module {
 									// No replacement
 									if ($content_check == $content) {
 										$previous = true;
-										$result = '<b style="color: grey;">'.__('Removed nofollow previously', 'wplnst').'</b>';
+										$result = '<b style="color: grey;">'.__('Removed nofollow previously', 'jrdigi').'</b>';
 									}
 								}
 							
@@ -317,7 +317,7 @@ class WPLNST_Core_Pro_Tools_URL extends WPLNST_Core_Module {
 								// Initialize
 								$previous = false;
 								$content_check = $content;
-								$result = '<b>'.__('Removed link', 'wplnst').'</b>';
+								$result = '<b>'.__('Removed link', 'jrdigi').'</b>';
 								
 								// Attempt to remove link and leave the anchor text											
 								$content = str_replace($match[0], $match[5], $content);
@@ -325,7 +325,7 @@ class WPLNST_Core_Pro_Tools_URL extends WPLNST_Core_Module {
 								// Check changes
 								if ($content_check == $content) {
 									$previous = true;
-									$result = '<b style="color: grey;">'.__('Removed link before', 'wplnst').'</b>';
+									$result = '<b style="color: grey;">'.__('Removed link before', 'jrdigi').'</b>';
 								}
 							
 							// Redirect
@@ -338,7 +338,7 @@ class WPLNST_Core_Pro_Tools_URL extends WPLNST_Core_Module {
 								
 								// Initialize
 								$previous = false;
-								$result = '<b style="color: red;">'.__('Something went wrong', 'wplnst').'</b>';
+								$result = '<b style="color: red;">'.__('Something went wrong', 'jrdigi').'</b>';
 								
 								// Check redirection
 								$redirection = $this->get_url_redirect($match[3]);
@@ -376,7 +376,7 @@ class WPLNST_Core_Pro_Tools_URL extends WPLNST_Core_Module {
 										if ($link != $link_new) {
 											
 											// Default response
-											$result = '<b>'.__('Changed redirection location', 'wplnst').'</b>';
+											$result = '<b>'.__('Changed redirection location', 'jrdigi').'</b>';
 											
 											// Compose new chunk
 											$chunk = $link_new.$match[5].$match[6];
@@ -387,7 +387,7 @@ class WPLNST_Core_Pro_Tools_URL extends WPLNST_Core_Module {
 											
 											if ($content_check == $content) {
 												$previous = true;
-												$result = '<b style="color: grey;">'.__('Redirection changed previously', 'wplnst').'</b>';
+												$result = '<b style="color: grey;">'.__('Redirection changed previously', 'jrdigi').'</b>';
 											}
 										}
 									}
@@ -423,7 +423,7 @@ class WPLNST_Core_Pro_Tools_URL extends WPLNST_Core_Module {
 							'redirect_url' 		=> '',
 							'redirect_error' 	=> '',
 							'redirect_status' 	=> '',
-							'result' 			=> '<i>'.__('Database Match', 'wplnst').'</i>'
+							'result' 			=> '<i>'.__('Database Match', 'jrdigi').'</i>'
 						);
 				}
 			}
@@ -553,11 +553,11 @@ class WPLNST_Core_Pro_Tools_URL extends WPLNST_Core_Module {
 		if (!isset($urlo)) {
 			
 			// Load cURL wrapper library
-			wplnst_require('core', 'curl');
+			jrdigi_require('core', 'curl');
 			
 			// Status and URL classes
-			wplnst_require('core', 'status');
-			wplnst_require('core', 'url');
+			jrdigi_require('core', 'status');
+			jrdigi_require('core', 'url');
 			
 			// New URL object
 			$urlo = new WPLNST_Core_URL();
@@ -585,7 +585,7 @@ class WPLNST_Core_Pro_Tools_URL extends WPLNST_Core_Module {
 		// Parse and check crawleable
 		$urlinfo = $urlo->parse($url);
 		if (!$urlo->is_crawleable($urlinfo)) {
-			$redirection['reason'] = __('Malformed URL', 'wplnst');
+			$redirection['reason'] = __('Malformed URL', 'jrdigi');
 			return $redirection;
 		}
 		
@@ -611,7 +611,7 @@ class WPLNST_Core_Pro_Tools_URL extends WPLNST_Core_Module {
 		
 		// Request crawler API
 		$response = WPLNST_Core_CURL::post(array(
-			'CURLOPT_URL' 				=> plugins_url('core/requests/http.php', WPLNST_FILE),
+			'CURLOPT_URL' 				=> plugins_url('core/requests/http.php', JRDIGI_FILE),
 			'CURLOPT_CONNECTTIMEOUT' 	=> $postfields['connect_timeout'],
 			'CURLOPT_TIMEOUT' 			=> $postfields['connect_timeout'] + (2 * $postfields['request_timeout']),
 			'CURLOPT_USERAGENT' 		=> wplnst_get_tsetting('user_agent'),
@@ -619,7 +619,7 @@ class WPLNST_Core_Pro_Tools_URL extends WPLNST_Core_Module {
 		
 		// Check existing response
 		if (empty($response) || !is_array($response)) {
-			$redirection['reason'] = __('Empty request response', 'wplnst');
+			$redirection['reason'] = __('Empty request response', 'jrdigi');
 		
 		// Check request error
 		} elseif ($response['error']) {
@@ -627,7 +627,7 @@ class WPLNST_Core_Pro_Tools_URL extends WPLNST_Core_Module {
 			
 		// Check available data
 		} elseif (empty($response['data'])) {
-			$redirection['reason'] = __('Empty response data', 'wplnst');
+			$redirection['reason'] = __('Empty response data', 'jrdigi');
 		
 		// JSON body
 		} else {
@@ -637,15 +637,15 @@ class WPLNST_Core_Pro_Tools_URL extends WPLNST_Core_Module {
 			
 			// Check value
 			if (empty($body) || !is_object($body)) {
-				$redirection['reason'] = __('Malformed response data', 'wplnst');
+				$redirection['reason'] = __('Malformed response data', 'jrdigi');
 				
 			// Check status
 			} elseif (empty($body->status) || 'ok' != $body->status) {
-				$redirection['reason'] = __('Request error', 'wplnst');
+				$redirection['reason'] = __('Request error', 'jrdigi');
 				
 			// Check data
 			} elseif (empty($body->data) || !is_object($body->data)) {
-				$redirection['reason'] = __('Missing response data', 'wplnst');
+				$redirection['reason'] = __('Missing response data', 'jrdigi');
 				
 			// Done	
 			} else {
@@ -658,7 +658,7 @@ class WPLNST_Core_Pro_Tools_URL extends WPLNST_Core_Module {
 					
 					// Check redirect URL
 					if (empty($status->redirect_url)) {
-						$redirection['reason'] = __('Redirect header but missing Location', 'wplnst');
+						$redirection['reason'] = __('Redirect header but missing Location', 'jrdigi');
 					
 					// Redirected
 					} else {
@@ -668,7 +668,7 @@ class WPLNST_Core_Pro_Tools_URL extends WPLNST_Core_Module {
 						
 						// Check valid URL
 						if (!$urlo->is_crawleable($redirect_urlinfo)) {
-							$redirection['reason'] = __('Redirect header and Location but bad URL', 'wplnst').': '.$status->redirect_url;
+							$redirection['reason'] = __('Redirect header and Location but bad URL', 'jrdigi').': '.$status->redirect_url;
 						
 						// All seems ok
 						} else {
@@ -701,7 +701,7 @@ class WPLNST_Core_Pro_Tools_URL extends WPLNST_Core_Module {
 					
 					// Check result
 					$redirection['result'] = ($step > 1);
-					$redirection['reason'] = __('No 301 redirect header', 'wplnst');
+					$redirection['reason'] = __('No 301 redirect header', 'jrdigi');
 					
 					// Response data
 					$redirection['code']   = ($status->curl_errno > 0)? 'Request error '.$status->curl_errno : $status->code;

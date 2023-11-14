@@ -1,12 +1,12 @@
 <?php
 
 /**
- * WP Link Status Admin Extensions class
+ * Jurius Digital Admin Extensions class
  *
- * @package WP Link Status
- * @subpackage WP Link Status Admin
+ * @package Jurius Digital
+ * @subpackage Jurius Digital Admin
  */
-class WPLNST_Admin_Extensions {
+class JRDIGI_Admin_Extensions {
 
 
 
@@ -20,9 +20,9 @@ class WPLNST_Admin_Extensions {
 		
 		// Show settings screen
 		$admin->screen_view(array(
-			'title' 	=> __('Extensions', 'wplnst'),
+			'title' 	=> __('Extensions', 'jrdigi'),
 			'wp_action'	=> 'wplnst_view_extensions',
-			'action' 	=> WPLNST_Core_Plugin::get_url_extensions(),
+			'action' 	=> JRDIGI_Core_Plugin::get_url_extensions(),
 		));
 	}
 
@@ -32,7 +32,7 @@ class WPLNST_Admin_Extensions {
 	 * Extension view for settings page
 	 */
 	public function view_extensions($args) {
-		wplnst_require('views', 'extensions');
+		jrdigi_require('views', 'extensions');
 		WPLNST_Views_Extensions::view($args);
 	}
 

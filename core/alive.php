@@ -1,10 +1,10 @@
 <?php
 
 /**
- * WP Link Status Core Alive class
+ * Jurius Digital Core Alive class
  * 
- * @package WP Link Status
- * @subpackage WP Link Status Core
+ * @package Jurius Digital
+ * @subpackage Jurius Digital Core
  */
 class WPLNST_Core_Alive {
 
@@ -30,16 +30,16 @@ class WPLNST_Core_Alive {
 	public static function start($source) {
 		
 		// Load util file first
-		require_once(WPLNST_PATH.'/core/util.php');
+		require_once(JRDIGI_PATH.'/core/util.php');
 		
 		// Version components
 		$source::start_version();
 		
 		// Load common plugin dependencies
-		wplnst_require('core', 'types');
+		jrdigi_require('core', 'types');
 		
 		// Load custom nonce system
-		wplnst_require('core', 'nonce/nonce');
+		jrdigi_require('core', 'nonce/nonce');
 		
 		// Check crawl request arguments
 		if (!(defined('DOING_AJAX') && DOING_AJAX) || empty($_GET['wplnst_crawler']) || empty($_GET['wplnst_nonce']) || empty($_GET['wplnst_slug'])) {
@@ -113,7 +113,7 @@ class WPLNST_Core_Alive {
 	protected static function start_version() {
 		
 		// Plugin definitions
-		wplnst_require('core', 'plugin');
+		jrdigi_require('core', 'plugin');
 	}
 
 
@@ -130,7 +130,7 @@ class WPLNST_Core_Alive {
 		WPLNST_Core_Nonce::check_salt_file();
 		
 		// Load cURL wrapper library
-		wplnst_require('core', 'curl');
+		jrdigi_require('core', 'curl');
 		
 		// Spawn crawler call
 		WPLNST_Core_CURL::spawn(array(
@@ -411,7 +411,7 @@ class WPLNST_Core_Alive {
 	protected static function instantiate_crawler($scan_row, $thread_id) {
 		
 		// Load dependencies
-		wplnst_require('core', 'crawler');
+		jrdigi_require('core', 'crawler');
 		
 		// Instance
 		WPLNST_Core_Crawler::instantiate(array(
@@ -516,11 +516,11 @@ class WPLNST_Core_Alive {
 	public static function notify() {
 		
 		// Load translations
-		WPLNST_Core_Plugin::load_plugin_textdomain();
+		JRDIGI_Core_Plugin::load_plugin_textdomain();
 		
 		// Include and call class
-		wplnst_require('core', 'notify');
-		WPLNST_Core_Notify::check();
+		jrdigi_require('core', 'notify');
+		JRDIGI_Core_Notify::check();
 		
 		// End
 		die;

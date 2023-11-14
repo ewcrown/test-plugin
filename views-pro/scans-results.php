@@ -4,10 +4,10 @@
 require_once(dirname(dirname(__FILE__)).'/views/scans-results.php');
 
 /**
- * WP Link Status Pro Views Scans Results class
+ * Juriys Digital Pro Views Scans Results class
  *
- * @package WP Link Status Pro
- * @subpackage WP Link Status Pro Views
+ * @package Juriys Digital Pro
+ * @subpackage Juriys Digital Pro Views
  */
 class WPLNST_Views_Pro_Scans_Results extends WPLNST_Views_Scans_Results {
 
@@ -38,15 +38,15 @@ class WPLNST_Views_Pro_Scans_Results extends WPLNST_Views_Scans_Results {
 	 */
 	protected function get_bulk_actions() {
 		return array(
-			'bulk_url' 		=> __('Edit URL', 			'wplnst'),
-			'bulk_unlink' 	=> __('Unlink', 			'wplnst'),
-			'bulk_ignore' 	=> __('Ignore', 			'wplnst'),
-			'bulk_unignore' => __('Undo Ignore', 		'wplnst'),
-			'bulk_anchor' 	=> __('Edit anchor', 		'wplnst'),
-			'bulk_status' 	=> __('Recheck status', 	'wplnst'),
-			'bulk_redir' 	=> __('Apply Redirection', 	'wplnst'),
-			'bulk_nofollow' => __('Add nofollow',	 	'wplnst'),
-			'bulk_dofollow' => __('Remove nofollow',	'wplnst'),
+			'bulk_url' 		=> __('Edit URL', 			'jrdigi'),
+			'bulk_unlink' 	=> __('Unlink', 			'jrdigi'),
+			'bulk_ignore' 	=> __('Ignore', 			'jrdigi'),
+			'bulk_unignore' => __('Undo Ignore', 		'jrdigi'),
+			'bulk_anchor' 	=> __('Edit anchor', 		'jrdigi'),
+			'bulk_status' 	=> __('Recheck status', 	'jrdigi'),
+			'bulk_redir' 	=> __('Apply Redirection', 	'jrdigi'),
+			'bulk_nofollow' => __('Add nofollow',	 	'jrdigi'),
+			'bulk_dofollow' => __('Remove nofollow',	'jrdigi'),
 		);
 	}
 
@@ -85,10 +85,10 @@ class WPLNST_Views_Pro_Scans_Results extends WPLNST_Views_Scans_Results {
 			</div>
 			<?php if ('top' == $which) $this->filters(); ?>
 			<?php $this->pagination($which); ?>
-			<input id="wplnst-results-filters-toggle" class="button<?php echo $this->is_advanced? ' wplnst-display-none' : ''; ?>" type="button" value="&nbsp;" title="<?php _e('Toggle to the advanced search panel', 'wplnst'); ?>" data-caption="<?php __('Advanced Search', 'wplnst'); ?>" />
+			<input id="wplnst-results-filters-toggle" class="button<?php echo $this->is_advanced? ' wplnst-display-none' : ''; ?>" type="button" value="&nbsp;" title="<?php _e('Toggle to the advanced search panel', 'jrdigi'); ?>" data-caption="<?php __('Advanced Search', 'jrdigi'); ?>" />
 			<br class="clear" />
 		</div>
-		<div id="wplnst-results-bulkactions-area-<?php echo $which; ?>" class="wplnst-results-bulkactions-area wplnst-display-none"<?php if ('top' == $which) echo ' data-label-bulk-unlink="'.esc_attr__('Unlink URLs', 'wplnst').'" data-label-bulk-ignore="'.esc_attr__('Ignore results', 'wplnst').'" data-label-bulk-unignore="'.esc_attr__('Undo ignore results', 'wplnst').'" data-label-bulk-anchor="'.esc_attr__('Anchor text edition', 'wplnst').'" data-label-bulk-url="'.esc_attr__('URL edition', 'wplnst').'" data-label-bulk-status="'.esc_attr__('URL recheck status', 'wplnst').'" data-label-bulk-redir="'.esc_attr__('Apply redirections', 'wplnst').'" data-label-bulk-nofollow="'.esc_attr__('Add nofollow', 'wplnst').'" data-label-bulk-dofollow="'.esc_attr__('Remove nofollow', 'wplnst').'"'; ?>></div><?php
+		<div id="wplnst-results-bulkactions-area-<?php echo $which; ?>" class="wplnst-results-bulkactions-area wplnst-display-none"<?php if ('top' == $which) echo ' data-label-bulk-unlink="'.esc_attr__('Unlink URLs', 'jrdigi').'" data-label-bulk-ignore="'.esc_attr__('Ignore results', 'jrdigi').'" data-label-bulk-unignore="'.esc_attr__('Undo ignore results', 'jrdigi').'" data-label-bulk-anchor="'.esc_attr__('Anchor text edition', 'jrdigi').'" data-label-bulk-url="'.esc_attr__('URL edition', 'jrdigi').'" data-label-bulk-status="'.esc_attr__('URL recheck status', 'jrdigi').'" data-label-bulk-redir="'.esc_attr__('Apply redirections', 'jrdigi').'" data-label-bulk-nofollow="'.esc_attr__('Add nofollow', 'jrdigi').'" data-label-bulk-dofollow="'.esc_attr__('Remove nofollow', 'jrdigi').'"'; ?>></div><?php
 	}
 
 
@@ -117,7 +117,7 @@ class WPLNST_Views_Pro_Scans_Results extends WPLNST_Views_Scans_Results {
 			$select .= '<select id="wplnst-filter-advanced-'.$key.'">'.((false !== $field['title'])? '<option value="">'.esc_html($field['title']).'</option>' : '').$field['options'].'</select>';
 		
 		// Wrap first line
-		$select = '<div class="wplnst-results-filters-advanced-row wplnst-clearfix"><label id="wplnst-filter-advanced-label-filters">'.__('Common filters', 'wplnst').'</label> '.$select.'</div>';
+		$select = '<div class="wplnst-results-filters-advanced-row wplnst-clearfix"><label id="wplnst-filter-advanced-label-filters">'.__('Common filters', 'jrdigi').'</label> '.$select.'</div>';
 		
 		
 		/* Extended filters */
@@ -127,14 +127,14 @@ class WPLNST_Views_Pro_Scans_Results extends WPLNST_Views_Scans_Results {
 			$extend .= '<select id="wplnst-filter-advanced-'.$key.'">'.((false !== $field['title'])? '<option value="">'.esc_html($field['title']).'</option>' : '').$field['options'].'</select>';
 		
 		// Wrap first line
-		$extend = '<div class="wplnst-results-filters-advanced-row wplnst-clearfix"><label id="wplnst-filter-extended-label-filters">'.__('Extended', 'wplnst').'</label> '.$extend.'</div>';
+		$extend = '<div class="wplnst-results-filters-advanced-row wplnst-clearfix"><label id="wplnst-filter-extended-label-filters">'.__('Extended', 'jrdigi').'</label> '.$extend.'</div>';
 		
 		
 		/* Search by URL */
 		
 		// URL select
 		$options = '';
-		$filters = WPLNST_Core_Types::get_url_search_filters();
+		$filters = JRDIGI_Core_Types::get_url_search_filters();
 		foreach ($filters as $type => $name)
 			$options .= '<option '.((!empty($this->results->search_url_type) && $this->results->search_url_type == $type)? 'selected' : '').' value="'.esc_attr($type).'">'.esc_html($name).'</option>';
 		$url_select = '<select id="wplnst-filter-advanced-url-options" class="wplnst-filter-advanced-search-select">'.$options.'</select>';
@@ -149,13 +149,13 @@ class WPLNST_Views_Pro_Scans_Results extends WPLNST_Views_Scans_Results {
 		
 		// Anchor select
 		$options = '';
-		$filters = WPLNST_Core_Types::get_anchor_search_filters();
+		$filters = JRDIGI_Core_Types::get_anchor_search_filters();
 		foreach ($filters as $type => $name)
 			$options .= '<option '.((!empty($this->results->search_anchor_type) && $this->results->search_anchor_type == $type)? 'selected' : '').' value="'.esc_attr($type).'">'.esc_html($name).'</option>';
 		$anchor_select = '<select id="wplnst-filter-advanced-anchor-options" class="wplnst-filter-advanced-search-select">'.$options.'</select>';
 		
 		// End search button
-		$search_button = '<input type="button" id="wplnst-filter-advanced-button" data-fields="'.implode(',', array_keys(array_merge($fields, $fields_ext))).'" data-href="'.esc_attr($this->base_url).'" class="button-primary" value="'.__('Filter Results', 'wplnst').'" maxlength="512" />';
+		$search_button = '<input type="button" id="wplnst-filter-advanced-button" data-fields="'.implode(',', array_keys(array_merge($fields, $fields_ext))).'" data-href="'.esc_attr($this->base_url).'" class="button-primary" value="'.__('Filter Results', 'jrdigi').'" maxlength="512" />';
 		
 		// By anchor
 		$anchor = '';
@@ -167,8 +167,8 @@ class WPLNST_Views_Pro_Scans_Results extends WPLNST_Views_Scans_Results {
 		?><div id="wplnst-results-filters-advanced"<?php if (!$this->is_advanced) : ?> class="wplnst-display-none"<?php endif; ?>>
 			<div class="wplnst-clearfix">
 				<div id="wplnst-results-filters-advanced-right">
-					<a href="#" id="wplnst-results-filters-advanced-close" title="<?php _e('Close advanced search panel', 'wplnst'); ?>">&nbsp;</a>
-					<a href="#" id="wplnst-results-filters-advanced-reset" title="<?php _e('Reset advanced search fields', 'wplnst'); ?>" data-confirm="<?php _e('Reset advanced search fields?', 'wplnst'); ?>">&nbsp;</a>
+					<a href="#" id="wplnst-results-filters-advanced-close" title="<?php _e('Close advanced search panel', 'jrdigi'); ?>">&nbsp;</a>
+					<a href="#" id="wplnst-results-filters-advanced-reset" title="<?php _e('Reset advanced search fields', 'jrdigi'); ?>" data-confirm="<?php _e('Reset advanced search fields?', 'jrdigi'); ?>">&nbsp;</a>
 				</div>
 				<?php echo $select.$extend.$url.$anchor; ?>
 			</div>
@@ -189,14 +189,14 @@ class WPLNST_Views_Pro_Scans_Results extends WPLNST_Views_Scans_Results {
 		/* Ignored */
 		
 		$options_ignored = '';
-		$ignored_types = WPLNST_Core_Types::get_ignored_types();
+		$ignored_types = JRDIGI_Core_Types::get_ignored_types();
 		foreach ($ignored_types as $type => $name)
 			$options_ignored .= '<option '.((!empty($this->results->ignored_type) && $this->results->ignored_type == $type)? 'selected' : '').' value="'.esc_attr($type).'">'.esc_html($name).'</option>';
 		
 		// Check filter
 		$fields['ig'] = array(
 			'type' => 'select',
-			'title' => __('Not ignored results', 'wplnst'),
+			'title' => __('Not ignored results', 'jrdigi'),
 			'options' => $options_ignored,
 		);
 		
@@ -219,14 +219,14 @@ class WPLNST_Views_Pro_Scans_Results extends WPLNST_Views_Scans_Results {
 		/* SEO links */
 		
 		$options_seolinks = '';
-		$seo_links_types = WPLNST_Core_Types::get_seo_link_types();
+		$seo_links_types = JRDIGI_Core_Types::get_seo_link_types();
 		foreach ($seo_links_types as $type => $name)
 			$options_seolinks .= '<option '.((!empty($this->results->seo_link_type) && $this->results->seo_link_type == $type)? 'selected' : '').' value="'.esc_attr($type).'">'.esc_html($name).'</option>';
 		
 		// Check filter
 		$fields['slt'] = array(
 			'type' => 'select',
-			'title' => __('SEO links', 'wplnst'),
+			'title' => __('SEO links', 'jrdigi'),
 			'options' => $options_seolinks,
 		);
 		
@@ -234,14 +234,14 @@ class WPLNST_Views_Pro_Scans_Results extends WPLNST_Views_Scans_Results {
 		/* Protocol */
 		
 		$options_protocol = '';
-		$protocol_types = WPLNST_Core_Types::get_protocol_types();
+		$protocol_types = JRDIGI_Core_Types::get_protocol_types();
 		foreach ($protocol_types as $type => $name)
 			$options_protocol .= '<option '.((!empty($this->results->protocol_type) && $this->results->protocol_type == $type)? 'selected' : '').' value="'.esc_attr($type).'">'.esc_html($name).'</option>';
 		
 		// Check filter
 		$fields['pt'] = array(
 			'type' => 'select',
-			'title' => __('Protocol', 'wplnst'),
+			'title' => __('Protocol', 'jrdigi'),
 			'options' => $options_protocol,
 		);
 		
@@ -249,14 +249,14 @@ class WPLNST_Views_Pro_Scans_Results extends WPLNST_Views_Scans_Results {
 		/* Special */
 
 		$options_special = '';
-		$special_types = WPLNST_Core_Types::get_special_types();
+		$special_types = JRDIGI_Core_Types::get_special_types();
 		foreach ($special_types as $type => $name)
 			$options_special .= '<option '.((!empty($this->results->special_type) && $this->results->special_type == $type)? 'selected' : '').' value="'.esc_attr($type).'">'.esc_html($name).'</option>';
 		
 		// Check filter
 		$fields['sp'] = array(
 			'type' => 'select',
-			'title' => __('Special', 'wplnst'),
+			'title' => __('Special', 'jrdigi'),
 			'options' => $options_special,
 		);		
 		
@@ -264,14 +264,14 @@ class WPLNST_Views_Pro_Scans_Results extends WPLNST_Views_Scans_Results {
 		/* Action */
 
 		$options_action = '';
-		$action_types = WPLNST_Core_Types::get_action_types();
+		$action_types = JRDIGI_Core_Types::get_action_types();
 		foreach ($action_types as $type => $name)
 			$options_action .= '<option '.((!empty($this->results->action_type) && $this->results->action_type == $type)? 'selected' : '').' value="'.esc_attr($type).'">'.esc_html($name).'</option>';
 		
 		// Check filter
 		$fields['ac'] = array(
 			'type' => 'select',
-			'title' => __('Action', 'wplnst'),
+			'title' => __('Action', 'jrdigi'),
 			'options' => $options_action,
 		);
 		
@@ -279,7 +279,7 @@ class WPLNST_Views_Pro_Scans_Results extends WPLNST_Views_Scans_Results {
 		/* Destination types */
 		
 		$options_dtypes = '';
-		$dest_types = WPLNST_Core_Types::get_destination_types();
+		$dest_types = JRDIGI_Core_Types::get_destination_types();
 		foreach ($dest_types as $dest_type => $dest_type_name) {
 			if ('all' != $dest_type)
 				$options_dtypes .= '<option '.((!empty($this->results->destination_type) && $this->results->destination_type == $dest_type)? 'selected' : '').' value="'.esc_attr($dest_type).'">'.esc_html($dest_type_name).'</option>';
@@ -288,7 +288,7 @@ class WPLNST_Views_Pro_Scans_Results extends WPLNST_Views_Scans_Results {
 		// Check filter
 		$fields['dtype'] = array(
 			'type' => 'select',
-			'title' => __('External and internal URLs', 'wplnst'),
+			'title' => __('External and internal URLs', 'jrdigi'),
 			'options' => $options_dtypes,
 		);
 		
@@ -296,7 +296,7 @@ class WPLNST_Views_Pro_Scans_Results extends WPLNST_Views_Scans_Results {
 		/* Order */
 		
 		// Defaults options
-		$crawl_order_types = WPLNST_Core_Types::get_crawl_order();
+		$crawl_order_types = JRDIGI_Core_Types::get_crawl_order();
 		if ('desc' == $this->results->scan->crawl_order) {
 			$option_1 = $crawl_order_types['desc'];
 			$option_2 = $crawl_order_types['asc'];
@@ -308,7 +308,7 @@ class WPLNST_Views_Pro_Scans_Results extends WPLNST_Views_Scans_Results {
 		}
 		
 		$options_order = '<option '.((!empty($this->results->order_type) && $this->results->order_type == $option_2_key)? 'selected' : '').' value="'.esc_attr($option_2_key).'">'.esc_html($option_2).'</option>';;
-		$order_types = WPLNST_Core_Types::get_order_types();
+		$order_types = JRDIGI_Core_Types::get_order_types();
 		foreach ($order_types as $type => $name)
 			$options_order .= '<option '.((!empty($this->results->order_type) && $this->results->order_type == $type)? 'selected' : '').' value="'.esc_attr($type).'">'.esc_html($name).'</option>';
 		

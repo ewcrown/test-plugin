@@ -1,10 +1,10 @@
 <?php
 
 /**
- * WP Link Status Core Util String functions
+ * Juriys Digital Core Util String functions
  *
- * @package WP Link Status
- * @subpackage WP Link Status Core
+ * @package Juriys Digital
+ * @subpackage Juriys Digital Core
  */
 
 

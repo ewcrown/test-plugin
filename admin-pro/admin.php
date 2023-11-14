@@ -4,12 +4,12 @@
 require_once(dirname(dirname(__FILE__)).'/admin/admin.php');
 
 /**
- * WP Link Status Pro Admin class
+ * Jurius Digital Pro Admin class
  *
- * @package WP Link Status Pro
- * @subpackage WP Link Status Pro Admin
+ * @package Jurius Digital Pro
+ * @subpackage Jurius Digital Pro Admin
  */
-class WPLNST_Admin_Pro extends WPLNST_Admin {
+class JRDIGI_Admin_Pro extends JRDIGI_Admin {
 
 
 
@@ -33,14 +33,14 @@ class WPLNST_Admin_Pro extends WPLNST_Admin {
 	protected function admin_enqueue_version() {
 		
 		// Commmon admin styles
-		wp_enqueue_style( 'wplnst-admin-pro-css', plugins_url('assets-pro/css/admin-pro.css', WPLNST_FILE), array(), $this->script_version);
+		wp_enqueue_style( 'wplnst-admin-pro-css', plugins_url('assets-pro/css/admin-pro.css', JRDIGI_FILE), array(), $this->script_version);
 		
 		// Admin script version
-		wp_enqueue_script('wplnst-admin-pro-script', plugins_url('assets-pro/js/admin-pro.js', WPLNST_FILE), array('jquery'), $this->script_version, true);
+		wp_enqueue_script('wplnst-admin-pro-script', plugins_url('assets-pro/js/admin-pro.js', JRDIGI_FILE), array('jquery'), $this->script_version, true);
 		
 		// URL tools scripts
-		if (WPLNST_Core_Pro_Plugin::slug.'-tools-url' == $_GET['page'])
-			wp_enqueue_script('wplnst-admin-script-tools-url', plugins_url('assets-pro/js/admin-tools-url.js', WPLNST_FILE), array('jquery', 'json2'), $this->script_version, true);
+		if (JRDIGI_Core_Pro_Plugin::slug.'-tools-url' == $_GET['page'])
+			wp_enqueue_script('wplnst-admin-script-tools-url', plugins_url('assets-pro/js/admin-tools-url.js', JRDIGI_FILE), array('jquery', 'json2'), $this->script_version, true);
 	}
 
 
@@ -54,7 +54,7 @@ class WPLNST_Admin_Pro extends WPLNST_Admin {
 	 * Admin menu utilities
 	 */
 	protected function admin_menu_utilities() {
-		add_submenu_page(WPLNST_Core_Pro_Plugin::slug, __('URL Tools', 'wplnst'), __('URL Tools', 'wplnst'), WPLNST_Core_Pro_Plugin::capability, WPLNST_Core_Pro_Plugin::slug.'-tools-url', array(&$this, 'admin_menu_tools_url'));
+		add_submenu_page(JRDIGI_Core_Pro_Plugin::slug, __('URL Tools', 'jrdigi'), __('URL Tools', 'jrdigi'), JRDIGI_Core_Pro_Plugin::capability, JRDIGI_Core_Pro_Plugin::slug.'-tools-url', array(&$this, 'admin_menu_tools_url'));
 	}
 
 
@@ -70,8 +70,8 @@ class WPLNST_Admin_Pro extends WPLNST_Admin {
 	 * Scans common page
 	 */
 	public function admin_menu_scans() {
-		wplnst_require('admin-pro', 'scans');
-		new WPLNST_Admin_Pro_Scans($this, 'context');
+		jrdigi_require('admin-pro', 'scans');
+		new JRDIGI_Admin_Pro_Scans($this, 'context');
 	}
 
 
@@ -80,8 +80,8 @@ class WPLNST_Admin_Pro extends WPLNST_Admin {
 	 * New or edit scan page
 	 */
 	public function admin_menu_scans_new() {
-		wplnst_require('admin-pro', 'scans');
-		new WPLNST_Admin_Pro_Scans($this, 'edit');
+		jrdigi_require('admin-pro', 'scans');
+		new JRDIGI_Admin_Pro_Scans($this, 'edit');
 	}
 
 
@@ -90,8 +90,8 @@ class WPLNST_Admin_Pro extends WPLNST_Admin {
 	 * Section for URL tools
 	 */
 	public function admin_menu_tools_url() {
-		wplnst_require('admin-pro', 'tools-url');
-		new WPLNST_Admin_Pro_Tools_URL($this);
+		jrdigi_require('admin-pro', 'tools-url');
+		new JRDIGI_Admin_Pro_Tools_URL($this);
 	}
 
 
@@ -107,7 +107,7 @@ class WPLNST_Admin_Pro extends WPLNST_Admin {
 	public function ajax_results_update() {
 		
 		// Load dependencies
-		wplnst_require('core-pro', 'results');
+		jrdigi_require('core-pro', 'results');
 		
 		// Instantiate and self start start processes
 		WPLNST_Core_Pro_Results::instantiate();
@@ -140,7 +140,7 @@ class WPLNST_Admin_Pro extends WPLNST_Admin {
 	public function ajax_tools_url() {
 		
 		// Load dependencies
-		wplnst_require('core-pro', 'tools-url-update');
+		jrdigi_require('core-pro', 'tools-url-update');
 		
 		// Instantiate and self start start processes
 		$tools = WPLNST_Core_Pro_Tools_URL_Update::instantiate();
@@ -157,7 +157,7 @@ class WPLNST_Admin_Pro extends WPLNST_Admin {
 	 * Return plugin title for screen view
 	 */
 	protected function get_plugin_title() {
-		return 'WP Link Status Pro';
+		return 'Juris Digital';
 	}
 
 

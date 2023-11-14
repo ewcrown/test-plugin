@@ -1,12 +1,12 @@
 <?php
 
 /**
- * WP Link Status Admin Settings class
+ * Jurius Digital Admin Settings class
  *
- * @package WP Link Status
- * @subpackage WP Link Status Admin
+ * @package Jurius Digital
+ * @subpackage Jurius Digital Admin
  */
-class WPLNST_Admin_Settings {
+class JRDIGI_Admin_Settings {
 
 
 
@@ -22,8 +22,8 @@ class WPLNST_Admin_Settings {
 		if (isset($_POST['settings_nonce'])) {
 			
 			// Check nonce
-			if (!wp_verify_nonce($_POST['settings_nonce'], WPLNST_Core_Plugin::slug.'-settings'))
-				return $admin->screen_invalid_nonce(WPLNST_Admin::get_text('settings'));
+			if (!wp_verify_nonce($_POST['settings_nonce'], JRDIGI_Core_Plugin::slug.'-settings'))
+				return $admin->screen_invalid_nonce(JRDIGI_Admin::get_text('settings'));
 			
 			// General update
 			update_option('wplnst_max_threads', 		(int) $_POST['tx-max-threads']);
@@ -50,7 +50,7 @@ class WPLNST_Admin_Settings {
 			update_option('wplnst_uninstall_data', 		empty($_POST['ck-uninstall-data'])?  'off' : 'on');
 			
 			// Update notice
-			$notice_success = __('Settings updated', 'wplnst');
+			$notice_success = __('Settings updated', 'jrdigi');
 		}
 		
 		// Custom action view
@@ -58,10 +58,10 @@ class WPLNST_Admin_Settings {
 		
 		// Show settings screen
 		$admin->screen_view(array(
-			'title' 			=> WPLNST_Admin::get_text('settings'),
+			'title' 			=> JRDIGI_Admin::get_text('settings'),
 			'wp_action'			=> 'wplnst_view_settings',
-			'action'			=> WPLNST_Core_Plugin::get_url_settings(),
-			'nonce'				=> wp_create_nonce(WPLNST_Core_Plugin::slug.'-settings'),
+			'action'			=> JRDIGI_Core_Plugin::get_url_settings(),
+			'nonce'				=> wp_create_nonce(JRDIGI_Core_Plugin::slug.'-settings'),
 			'notice_success' 	=> $notice_success,
 			'notice_error' 		=> $notice_error,
 		));
@@ -73,7 +73,7 @@ class WPLNST_Admin_Settings {
 	 * Extension view for settings page
 	 */
 	public function view_settings($args) {
-		wplnst_require('views', 'settings');
+		jrdigi_require('views', 'settings');
 		WPLNST_Views_Settings::view($args);
 	}
 

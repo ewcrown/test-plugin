@@ -4,10 +4,10 @@
 require_once(dirname(dirname(__FILE__)).'/core/alive.php');
 
 /**
- * WP Link Status Pro Core Alive class
+ * Juriys Digital Pro Core Alive class
  *
- * @package WP Link Status Pro
- * @subpackage WP Link Status Pro Core
+ * @package Juriys Digital Pro
+ * @subpackage Juriys Digital Pro Core
  */
 class WPLNST_Core_Pro_Alive extends WPLNST_Core_Alive {
 
@@ -33,7 +33,7 @@ class WPLNST_Core_Pro_Alive extends WPLNST_Core_Alive {
 	protected static function start_version() {
 		
 		// Plugin definitions
-		wplnst_require('core-pro', 'plugin');
+		jrdigi_require('core-pro', 'plugin');
 	}
 
 
@@ -49,7 +49,7 @@ class WPLNST_Core_Pro_Alive extends WPLNST_Core_Alive {
 	protected static function instantiate_crawler($scan_row, $thread_id) {
 		
 		// Load dependencies
-		wplnst_require('core-pro', 'crawler');
+		jrdigi_require('core-pro', 'crawler');
 		
 		// Instance
 		WPLNST_Core_Pro_Crawler::instantiate(array(

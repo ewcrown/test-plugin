@@ -1,10 +1,10 @@
 <?php
 
 /**
- * WP Link Status Core CURL class
+ * Jurius Digital Core CURL class
  *
- * @package WP Link Status
- * @subpackage WP Link Status Core
+ * @package Jurius Digital
+ * @subpackage Jurius Digital Core
  */
 class WPLNST_Core_CURL {
 

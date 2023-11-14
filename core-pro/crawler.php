@@ -4,10 +4,10 @@
 require_once(dirname(dirname(__FILE__)).'/core/crawler.php');
 
 /**
- * WP Link Status Pro Core Crawler class
+ * Juriys Digital Pro Core Crawler class
  *
- * @package WP Link Status Pro
- * @subpackage WP Link Status Pro Core
+ * @package Juriys Digital Pro
+ * @subpackage Juriys Digital Pro Core
  */
 class WPLNST_Core_Pro_Crawler extends WPLNST_Core_Crawler {
 

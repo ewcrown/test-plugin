@@ -1,10 +1,10 @@
 <?php
 
 /**
- * WP Link Status Views class
+ * Juriys Digital Views class
  *
- * @package WP Link Status
- * @subpackage WP Link Status Views
+ * @package Juriys Digital
+ * @subpackage Juriys Digital Views
  */
 abstract class WPLNST_Views {
 

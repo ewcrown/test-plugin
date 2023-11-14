@@ -1,12 +1,12 @@
 <?php
 
 /**
- * WP Link Status Pro Admin Tools URL class
+ * Jurius Digital Admin Tools URL class
  *
- * @package WP Link Status Pro
- * @subpackage WP Link Status Pro Admin
+ * @package Jurius Digital
+ * @subpackage Jurius Digital Admin
  */
-class WPLNST_Admin_Pro_Tools_URL {
+class JRDIGI_Admin_Pro_Tools_URL {
 
 
 
@@ -20,8 +20,8 @@ class WPLNST_Admin_Pro_Tools_URL {
 		
 		// Show admin screen
 		$admin->screen_view(array(
-			'title' 		=> __('URL Tools', 'wplnst'),
-			'action_url'	=> WPLNST_Core_Pro_Plugin::get_url_tools_url(),
+			'title' 		=> __('URL Tools', 'jrdigi'),
+			'action_url'	=> JRDIGI_Core_Pro_Plugin::get_url_tools_url(),
 			'action_ajax' 	=> 'wplnst_tools_url',
 			'action_nonce'	=> 'wplnst_tools_url_nonce',
 			'wp_action'		=> 'wplnst_view_tools_url',
@@ -36,13 +36,13 @@ class WPLNST_Admin_Pro_Tools_URL {
 	public function view_tools_url($args) {
 		
 		// Load dependencies
-		wplnst_require('views-pro', 'tools-url');
+		jrdigi_require('views-pro', 'tools-url');
 		
 		// Set paywall values
 		$args['button_update_class'] = '';
 		
 		// Show Tools URL page
-		WPLNST_Views_Pro_Tools_URL::display($args);
+		JRDIGI_Views_Pro_Tools_URL::display($args);
 	}
 
 

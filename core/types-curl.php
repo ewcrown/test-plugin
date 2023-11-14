@@ -1,12 +1,12 @@
 <?php
 
 /**
- * WP Link Status Core Types CURL class
+ * Juriys Digital Core Types CURL class
  *
- * @package WP Link Status
- * @subpackage WP Link Status Core
+ * @package Juriys Digital
+ * @subpackage Juriys Digital Core
  */
-class WPLNST_Core_Types_CURL {
+class JRDIGI_Core_Types_CURL {
 
 
 

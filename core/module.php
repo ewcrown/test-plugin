@@ -1,10 +1,10 @@
 <?php
 
 /**
- * WP Link Status Core Module class
+ * Jurius Digital Core Module class
  *
- * @package WP Link Status
- * @subpackage WP Link Status Core
+ * @package Jurius Digital
+ * @subpackage Jurius Digital Core
  */
 abstract class WPLNST_Core_Module {
 
@@ -79,7 +79,7 @@ abstract class WPLNST_Core_Module {
 	 */
 	public function load_scans_object() {
 		if (!isset($this->scans)) {
-			wplnst_require('core', 'scans');
+			jrdigi_require('core', 'scans');
 			$this->scans = new WPLNST_Core_Scans();
 		}
 	}
@@ -91,7 +91,7 @@ abstract class WPLNST_Core_Module {
 	 */
 	public function load_url_object() {
 		if (!isset($this->urlo)) {
-			wplnst_require('core', 'url');
+			jrdigi_require('core', 'url');
 			$this->urlo = new WPLNST_Core_URL();
 		}
 	}
@@ -140,13 +140,13 @@ abstract class WPLNST_Core_Module {
 		// Check user capabilities
 		if (!current_user_can($capability)) {
 			$response['status'] = 'error';
-			$response['reason'] = __('Sorry, current user can`t perform this action', 'wplnst');
+			$response['reason'] = __('Sorry, current user can`t perform this action', 'jrdigi');
 			return false;
 
 		// Check if submitted nonce matches with the generated nonce we created earlier
 		} elseif (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], isset($nonce)? $nonce : __FILE__)) {
 			$response['status'] = 'error';
-			$response['reason'] = __('Sorry, security verification error. Please reload this page and try again.', 'wplnst');
+			$response['reason'] = __('Sorry, security verification error. Please reload this page and try again.', 'jrdigi');
 			return false;
 		}
 		

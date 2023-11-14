@@ -1,10 +1,10 @@
 <?php
 
 /**
- * WP Link Status Core Register class
+ * Juris Digital Core Register class
  *
- * @package WP Link Status
- * @subpackage WP Link Status Core
+ * @package Juris Digital
+ * @subpackage Juris Digital Core
  */
 class WPLNST_Core_Register {
 
@@ -19,7 +19,7 @@ class WPLNST_Core_Register {
 		WPLNST_Core_Nonce::check_salt_file();
 		
 		// Load scheme library
-		wplnst_require('core', 'scheme');
+		jrdigi_require('core', 'scheme');
 		
 		// Check plugins tables
 		if (false !== ($tables = WPLNST_Core_Scheme::check_tables()))
@@ -38,8 +38,6 @@ class WPLNST_Core_Register {
 		WPLNST_Core_Settings::delete_crawler_options();
 	}
 
-
-
 	/**
 	 * Uninstall plugin data
 	 */
@@ -54,18 +52,15 @@ class WPLNST_Core_Register {
 		
 		// Remove user meta
 		$user_id = get_current_user_id();
-		delete_user_meta($user_id, 'wplnst_advanced_search');
-		delete_user_meta($user_id, 'wplnst_scans_per_page');
-		delete_user_meta($user_id, 'wplnst_scan_results_per_page');
+		delete_user_meta($user_id, 'jrdigi_advanced_search');
+		delete_user_meta($user_id, 'jrdigi_scans_per_page');
+		delete_user_meta($user_id, 'jrdigi_scan_results_per_page');
 		
 		// Remove plugin options
 		WPLNST_Core_Settings::delete_all_options();
 		
 		// Remove scheme tables
-		wplnst_require('core', 'scheme');
+		jrdigi_require('core', 'scheme');
 		WPLNST_Core_Scheme::drop_tables();
 	}
-
-
-
 }
