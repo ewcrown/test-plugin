@@ -1,10 +1,10 @@
 <?php
 
 /**
- * WP Link Status Core Scans class
+ * Juriys Digital Core Scans class
  *
- * @package WP Link Status
- * @subpackage WP Link Status Core
+ * @package Juriys Digital
+ * @subpackage Juriys Digital Core
  */
 class WPLNST_Core_Scans {
 
@@ -71,7 +71,7 @@ class WPLNST_Core_Scans {
 			// Check elements per page
 			$per_page = isset($per_page)? (int) $per_page : (int) get_user_option('wplnst_scans_per_page');
 			if (empty($per_page))
-				$per_page = WPLNST_Core_Types::scans_per_page;
+				$per_page = JRDIGI_Core_Types::scans_per_page;
 			
 			// Execute query
 			$results = $this->pagination(array(
@@ -123,7 +123,7 @@ class WPLNST_Core_Scans {
 		// Cache post types
 		static $post_types;
 		if (!isset($post_types))
-			$post_types = WPLNST_Core_Types::get_post_types();
+			$post_types = JRDIGI_Core_Types::get_post_types();
 		
 		// Cache post types keys
 		static $post_types_keys;
@@ -133,12 +133,12 @@ class WPLNST_Core_Scans {
 		// Cache post status
 		static $post_status_keys;
 		if (!isset($post_status_keys))
-			$post_status_keys = array_keys(WPLNST_Core_Types::get_post_status());
+			$post_status_keys = array_keys(JRDIGI_Core_Types::get_post_status());
 		
 		// Cache status level
 		static $status_levels;
 		if (!isset($status_levels))
-			$status_levels = WPLNST_Core_Types::get_status_levels();
+			$status_levels = JRDIGI_Core_Types::get_status_levels();
 		
 		// Cache status levels keys
 		static $status_levels_keys;
@@ -148,7 +148,7 @@ class WPLNST_Core_Scans {
 		// Cache status codes
 		static $status_codes_raw;
 		if (!isset($status_codes_raw))
-			$status_codes_raw = WPLNST_Core_Types::get_status_codes_raw();
+			$status_codes_raw = JRDIGI_Core_Types::get_status_codes_raw();
 		
 		// Cache status codes keys
 		static $status_codes_keys;
@@ -173,35 +173,35 @@ class WPLNST_Core_Scans {
 		$config = @json_decode($row->config, true);
 		
 		// General tab
-		$scan->destination_type 		= WPLNST_Core_Types::check_array_value($config, 'destination_type', array_keys(WPLNST_Core_Types::get_destination_types()), 'all');
-		$scan->time_scope 				= WPLNST_Core_Types::check_array_value($config, 'time_scope', array_keys(WPLNST_Core_Types::get_time_scopes()), 'anytime');
-		$scan->link_types				= WPLNST_Core_Types::check_array_value($config, 'link_types', array_keys(WPLNST_Core_Types::get_link_types()), array());
-		$scan->crawl_order				= WPLNST_Core_Types::check_array_value($config, 'crawl_order', array_keys(WPLNST_Core_Types::get_crawl_order()), 'desc');
-		$scan->redir_status				= WPLNST_Core_Types::check_array_value($config, 'redir_status', true);
-		$scan->malformed				= WPLNST_Core_Types::check_array_value($config, 'malformed', true);
-		$scan->notify_default 			= WPLNST_Core_Types::check_array_value($config, 'notify_default', true);
-		$scan->notify_address 			= WPLNST_Core_Types::check_array_value($config, 'notify_address', true);
-		$scan->notify_address_email		= WPLNST_Core_Types::get_array_value($config, 'notify_address_email', '');
+		$scan->destination_type 		= JRDIGI_Core_Types::check_array_value($config, 'destination_type', array_keys(JRDIGI_Core_Types::get_destination_types()), 'all');
+		$scan->time_scope 				= JRDIGI_Core_Types::check_array_value($config, 'time_scope', array_keys(JRDIGI_Core_Types::get_time_scopes()), 'anytime');
+		$scan->link_types				= JRDIGI_Core_Types::check_array_value($config, 'link_types', array_keys(JRDIGI_Core_Types::get_link_types()), array());
+		$scan->crawl_order				= JRDIGI_Core_Types::check_array_value($config, 'crawl_order', array_keys(JRDIGI_Core_Types::get_crawl_order()), 'desc');
+		$scan->redir_status				= JRDIGI_Core_Types::check_array_value($config, 'redir_status', true);
+		$scan->malformed				= JRDIGI_Core_Types::check_array_value($config, 'malformed', true);
+		$scan->notify_default 			= JRDIGI_Core_Types::check_array_value($config, 'notify_default', true);
+		$scan->notify_address 			= JRDIGI_Core_Types::check_array_value($config, 'notify_address', true);
+		$scan->notify_address_email		= JRDIGI_Core_Types::get_array_value($config, 'notify_address_email', '');
 		
 		// Content options tab
-		$scan->post_types				= (function_exists('did_action') && did_action('init'))? WPLNST_Core_Types::check_array_value($config, 'post_types', $post_types_keys, array()) : ((empty($config['post_types']) || !is_array($config['post_types']))? array() : $config['post_types']);
-		$scan->post_status				= WPLNST_Core_Types::check_array_value($config, 'post_status', $post_status_keys, array());
+		$scan->post_types				= (function_exists('did_action') && did_action('init'))? JRDIGI_Core_Types::check_array_value($config, 'post_types', $post_types_keys, array()) : ((empty($config['post_types']) || !is_array($config['post_types']))? array() : $config['post_types']);
+		$scan->post_status				= JRDIGI_Core_Types::check_array_value($config, 'post_status', $post_status_keys, array());
 		$scan->check_posts				= (!empty($scan->post_types) && is_array($scan->post_types) && !empty($scan->post_status) && is_array($scan->post_status));
-		$scan->comment_types 			= WPLNST_Core_Types::check_array_value($config, 'comment_types', array_keys(WPLNST_Core_Types::get_comment_types()), array());
+		$scan->comment_types 			= JRDIGI_Core_Types::check_array_value($config, 'comment_types', array_keys(JRDIGI_Core_Types::get_comment_types()), array());
 		$scan->check_comments 			= (!empty($scan->comment_types) && is_array($scan->comment_types));
-		$scan->check_blogroll 			= WPLNST_Core_Types::check_array_value($config, 'blogroll', true);
+		$scan->check_blogroll 			= JRDIGI_Core_Types::check_array_value($config, 'blogroll', true);
 		
 		// Links status tab
-		$scan->status_levels 			= WPLNST_Core_Types::check_array_value($config, 'status_levels', $status_levels_keys, array());
-		$scan->status_codes				= WPLNST_Core_Types::check_array_value($config, 'status_codes', array_keys(WPLNST_Core_Types::get_status_codes_raw()), array());
+		$scan->status_levels 			= JRDIGI_Core_Types::check_array_value($config, 'status_levels', $status_levels_keys, array());
+		$scan->status_codes				= JRDIGI_Core_Types::check_array_value($config, 'status_codes', array_keys(JRDIGI_Core_Types::get_status_codes_raw()), array());
 		
 		// Filters
-		$scan->custom_fields			= WPLNST_Core_Types::check_array_json($config, 'custom_fields');
-		$scan->anchor_filters			= WPLNST_Core_Types::check_array_json($config, 'anchor_filters');
-		$scan->include_urls				= WPLNST_Core_Types::check_array_json($config, 'include_urls');
-		$scan->exclude_urls				= WPLNST_Core_Types::check_array_json($config, 'exclude_urls');
-		$scan->html_attributes			= WPLNST_Core_Types::check_array_json($config, 'html_attributes');
-		$scan->filtered_query			= WPLNST_Core_Types::check_array_value($config, 'filtered_query', true);
+		$scan->custom_fields			= JRDIGI_Core_Types::check_array_json($config, 'custom_fields');
+		$scan->anchor_filters			= JRDIGI_Core_Types::check_array_json($config, 'anchor_filters');
+		$scan->include_urls				= JRDIGI_Core_Types::check_array_json($config, 'include_urls');
+		$scan->exclude_urls				= JRDIGI_Core_Types::check_array_json($config, 'exclude_urls');
+		$scan->html_attributes			= JRDIGI_Core_Types::check_array_json($config, 'html_attributes');
+		$scan->filtered_query			= JRDIGI_Core_Types::check_array_value($config, 'filtered_query', true);
 		
 		
 		/* scan config values names */
@@ -209,17 +209,17 @@ class WPLNST_Core_Scans {
 		if ($names) {
 			
 			// Destination and Time scope
-			$scan->destination_type_name = WPLNST_Core_Types::get_destination_type_name($scan->destination_type, 'all');
-			$scan->time_scope_name 		 = WPLNST_Core_Types::get_time_scope_name($scan->time_scope, 'anytime');
+			$scan->destination_type_name = JRDIGI_Core_Types::get_destination_type_name($scan->destination_type, 'all');
+			$scan->time_scope_name 		 = JRDIGI_Core_Types::get_time_scope_name($scan->time_scope, 'anytime');
 			
 			// Links types
-			$scan->link_types_names 	= WPLNST_Core_Types::get_link_types_names($scan->link_types);
+			$scan->link_types_names 	= JRDIGI_Core_Types::get_link_types_names($scan->link_types);
 			
 			// Crawl order
-			$scan->crawl_order_name 	= WPLNST_Core_Types::get_crawl_order_name($scan->crawl_order, 'desc');
+			$scan->crawl_order_name 	= JRDIGI_Core_Types::get_crawl_order_name($scan->crawl_order, 'desc');
 			
 			// Post types and status
-			$scan->post_types_names 	= WPLNST_Core_Types::get_field_values_names($post_types, $scan->post_types);
+			$scan->post_types_names 	= JRDIGI_Core_Types::get_field_values_names($post_types, $scan->post_types);
 			$scan->post_status_names 	= empty($scan->post_status)? array() : array_map('ucfirst', $scan->post_status);
 			
 			// A strict mode of post types names
@@ -231,20 +231,20 @@ class WPLNST_Core_Scans {
 			
 			// Comment types
 			if ($scan->check_comments) {
-				$scan->comment_types_names 	= WPLNST_Core_Types::get_comment_types_names($scan->comment_types);
+				$scan->comment_types_names 	= JRDIGI_Core_Types::get_comment_types_names($scan->comment_types);
 				if (1 == count($scan->comment_types_names)) {
-					$scan->post_types_names[] = sprintf(__('%s comments', 'wplnst'), $scan->comment_types_names[0]);
+					$scan->post_types_names[] = sprintf(__('%s comments', 'jrdigi'), $scan->comment_types_names[0]);
 				} elseif (2 == count($scan->comment_types_names)) {
-					$scan->post_types_names[] = sprintf(__('%s and %s comments', 'wplnst'), $scan->comment_types_names[0], lcfirst($scan->comment_types_names[1]));
+					$scan->post_types_names[] = sprintf(__('%s and %s comments', 'jrdigi'), $scan->comment_types_names[0], lcfirst($scan->comment_types_names[1]));
 				}
 			}
 				
 			// Check blogroll type
 			if ($scan->check_blogroll)
-				$scan->post_types_names[] = __('Blogroll', 'wplnst');
+				$scan->post_types_names[] = __('Blogroll', 'jrdigi');
 			
 			// Links status combined
-			$scan->links_status_names 	= WPLNST_Core_Types::get_links_status_names_combined($scan->status_levels, $scan->status_codes);
+			$scan->links_status_names 	= JRDIGI_Core_Types::get_links_status_names_combined($scan->status_levels, $scan->status_codes);
 			
 			// Links status levels
 			$scan->status_levels_names = array();
@@ -359,7 +359,7 @@ class WPLNST_Core_Scans {
 		
 		// Check link types
 		if (empty($scan->link_types) || !is_array($scan->link_types))
-			$result['link_types'] = __('There is not any <strong>link type</strong> selected, you need to select one or more.', 'wplnst');
+			$result['link_types'] = __('There is not any <strong>link type</strong> selected, you need to select one or more.', 'jrdigi');
 		
 		// Check post types
 		if (empty($scan->post_types) || !is_array($scan->post_types))
@@ -368,19 +368,19 @@ class WPLNST_Core_Scans {
 		// Check post status
 		if (empty($scan->post_status) || !is_array($scan->post_status)) {
 			if (!$empty_post_types)
-				$result['post_status'] = __('Need to select any <strong>post status</strong> value for the selected post types.', 'wplnst');
+				$result['post_status'] = __('Need to select any <strong>post status</strong> value for the selected post types.', 'jrdigi');
 		}
 		
 		// Check comments and blogroll
 		if (!$scan->check_comments && !$scan->check_blogroll) {
 			if ($empty_post_types) {
-				$result['post_types'] = __('There is not any kind of <strong>post type</strong>, <strong>comments</strong> or <strong>blogroll</strong> selected.', 'wplnst');
+				$result['post_types'] = __('There is not any kind of <strong>post type</strong>, <strong>comments</strong> or <strong>blogroll</strong> selected.', 'jrdigi');
 			}
 		}
 		
 		// Check status levels and status codes
 		if ((empty($scan->status_levels) || !is_array($scan->status_levels)) && (empty($scan->status_codes) || !is_array($scan->status_codes)))
-			$result['link_status'] = __('Missing selection of any <strong>links status</strong> level or status code.', 'wplnst');
+			$result['link_status'] = __('Missing selection of any <strong>links status</strong> level or status code.', 'jrdigi');
 		
 		// Done
 		return empty($result)? true : $result;
@@ -1512,7 +1512,7 @@ class WPLNST_Core_Scans {
 		// Check elements per page
 		$per_page = isset($per_page)? (int) $per_page : (int) get_user_option('wplnst_scan_results_per_page');
 		if (empty($per_page))
-			$per_page = WPLNST_Core_Types::scans_results_per_page;
+			$per_page = JRDIGI_Core_Types::scans_results_per_page;
 		
 		// Prepare fields
 		$fields  = 'u.url_id, u.url, u.scheme, u.host, u.scope,';
@@ -1622,7 +1622,7 @@ class WPLNST_Core_Scans {
 		if (isset($order_type) && false !== $order_type) {
 			
 			// Change default order
-			if (in_array($order_type, array_keys(WPLNST_Core_Types::get_crawl_order()))) {
+			if (in_array($order_type, array_keys(JRDIGI_Core_Types::get_crawl_order()))) {
 				$order_by = 'l.object_date_gmt '.(('asc' == $order_type)? 'ASC' : 'DESC');
 			
 			// Orders

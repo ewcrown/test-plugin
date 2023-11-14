@@ -4,10 +4,10 @@
 require_once(dirname(__FILE__).'/tools-url.php');
 
 /**
- * WP Link Status Pro Core Tools URL Update class
+ * Juriys Digital Pro Core Tools URL Update class
  *
- * @package WP Link Status Pro
- * @subpackage WP Link Status Pro Core
+ * @package Juriys Digital Pro
+ * @subpackage Juriys Digital Pro Core
  */
 class WPLNST_Core_Pro_Tools_URL_Update extends WPLNST_Core_Pro_Tools_URL {
 

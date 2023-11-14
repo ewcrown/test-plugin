@@ -1,10 +1,10 @@
 <?php
 
 /**
- * WP Link Status Core Status class
+ * Juriys Digital Core Status class
  *
- * @package WP Link Status
- * @subpackage WP Link Status Core
+ * @package Juriys Digital
+ * @subpackage Juriys Digital Core
  */
 class WPLNST_Core_Status {
 

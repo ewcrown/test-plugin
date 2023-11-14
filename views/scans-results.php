@@ -9,10 +9,10 @@ if(!class_exists('WP_List_Table'))
 	require_once(ABSPATH.'wp-admin/includes/class-wp-list-table.php');
 
 /**
- * WP Link Status Views Scans Results class
+ * Juriys Digital Views Scans Results class
  *
- * @package WP Link Status
- * @subpackage WP Link Status Views
+ * @package Juriys Digital
+ * @subpackage Juriys Digital Views
  */
 class WPLNST_Views_Scans_Results extends WP_List_Table {
 
@@ -48,8 +48,8 @@ class WPLNST_Views_Scans_Results extends WP_List_Table {
 	public function __construct($results) {
 		
 		// Dependencies
-		wplnst_require('core', 'util-math');
-		wplnst_require('core', 'util-string');
+		jrdigi_require('core', 'util-math');
+		jrdigi_require('core', 'util-string');
 		
 		// Parent constructor
 		parent::__construct();
@@ -58,7 +58,7 @@ class WPLNST_Views_Scans_Results extends WP_List_Table {
 		$this->results = $results;
 		
 		// Base link for filters
-		$this->base_url = esc_url(WPLNST_Core_Plugin::get_url_scans_results($this->results->scan->id));
+		$this->base_url = esc_url(JRDIGI_Core_Plugin::get_url_scans_results($this->results->scan->id));
 	}
 
 
@@ -109,9 +109,9 @@ class WPLNST_Views_Scans_Results extends WP_List_Table {
 		$columns = array(
 			'cb'				=> '<input type="checkbox" />',
 			'wplnst-url' 		=> 'URL',
-			'wplnst-status'		=> __('Status', 		'wplnst'),
-			'wplnst-anchor'		=> __('Anchor text', 	'wplnst'),
-			'wplnst-content'	=> __('Content', 		'wplnst'),
+			'wplnst-status'		=> __('Status', 		'jrdigi'),
+			'wplnst-anchor'		=> __('Anchor text', 	'jrdigi'),
+			'wplnst-content'	=> __('Content', 		'jrdigi'),
 		);
 		
 		// Exception
@@ -143,11 +143,11 @@ class WPLNST_Views_Scans_Results extends WP_List_Table {
 	private function setup_items() {
 		
 		// Dependencies
-		wplnst_require('core', 'types-curl');
+		jrdigi_require('core', 'types-curl');
 		
 		// Initialize
-		$status_levels = WPLNST_Core_Types::get_status_levels();
-		$status_codes  = WPLNST_Core_Types::get_status_codes_raw();
+		$status_levels = JRDIGI_Core_Types::get_status_levels();
+		$status_codes  = JRDIGI_Core_Types::get_status_codes_raw();
 		
 		// Populate data
 		$this->items = array();
@@ -179,7 +179,7 @@ class WPLNST_Views_Scans_Results extends WP_List_Table {
 			
 			
 			// Add unlinked flag
-			$url = '<span id="wplnst-results-url-unlinked-'.$row->loc_id.'" class="wplnst-results-mark wplnst-results-mark-unlinked'.($row->unlinked? '' : ' wplnst-display-none').'">'.__('Unlinked', 'wplnst').'</span>';
+			$url = '<span id="wplnst-results-url-unlinked-'.$row->loc_id.'" class="wplnst-results-mark wplnst-results-mark-unlinked'.($row->unlinked? '' : ' wplnst-display-none').'">'.__('Unlinked', 'jrdigi').'</span>';
 			
 			// Check link
 			if ('http' == $row->scheme || 'https' == $row->scheme || 'ftp' == $row->scheme) {
@@ -206,15 +206,15 @@ class WPLNST_Views_Scans_Results extends WP_List_Table {
 			if (empty($row->status_code) && !empty($row->curl_errno)) {
 				
 				// Retrieve error type
-				$curl_error = WPLNST_Core_Types_CURL::get_code_info($row->curl_errno);
+				$curl_error = JRDIGI_Core_Types_CURL::get_code_info($row->curl_errno);
 				
 				// Unknown
 				if (empty($curl_error)) {
-					$url .= '<strong id="wplnst-results-url-error-title-'.$row->loc_id.'">'.__('Error code ', 'wplnst').$row->curl_errno.'</strong> <span id="wplnst-results-url-error-code-'.$row->loc_id.'" class="wplnst-results-url-error-code"></span><br /><span id="wplnst-results-url-error-desc-'.$row->loc_id.'"></span>';
+					$url .= '<strong id="wplnst-results-url-error-title-'.$row->loc_id.'">'.__('Error code ', 'jrdigi').$row->curl_errno.'</strong> <span id="wplnst-results-url-error-code-'.$row->loc_id.'" class="wplnst-results-url-error-code"></span><br /><span id="wplnst-results-url-error-desc-'.$row->loc_id.'"></span>';
 				
 				// Knowed error
 				} else {
-					$url .= '<strong id="wplnst-results-url-error-title-'.$row->loc_id.'">'.esc_html($curl_error['title']).'</strong> <span id="wplnst-results-url-error-code-'.$row->loc_id.'" class="wplnst-results-url-error-code">'.esc_html(sprintf(__('error code %d', 'wplnst'), $row->curl_errno)).'</span><br /><span id="wplnst-results-url-error-desc-'.$row->loc_id.'">'.esc_html($curl_error['desc']).'</span>';
+					$url .= '<strong id="wplnst-results-url-error-title-'.$row->loc_id.'">'.esc_html($curl_error['title']).'</strong> <span id="wplnst-results-url-error-code-'.$row->loc_id.'" class="wplnst-results-url-error-code">'.esc_html(sprintf(__('error code %d', 'jrdigi'), $row->curl_errno)).'</span><br /><span id="wplnst-results-url-error-desc-'.$row->loc_id.'">'.esc_html($curl_error['desc']).'</span>';
 				}
 			} else {
 				$url .= '<strong id="wplnst-results-url-error-title-'.$row->loc_id.'"></strong> <span id="wplnst-results-url-error-code-'.$row->loc_id.'" class="wplnst-results-url-error-code"></span><br /><span id="wplnst-results-url-error-desc-'.$row->loc_id.'"></span>';
@@ -229,15 +229,15 @@ class WPLNST_Views_Scans_Results extends WP_List_Table {
 			if ($error_redir) {
 				
 				// Retrieve error type
-				$curl_error = WPLNST_Core_Types_CURL::get_code_info($row->redirect_curl_errno);
+				$curl_error = JRDIGI_Core_Types_CURL::get_code_info($row->redirect_curl_errno);
 				
 				// Unknown
 				if (empty($curl_error)) {
-					$url .= '<strong id="wplnst-results-url-error-redir-title-'.$row->loc_id.'">'.__('Error code ', 'wplnst').$row->curl_errno.'</strong> <span id="wplnst-results-url-error-redir-code-'.$row->loc_id.'" class="wplnst-results-url-error-code"></span><br /><span id="wplnst-results-url-error-redir-desc-'.$row->loc_id.'"></span>';
+					$url .= '<strong id="wplnst-results-url-error-redir-title-'.$row->loc_id.'">'.__('Error code ', 'jrdigi').$row->curl_errno.'</strong> <span id="wplnst-results-url-error-redir-code-'.$row->loc_id.'" class="wplnst-results-url-error-code"></span><br /><span id="wplnst-results-url-error-redir-desc-'.$row->loc_id.'"></span>';
 					
 				// Knowed error
 				} else {
-					$url .= '<strong id="wplnst-results-url-error-redir-title-'.$row->loc_id.'">'.esc_html($curl_error['title']).'</strong> <span id="wplnst-results-url-error-redir-code-'.$row->loc_id.'" class="wplnst-results-url-error-code">'.esc_html(sprintf(__('error code %d', 'wplnst'), $row->redirect_curl_errno)).'</span><br /><span id="wplnst-results-url-error-redir-desc-'.$row->loc_id.'">'.esc_html($curl_error['desc']).'</span>';
+					$url .= '<strong id="wplnst-results-url-error-redir-title-'.$row->loc_id.'">'.esc_html($curl_error['title']).'</strong> <span id="wplnst-results-url-error-redir-code-'.$row->loc_id.'" class="wplnst-results-url-error-code">'.esc_html(sprintf(__('error code %d', 'jrdigi'), $row->redirect_curl_errno)).'</span><br /><span id="wplnst-results-url-error-redir-desc-'.$row->loc_id.'">'.esc_html($curl_error['desc']).'</span>';
 				}
 			} else {
 				$url .= '<strong id="wplnst-results-url-error-redir-title-'.$row->loc_id.'"></strong>  <span id="wplnst-results-url-error-redir-code-'.$row->loc_id.'" class="wplnst-results-url-error-code"></span><br /><span id="wplnst-results-url-error-redir-desc-'.$row->loc_id.'"></span>';
@@ -260,15 +260,15 @@ class WPLNST_Views_Scans_Results extends WP_List_Table {
 			}
 			
 			// Prepare row of marks
-			$mark_modified 	= '<span class="wplnst-results-mark wplnst-results-mark-modified' .($row->modified?  '' : ' wplnst-display-none').'">'.__('Modified',  'wplnst').'</span>';
+			$mark_modified 	= '<span class="wplnst-results-mark wplnst-results-mark-modified' .($row->modified?  '' : ' wplnst-display-none').'">'.__('Modified',  'jrdigi').'</span>';
 			$mark_nofollow 	= '<span class="wplnst-results-mark wplnst-results-mark-nofollow' .($row->nofollow?  '' : ' wplnst-display-none').'">nofollow</span>';
-			$mark_relative 	= '<span class="wplnst-results-mark wplnst-results-mark-relative' .($row->relative?  '' : ' wplnst-display-none').'">'.__('Relative',  'wplnst').'</span>';
-			$mark_absolute 	= '<span class="wplnst-results-mark wplnst-results-mark-absolute' .($row->absolute?  '' : ' wplnst-display-none').'">'.__('Absolute',  'wplnst').'</span>';
-			$mark_spaced 	= '<span class="wplnst-results-mark wplnst-results-mark-spaced'   .($row->spaced? 	 '' : ' wplnst-display-none').'">'.__('Spaced',    'wplnst').'</span>';
-			$mark_malformed = '<span class="wplnst-results-mark wplnst-results-mark-malformed'.($row->malformed? '' : ' wplnst-display-none').'">'.__('Malformed', 'wplnst').'</span>';
+			$mark_relative 	= '<span class="wplnst-results-mark wplnst-results-mark-relative' .($row->relative?  '' : ' wplnst-display-none').'">'.__('Relative',  'jrdigi').'</span>';
+			$mark_absolute 	= '<span class="wplnst-results-mark wplnst-results-mark-absolute' .($row->absolute?  '' : ' wplnst-display-none').'">'.__('Absolute',  'jrdigi').'</span>';
+			$mark_spaced 	= '<span class="wplnst-results-mark wplnst-results-mark-spaced'   .($row->spaced? 	 '' : ' wplnst-display-none').'">'.__('Spaced',    'jrdigi').'</span>';
+			$mark_malformed = '<span class="wplnst-results-mark wplnst-results-mark-malformed'.($row->malformed? '' : ' wplnst-display-none').'">'.__('Malformed', 'jrdigi').'</span>';
 			$mark_https 	= '<span class="wplnst-results-mark wplnst-results-mark-https' 	  .($is_https?  	 '' : ' wplnst-display-none').'">HTTPS</span>';
-			$mark_protorel 	= '<span class="wplnst-results-mark wplnst-results-mark-protorel' .($row->protorel?  '' : ' wplnst-display-none').'">'.__('Protocol relative',  'wplnst').'</span>';
-			$mark_ignored 	= '<span class="wplnst-results-mark wplnst-results-mark-ignored'  .($row->ignored? 	 '' : ' wplnst-display-none').'">'.__('Ignored',    'wplnst').'</span>';
+			$mark_protorel 	= '<span class="wplnst-results-mark wplnst-results-mark-protorel' .($row->protorel?  '' : ' wplnst-display-none').'">'.__('Protocol relative',  'jrdigi').'</span>';
+			$mark_ignored 	= '<span class="wplnst-results-mark wplnst-results-mark-ignored'  .($row->ignored? 	 '' : ' wplnst-display-none').'">'.__('Ignored',    'jrdigi').'</span>';
 			$mark_redirs	= '<span class="wplnst-results-mark wplnst-results-mark-redirs'	  .($redirs? 	 	 '' : ' wplnst-display-none').'">'.((!$redirs || empty($redirs_count) || 1 == $redirs_count)? '1 redirect' : $redirs_count.' redirects').'</span>';
 			
 			// Add new row checking visibility
@@ -297,7 +297,7 @@ class WPLNST_Views_Scans_Results extends WP_List_Table {
 			$mark_rechecked = ' &nbsp; <span id="wplnst-url-status-recheck-mark-'.$row->loc_id.'" class="wplnst-results-mark wplnst-results-mark-rechecked'.($row->rechecked? '' : ' wplnst-display-none').'">Rechecked</span>';
 			
 			// Status code result
-			$item['wplnst-status'] .= '<div class="wplnst-url-status-code-result"><span id="wplnst-url-status-code-0-loc-'.$row->loc_id.'" class="wplnst-url-status-code-0'.$class_status_error.'">'.__('Request error', 'wplnst').'</span><span id="wplnst-url-status-code-loc-'.$row->loc_id.'" class="wplnst-url-status-code-'.esc_attr($row->status_level).$class_status_code.'">'.esc_html($row->status_code.$status_code_label).'</span>'.$mark_rechecked.'</div>';
+			$item['wplnst-status'] .= '<div class="wplnst-url-status-code-result"><span id="wplnst-url-status-code-0-loc-'.$row->loc_id.'" class="wplnst-url-status-code-0'.$class_status_error.'">'.__('Request error', 'jrdigi').'</span><span id="wplnst-url-status-code-loc-'.$row->loc_id.'" class="wplnst-url-status-code-'.esc_attr($row->status_level).$class_status_code.'">'.esc_html($row->status_code.$status_code_label).'</span>'.$mark_rechecked.'</div>';
 			
 			// Prepare redirections status
 			$redir_status_level = $redir_status_label = '';
@@ -313,7 +313,7 @@ class WPLNST_Views_Scans_Results extends WP_List_Table {
 			$class_status_redir_code  = ($status_redir && !empty($row->redirect_url_status))? '' : ' wplnst-display-none';
 			
 			// Redirection status code
-			$item['wplnst-status'] .= '<div id="wplnst-url-status-code-redir-'.$row->loc_id.'" class="wplnst-url-status-code-redir'.$class_status_redir.'"><span class="wplnst-url-status-code-redir-arrow">&rarr;&nbsp;</span><span id="wplnst-url-status-code-redir-error-'.$row->loc_id.'" class="wplnst-url-status-code-0'.$class_status_redir_error.'">'.__('Request error', 'wplnst').'</span><span id="wplnst-url-status-code-redir-status-'.$row->loc_id.'" class="wplnst-url-status-code-'.esc_attr($redir_status_level).$class_status_redir_code.'">'.esc_html($redir_status_label).'</span></div>';
+			$item['wplnst-status'] .= '<div id="wplnst-url-status-code-redir-'.$row->loc_id.'" class="wplnst-url-status-code-redir'.$class_status_redir.'"><span class="wplnst-url-status-code-redir-arrow">&rarr;&nbsp;</span><span id="wplnst-url-status-code-redir-error-'.$row->loc_id.'" class="wplnst-url-status-code-0'.$class_status_redir_error.'">'.__('Request error', 'jrdigi').'</span><span id="wplnst-url-status-code-redir-status-'.$row->loc_id.'" class="wplnst-url-status-code-'.esc_attr($redir_status_level).$class_status_redir_code.'">'.esc_html($redir_status_label).'</span></div>';
 			
 			// End status container
 			$item['wplnst-status'] .= '</div>';
@@ -329,7 +329,7 @@ class WPLNST_Views_Scans_Results extends WP_List_Table {
 			if ('links' == $row->link_type) {
 				
 				// Prepare modified mark
-				$mark_anchored = '<div id="wplnst-results-anchor-mod-'.$row->loc_id.'" class="wplnst-results-anchor-mod'.($row->anchored? '' : ' wplnst-display-none').'"><span class="wplnst-results-mark wplnst-results-mark-modified">'.__('Modified', 'wplnst').'</span></div>';
+				$mark_anchored = '<div id="wplnst-results-anchor-mod-'.$row->loc_id.'" class="wplnst-results-anchor-mod'.($row->anchored? '' : ' wplnst-display-none').'"><span class="wplnst-results-mark wplnst-results-mark-modified">'.__('Modified', 'jrdigi').'</span></div>';
 				
 				// Anchor text
 				$item['wplnst-anchor'] = '<div class="wplnst-anchor-link"><span id="wplnst-results-anchor-loc-'.$row->loc_id.'">'.esc_html($row->anchor).'</span>'.$mark_anchored.'</div>';
@@ -338,7 +338,7 @@ class WPLNST_Views_Scans_Results extends WP_List_Table {
 			} elseif ('images' == $row->link_type) {
 
 				// Image info
-				$item['wplnst-anchor'] = '<div class="wplnst-anchor-image wplnst-row-dashicon"><span>'.esc_html(__('Image', 'wplnst')).'</span></div>';
+				$item['wplnst-anchor'] = '<div class="wplnst-anchor-image wplnst-row-dashicon"><span>'.esc_html(__('Image', 'jrdigi')).'</span></div>';
 			}
 			
 			
@@ -390,7 +390,7 @@ class WPLNST_Views_Scans_Results extends WP_List_Table {
 					} else {
 						
 						// Not found item
-						$post_row = sprintf(__('Entry %d not found', 'wplnst'), $object_id);
+						$post_row = sprintf(__('Entry %d not found', 'jrdigi'), $object_id);
 					}
 					
 					// Set column value
@@ -439,7 +439,7 @@ class WPLNST_Views_Scans_Results extends WP_List_Table {
 					} else {
 						
 						// Not found item
-						$comment_row = sprintf(__('Comment %d not found', 'wplnst'), $object_id);
+						$comment_row = sprintf(__('Comment %d not found', 'jrdigi'), $object_id);
 					}
 					
 					// Set column value
@@ -479,7 +479,7 @@ class WPLNST_Views_Scans_Results extends WP_List_Table {
 					} else {
 						
 						// Not found item
-						$bookmark_row = sprintf(__('Bookmark %d not found', 'wplnst'), $object_id);
+						$bookmark_row = sprintf(__('Bookmark %d not found', 'jrdigi'), $object_id);
 					}
 					
 					// Set column value
@@ -615,7 +615,7 @@ class WPLNST_Views_Scans_Results extends WP_List_Table {
 			}
 			
 			// Filter by URL (for future versions)
-			// $actions['wplnst-action-filter'] = '<a href="'.esc_url(WPLNST_Core_Plugin::get_url_scans_locations($this->results->scan->id, $item['url_id'])).'" class="wplnst-results-action">'.__('Filter by URL', 'wplnst').'</a>';
+			$actions['wplnst-action-filter'] = '<a href="'.esc_url(JRDIGI_Core_Plugin::get_url_scans_locations($this->results->scan->id, $item['url_id'])).'" class="wplnst-results-action">'.__('Filter by URL', 'jrdigi').'</a>';
 		}
 		
 		// Done
@@ -841,7 +841,7 @@ class WPLNST_Views_Scans_Results extends WP_List_Table {
 		}
 		
 		// Visit action
-		$actions['visit'] = '<a href="'.esc_url($bookmark->link_url).'" target="_blank">'.__('Visit', 'wplnst').'</a>';
+		$actions['visit'] = '<a href="'.esc_url($bookmark->link_url).'" target="_blank">'.__('Visit', 'jrdigi').'</a>';
 		
 		// Done
 		return $actions;
@@ -907,7 +907,7 @@ class WPLNST_Views_Scans_Results extends WP_List_Table {
 	public function display() {
 		
 		// Wrapper form
-		echo '<form method="get" action="'.esc_url(remove_query_arg('paged', set_url_scheme('http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']))).'" id="wplnst-results" data-nonce="'.esc_attr(wp_create_nonce('wplnst-results-'.$this->results->scan->hash)).'" data-nonce-advanced-display="'.esc_attr(wp_create_nonce('wplnst-results-advanced-display')).'" data-confirm-delete-entry="'.esc_attr__('Please, confirm you want to remove this entry pressing the Ok button', 'wplnst').'" data-confirm-delete-comment="'.esc_attr__('Please, confirm you want to remove this comment pressing the Ok button', 'wplnst').'" data-confirm-delete-bookmark="'.esc_attr__('Please, confirm you want to remove this bookmark pressing the Ok button', 'wplnst').'" data-label-action-url-redir="'.esc_attr__('Apply Redirection', 'wplnst').'" data-label-server-comm-error="'.esc_attr(WPLNST_Core_Text::get_text('server_comm_error')).'" data-label-unknown-error="'.esc_attr(WPLNST_Core_Text::get_text('unknown_error')).'" data-label-select-any="'.esc_attr__('Please, select any result to proceed', 'wplnst').'" data-label-error-code="'.esc_attr__('error code', 'wplnst').'">';
+		echo '<form method="get" action="'.esc_url(remove_query_arg('paged', set_url_scheme('http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']))).'" id="wplnst-results" data-nonce="'.esc_attr(wp_create_nonce('wplnst-results-'.$this->results->scan->hash)).'" data-nonce-advanced-display="'.esc_attr(wp_create_nonce('wplnst-results-advanced-display')).'" data-confirm-delete-entry="'.esc_attr__('Please, confirm you want to remove this entry pressing the Ok button', 'jrdigi').'" data-confirm-delete-comment="'.esc_attr__('Please, confirm you want to remove this comment pressing the Ok button', 'jrdigi').'" data-confirm-delete-bookmark="'.esc_attr__('Please, confirm you want to remove this bookmark pressing the Ok button', ).'" data-label-action-url-redir="'.esc_attr__('Apply Redirection', 'jrdigi').'" data-label-server-comm-error="'.esc_attr(WPLNST_Core_Text::get_text('server_comm_error')).'" data-label-unknown-error="'.esc_attr(WPLNST_Core_Text::get_text('unknown_error')).'" data-label-select-any="'.esc_attr__('Please, select any result to proceed', 'jrdigi').'" data-label-error-code="'.esc_attr__('error code', 'jrdigi').'">';
 		
 		// Hidden fields
 		echo '<input type="hidden" name="page" value="'.esc_attr($_GET['page']).'" />';
@@ -982,7 +982,7 @@ class WPLNST_Views_Scans_Results extends WP_List_Table {
 	private function menu() {
 		
 		// Initialize
-		$status_levels = WPLNST_Core_Types::get_status_levels();
+		$status_levels = JRDIGI_Core_Types::get_status_levels();
 		
 		// Enum summary elements
 		$levels = array();
@@ -1016,18 +1016,18 @@ class WPLNST_Views_Scans_Results extends WP_List_Table {
 		$menu_links = array();
 		
 		// All results
-		$menu_links[] = '<a href="'.$this->base_url.'"'.($total > 0 && $this->results->is_all_results? ' class="current"' : '').'>'.__('All results', 'wplnst').' </a><span class="count">('.($this->results->is_all_results? number_format_i18n($this->results->total_rows) : number_format_i18n($total)).')</span>';
+		$menu_links[] = '<a href="'.$this->base_url.'"'.($total > 0 && $this->results->is_all_results? ' class="current"' : '').'>'.__('All results', 'jrdigi').' </a><span class="count">('.($this->results->is_all_results? number_format_i18n($this->results->total_rows) : number_format_i18n($total)).')</span>';
 		
 		// Request error
 		if (!empty($levels['0']))
-			$menu_links[] = '<a href="'.$this->base_url.'&status=0"'.(('0' === $this->results->status_level && !$this->results->is_search)? ' class="current"' : '').'>'.__('Request error', 'wplnst').' </a><span class="count">('.number_format_i18n($levels['0']).')</span>';
+			$menu_links[] = '<a href="'.$this->base_url.'&status=0"'.(('0' === $this->results->status_level && !$this->results->is_search)? ' class="current"' : '').'>'.__('Request error', 'jrdigi').' </a><span class="count">('.number_format_i18n($levels['0']).')</span>';
 		
 		// Level results
 		foreach ($menu_levels as $key => $total)
 			$menu_links[] = '<a href="'.$this->base_url.'&status='.$key.'"'.(($key == $this->results->status_level && !$this->results->is_search)? ' class="current"' : '').'>'.esc_html($key.'00s '.$status_levels[$key]).' </a><span class="count">('.number_format_i18n($total).')</span>';
 		
 		// Show menu
-		echo '<div id="wplnst-levels-menu" class="wplnst-clearfix'.($this->results->isolated? ' wplnst-levels-menu-isolated' : '').'"><ul class="subsubsub"><li>'.implode(' | </li><li>', $menu_links).'</li></ul>'.(('end' != $this->results->scan->status)? '<div class="alignright wplnst-aproximate-total">'.__('(counters in progress)', 'wplnst').'</div>' : '').'</div>';
+		echo '<div id="wplnst-levels-menu" class="wplnst-clearfix'.($this->results->isolated? ' wplnst-levels-menu-isolated' : '').'"><ul class="subsubsub"><li>'.implode(' | </li><li>', $menu_links).'</li></ul>'.(('end' != $this->results->scan->status)? '<div class="alignright wplnst-aproximate-total">'.__('(counters in progress)', 'jrdigi').'</div>' : '').'</div>';
 	}
 
 
@@ -1050,7 +1050,7 @@ class WPLNST_Views_Scans_Results extends WP_List_Table {
 			echo '<select id="wplnst-filter-'.$key.'"><option value="">'.esc_html($field['title']).'</option>'.$field['options'].'</select>';
 		
 		// Button and end of div
-		echo '&nbsp;<input id="wplnst-filter-button" data-fields="'.implode(',', array_keys($fields)).'" data-href="'.esc_attr($this->base_url).'" class="button" type="button" value="'.__('Filter', 'wplnst').'" /></div>';
+		echo '&nbsp;<input id="wplnst-filter-button" data-fields="'.implode(',', array_keys($fields)).'" data-href="'.esc_attr($this->base_url).'" class="button" type="button" value="'.__('Filter', 'jrdigi').'" /></div>';
 	}
 
 
@@ -1076,9 +1076,9 @@ class WPLNST_Views_Scans_Results extends WP_List_Table {
 		/* Status codes filter */
 		
 		// Initialize
-		$objects_types = WPLNST_Core_Types::get_objects_types();
-		$status_levels = WPLNST_Core_Types::get_status_levels();
-		$status_codes_raw = WPLNST_Core_Types::get_status_codes_raw();
+		$objects_types = JRDIGI_Core_Types::get_objects_types();
+		$status_levels = JRDIGI_Core_Types::get_status_levels();
+		$status_codes_raw = JRDIGI_Core_Types::get_status_codes_raw();
 		
 		// Enum summary elements
 		$levels = $codes = $objects = array();
@@ -1111,7 +1111,7 @@ class WPLNST_Views_Scans_Results extends WP_List_Table {
 		/* Status codes options */
 		
 		// Collect options
-		$options_codes = empty($levels['0'])? '' : '<option '.((isset($this->results->status_level) && '0' === $this->results->status_level)? 'selected' : '').' value="0">'.__('Request error', 'wplnst').'</option>';
+		$options_codes = empty($levels['0'])? '' : '<option '.((isset($this->results->status_level) && '0' === $this->results->status_level)? 'selected' : '').' value="0">'.__('Request error', 'jrdigi').'</option>';
 		$options_levels = array();
 		foreach ($status_codes_raw as $key => $label) {
 			if (isset($codes[$key])) {
@@ -1127,7 +1127,7 @@ class WPLNST_Views_Scans_Results extends WP_List_Table {
 		// Add filter
 		$fields['status'] = array(
 			'type' => 'select',
-			'title' => __('All status codes', 'wplnst'),
+			'title' => __('All status codes', 'jrdigi'),
 			'options' => $options_codes,
 		);
 		
@@ -1137,7 +1137,7 @@ class WPLNST_Views_Scans_Results extends WP_List_Table {
 		// Collect custom post types
 		$options_post_types = '';
 		if (in_array('posts', array_keys($objects))) {
-			$post_types = WPLNST_Core_Types::get_post_types();
+			$post_types = JRDIGI_Core_Types::get_post_types();
 			foreach ($post_types as $type => $name) {
 				if (in_array($type, $this->results->scan->post_types))
 					$options_post_types .= '<option '.((!empty($this->results->object_post_type) && $this->results->object_post_type == $type)? 'selected' : '').' value="posts_'.$type.'">&mdash;'.esc_html($name).'</option>';
@@ -1157,7 +1157,7 @@ class WPLNST_Views_Scans_Results extends WP_List_Table {
 		// Check filter
 		$fields['otype'] = array(
 			'type' => 'select',
-			'title' => __('All content', 'wplnst'),
+			'title' => __('All content', 'jrdigi'),
 			'options' => $objects_codes,
 		);
 		
@@ -1165,14 +1165,14 @@ class WPLNST_Views_Scans_Results extends WP_List_Table {
 		/* Options for link types */
 		
 		$options_ltypes = '';
-		$link_types = WPLNST_Core_Types::get_link_types();
+		$link_types = JRDIGI_Core_Types::get_link_types();
 		foreach ($link_types as $link_type => $link_type_name)
 			$options_ltypes .= '<option '.((!empty($this->results->link_type) && $this->results->link_type == $link_type)? 'selected' : '').' value="'.esc_attr($link_type).'">'.esc_html($link_type_name).'</option>';
 		
 		// Check filter
 		$fields['ltype'] = array(
 			'type' => 'select',
-			'title' => __('All link types', 'wplnst'),
+			'title' => __('All link types', 'jrdigi'),
 			'options' => $options_ltypes,
 		);
 		

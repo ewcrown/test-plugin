@@ -4,10 +4,10 @@
 require_once(dirname(dirname(__FILE__)).'/core/module.php');
 
 /**
- * WP Link Status Pro Core Results class
+ * Juriys Digital Pro Core Results class
  *
- * @package WP Link Status Pro
- * @subpackage WP Link Status Pro Core
+ * @package Juriys Digital Pro
+ * @subpackage Juriys Digital Pro Core
  */
 class WPLNST_Core_Pro_Results extends WPLNST_Core_Module {
 
@@ -113,7 +113,7 @@ class WPLNST_Core_Pro_Results extends WPLNST_Core_Module {
 		
 		// Check operation
 		if (empty($_POST['op']) || !in_array($_POST['op'], array('url_edit', 'url_unlink', 'url_ignore', 'url_unignore', 'url_status', 'url_headers', 'anchor_edit', 'url_redir', 'url_nofollow', 'url_dofollow', 'bulk_ignore', 'bulk_unignore', 'bulk_unlink', 'bulk_anchor', 'bulk_url', 'bulk_status', 'bulk_redir', 'bulk_nofollow', 'bulk_dofollow')))
-			self::error_ajax_response(__('Missing or invalid action parameter', 'wplnst'));
+			self::error_ajax_response(__('Missing or invalid action parameter', 'jrdigi'));
 		
 		// Copy operation
 		$this->op = $_POST['op'];
@@ -124,7 +124,7 @@ class WPLNST_Core_Pro_Results extends WPLNST_Core_Module {
 		// Check loc_id
 		$loc_id = empty($_POST['loc_id'])? false : array_map('intval', explode('-', $_POST['loc_id']));
 		if (empty($loc_id))
-			self::error_ajax_response(__('Missing or invalid result identifier parameter', 'wplnst'));
+			self::error_ajax_response(__('Missing or invalid result identifier parameter', 'jrdigi'));
 		
 		// Load scans library
 		$this->load_scans_object();
@@ -134,7 +134,7 @@ class WPLNST_Core_Pro_Results extends WPLNST_Core_Module {
 			
 			// Retrieve multiple locations
 			if (false === ($locations = $this->scans->get_scan_locations_by_ids($loc_id)))
-				self::error_ajax_response(__('Resource not found in database', 'wplnst'));
+				self::error_ajax_response(__('Resource not found in database', 'jrdigi'));
 			
 			// Copy single location
 			$this->location = $locations[0];
@@ -147,7 +147,7 @@ class WPLNST_Core_Pro_Results extends WPLNST_Core_Module {
 		
 		// Retrieve single location
 		} elseif (false === ($this->location = $this->scans->get_scan_location_by_id($loc_id[0]))) {
-			self::error_ajax_response(__('Resource not found in database', 'wplnst'));
+			self::error_ajax_response(__('Resource not found in database', 'jrdigi'));
 		}
 		
 		
@@ -155,7 +155,7 @@ class WPLNST_Core_Pro_Results extends WPLNST_Core_Module {
 		
 		// Retrieve scan
 		if (false === ($this->scan = $this->scans->get_scan_by_id($this->location->scan_id)))
-			self::error_ajax_response(__('Unable to retrieve the resource associated scan', 'wplnst'));
+			self::error_ajax_response(__('Unable to retrieve the resource associated scan', 'jrdigi'));
 		
 		
 		/* Nonce */
@@ -318,7 +318,7 @@ class WPLNST_Core_Pro_Results extends WPLNST_Core_Module {
 			
 			// No headers info
 			$this->response['status'] = 'error';
-			$this->response['reason'] = __('Headers information not found', 'wplnst');
+			$this->response['reason'] = __('Headers information not found', 'jrdigi');
 			
 		// Done
 		} else {
@@ -341,7 +341,7 @@ class WPLNST_Core_Pro_Results extends WPLNST_Core_Module {
 			// Total size
 			$this->response['data']['total_bytes'] = '';
 			if ($result->total_bytes > 0) {
-				wplnst_require('core', 'util-math');
+				jrdigi_require('core', 'util-math');
 				$this->response['data']['total_bytes'] = wplnst_format_bytes($result->total_bytes);
 			}
 			
@@ -866,42 +866,42 @@ class WPLNST_Core_Pro_Results extends WPLNST_Core_Module {
 			
 			// Link type error
 			$this->response['status'] = 'error';
-			$this->response['reason'] = __('Link already unlinked', 'wplnst');
+			$this->response['reason'] = __('Link already unlinked', 'jrdigi');
 		
 		// Check bad context
 		} elseif (!in_array($location->link_type, array('links', 'images'))) {
 			
 			// Link type error
 			$this->response['status'] = 'error';
-			$this->response['reason'] = __('Link type unknown', 'wplnst');
+			$this->response['reason'] = __('Link type unknown', 'jrdigi');
 
 		// Check value input
 		} elseif (false === $this->value && ('edit_anchor' == $action || 'edit_url' == $action)) {
 			
 			// Input error
 			$this->response['status'] = 'error';
-			$this->response['reason'] = __('Input value missing', 'wplnst');
+			$this->response['reason'] = __('Input value missing', 'jrdigi');
 		
 		// Check action exception for images
 		} elseif (in_array($action, array('edit_anchor', 'nofollow', 'dofollow')) && 'links' != $location->link_type) {
 			
 			// Operation not allowed
 			$this->response['status'] = 'error';
-			$this->response['reason'] = __('Operation not allowed', 'wplnst');
+			$this->response['reason'] = __('Operation not allowed', 'jrdigi');
 		
 		// Retrieve associated object
 		} elseif (false === ($object = $this->get_location_object($location))) {
 			
 			// Object not found
 			$this->response['status'] = 'error';
-			$this->response['reason'] = __('Object not found', 'wplnst');
+			$this->response['reason'] = __('Object not found', 'jrdigi');
 			
 		// Check bad URL modification
 		} elseif ('edit_url' == $action && !$this->parse_url($location, $this->value, $object)) {
 			
 			// Not valid URL
 			$this->response['status'] = 'error';
-			$this->response['reason'] = __('Not valid URL', 'wplnst');
+			$this->response['reason'] = __('Not valid URL', 'jrdigi');
 			
 		// Correct
 		} else {
@@ -914,7 +914,7 @@ class WPLNST_Core_Pro_Results extends WPLNST_Core_Module {
 					
 					// No content available
 					$this->response['status'] = 'error';
-					$this->response['reason'] = __('Cannot retrieve element content', 'wplnst');
+					$this->response['reason'] = __('Cannot retrieve element content', 'jrdigi');
 				
 				// Exists	
 				} else {
@@ -928,7 +928,7 @@ class WPLNST_Core_Pro_Results extends WPLNST_Core_Module {
 				
 				// Not valid context
 				$this->response['status'] = 'error';
-				$this->response['reason'] = __('Not valid context', 'wplnst');
+				$this->response['reason'] = __('Not valid context', 'jrdigi');
 			
 			// Inline
 			} else {
@@ -957,21 +957,21 @@ class WPLNST_Core_Pro_Results extends WPLNST_Core_Module {
 				
 				// Unable to analyze link
 				$this->response['status'] = 'error';
-				$this->response['reason'] = __('Unable to parse the current link', 'wplnst');
+				$this->response['reason'] = __('Unable to parse the current link', 'jrdigi');
 			
 			// Check same stored URL
 			} elseif ($location->raw_url != $matches[2]) {
 				
 				// Link URL mismatch
 				$this->response['status'] = 'error';
-				$this->response['reason'] = __('Saved URL does not match the link URL', 'wplnst');
+				$this->response['reason'] = __('Saved URL does not match the link URL', 'jrdigi');
 			
 			// Check same stored anchor
 			} elseif ($location->anchor != $matches[4]) {
 				
 				// Link anchor mismatch
 				$this->response['status'] = 'error';
-				$this->response['reason'] = __('Saved anchor does not match the anchor link', 'wplnst');
+				$this->response['reason'] = __('Saved anchor does not match the anchor link', 'jrdigi');
 			
 			// Unlink action
 			} elseif ('unlink' == $action) {
@@ -993,7 +993,7 @@ class WPLNST_Core_Pro_Results extends WPLNST_Core_Module {
 					
 					// Same anchor value
 					$this->response['status'] = 'error';
-					$this->response['reason'] = __('No anchor text changes detected.', 'wplnst');
+					$this->response['reason'] = __('No anchor text changes detected.', 'jrdigi');
 				
 				// Continue
 				} else {
@@ -1004,7 +1004,7 @@ class WPLNST_Core_Pro_Results extends WPLNST_Core_Module {
 						
 						// Anchor not replaced
 						$this->response['status'] = 'error';
-						$this->response['reason'] = __('Cannot update, stored content does not match.', 'wplnst');
+						$this->response['reason'] = __('Cannot update, stored content does not match.', 'jrdigi');
 						
 					// Changed
 					} else {
@@ -1051,7 +1051,7 @@ class WPLNST_Core_Pro_Results extends WPLNST_Core_Module {
 								
 								// Anchor not replaced
 								$this->response['status'] = 'error';
-								$this->response['reason'] = __('Cannot update, stored content does not match.', 'wplnst');
+								$this->response['reason'] = __('Cannot update, stored content does not match.', 'jrdigi');
 								
 							// Changed
 							} else {
@@ -1092,7 +1092,7 @@ class WPLNST_Core_Pro_Results extends WPLNST_Core_Module {
 								
 								// Anchor not replaced
 								$this->response['status'] = 'error';
-								$this->response['reason'] = __('Cannot update, stored content does not match.', 'wplnst');
+								$this->response['reason'] = __('Cannot update, stored content does not match.', 'jrdigi');
 								
 							// Changed
 							} else {
@@ -1121,14 +1121,14 @@ class WPLNST_Core_Pro_Results extends WPLNST_Core_Module {
 				
 				// Unable to analyze image
 				$this->response['status'] = 'error';
-				$this->response['reason'] = __('Unable to parse the current image', 'wplnst');
+				$this->response['reason'] = __('Unable to parse the current image', 'jrdigi');
 			
 			// Check same URL
 			} elseif ($location->raw_url != $matches[2]) {
 				
 				// Image URL mismatch
 				$this->response['status'] = 'error';
-				$this->response['reason'] = __('Saved URL does not match the image URL', 'wplnst');
+				$this->response['reason'] = __('Saved URL does not match the image URL', 'jrdigi');
 
 			// Unkink action
 			} elseif ('unlink' == $action) {
@@ -1157,21 +1157,21 @@ class WPLNST_Core_Pro_Results extends WPLNST_Core_Module {
 			
 			// URL not changed
 			$this->response['status'] = 'error';
-			$this->response['reason'] = __('No URL changes detected.', 'wplnst');
+			$this->response['reason'] = __('No URL changes detected.', 'jrdigi');
 		
 		// Check new different chunk
 		} elseif (false === ($content = $this->link_edit_content_replace($location, $object_content, $chunk))) {
 			
 			// URL not replaced
 			$this->response['status'] = 'error';
-			$this->response['reason'] = __('Cannot update, stored content does not match.', 'wplnst');
+			$this->response['reason'] = __('Cannot update, stored content does not match.', 'jrdigi');
 		
 		// Ok, check new URL status
 		} elseif (!$this->link_edit_status($location, $this->link_edit_data_url(array('chunk' => $chunk, 'modified' => '1')))) {
 			
 			// Something wrong checking new URL
 			$this->response['status'] = 'error';
-			$this->response['reason'] = __('Failed to check the new link.', 'wplnst');
+			$this->response['reason'] = __('Failed to check the new link.', 'jrdigi');
 			
 		// Done
 		} else {
@@ -1196,7 +1196,7 @@ class WPLNST_Core_Pro_Results extends WPLNST_Core_Module {
 			
 			// URL not replaced
 			$this->response['status'] = 'error';
-			$this->response['reason'] = __('Cannot update, stored content does not match.', 'wplnst');
+			$this->response['reason'] = __('Cannot update, stored content does not match.', 'jrdigi');
 		
 		// Changed
 		} else {
@@ -1271,7 +1271,7 @@ class WPLNST_Core_Pro_Results extends WPLNST_Core_Module {
 				
 				// Something wrong checking new URL
 				$this->response['status'] = 'error';
-				$this->response['reason'] = __('Failed to retrieve post meta data.', 'wplnst');
+				$this->response['reason'] = __('Failed to retrieve post meta data.', 'jrdigi');
 				
 			// Edit meta URL
 			} elseif ('edit_url' == $action) {
@@ -1281,7 +1281,7 @@ class WPLNST_Core_Pro_Results extends WPLNST_Core_Module {
 					
 					// Same URL
 					$this->response['status'] = 'error';
-					$this->response['reason'] = __('No URL changes detected.', 'wplnst');
+					$this->response['reason'] = __('No URL changes detected.', 'jrdigi');
 				
 				// Continue
 				} else {
@@ -1291,7 +1291,7 @@ class WPLNST_Core_Pro_Results extends WPLNST_Core_Module {
 						
 						// Something wrong checking new URL
 						$this->response['status'] = 'error';
-						$this->response['reason'] = __('Failed to check the new link.', 'wplnst');
+						$this->response['reason'] = __('Failed to check the new link.', 'jrdigi');
 					
 					// Continue
 					} else {
@@ -1319,7 +1319,7 @@ class WPLNST_Core_Pro_Results extends WPLNST_Core_Module {
 					
 					// URL not changed
 					$this->response['status'] = 'error';
-					$this->response['reason'] = __('No URL changes detected.', 'wplnst');
+					$this->response['reason'] = __('No URL changes detected.', 'jrdigi');
 				
 				// Continue
 				} else {
@@ -1329,7 +1329,7 @@ class WPLNST_Core_Pro_Results extends WPLNST_Core_Module {
 						
 						// Something wrong checking new URL
 						$this->response['status'] = 'error';
-						$this->response['reason'] = __('Failed to check the new link.', 'wplnst');
+						$this->response['reason'] = __('Failed to check the new link.', 'jrdigi');
 					
 					// Continue
 					} else {
@@ -1350,7 +1350,7 @@ class WPLNST_Core_Pro_Results extends WPLNST_Core_Module {
 					
 					// Same anchor value
 					$this->response['status'] = 'error';
-					$this->response['reason'] = __('No anchor text changes detected.', 'wplnst');
+					$this->response['reason'] = __('No anchor text changes detected.', 'jrdigi');
 				
 				// Continue
 				} else {
@@ -1386,7 +1386,7 @@ class WPLNST_Core_Pro_Results extends WPLNST_Core_Module {
 					
 					// URL not changed
 					$this->response['status'] = 'error';
-					$this->response['reason'] = __('No URL changes detected.', 'wplnst');
+					$this->response['reason'] = __('No URL changes detected.', 'jrdigi');
 				
 				// Continue
 				} else {
@@ -1396,7 +1396,7 @@ class WPLNST_Core_Pro_Results extends WPLNST_Core_Module {
 						
 						// Something wrong checking new URL
 						$this->response['status'] = 'error';
-						$this->response['reason'] = __('Failed to check the new link.', 'wplnst');
+						$this->response['reason'] = __('Failed to check the new link.', 'jrdigi');
 					
 					// Continue
 					} else {
@@ -1417,7 +1417,7 @@ class WPLNST_Core_Pro_Results extends WPLNST_Core_Module {
 					
 					// Same anchor value
 					$this->response['status'] = 'error';
-					$this->response['reason'] = __('No anchor text changes detected.', 'wplnst');
+					$this->response['reason'] = __('No anchor text changes detected.', 'jrdigi');
 				
 				// Continue
 				} else {
@@ -1516,14 +1516,14 @@ class WPLNST_Core_Pro_Results extends WPLNST_Core_Module {
 			
 			// Link type error
 			$this->response['status'] = 'error';
-			$this->response['reason'] = __('Link already unlinked', 'wplnst');
+			$this->response['reason'] = __('Link already unlinked', 'jrdigi');
 		
 		// Retrieve complete url object
 		} elseif (false === ($url = $this->scans->get_scan_url(array('id' => $location->url_id)))) {
 			
 			// Retriee error
 			$this->response['status'] = 'error';
-			$this->response['reason'] = __('Given URL missing.', 'wplnst');
+			$this->response['reason'] = __('Given URL missing.', 'jrdigi');
 		
 		// Check if there is a previous status
 		} elseif (!empty($statuses[$url->url_id])) {
@@ -1561,28 +1561,28 @@ class WPLNST_Core_Pro_Results extends WPLNST_Core_Module {
 			
 			// Retrieve error
 			$this->response['status'] = 'error';
-			$this->response['reason'] = __('Given URL missing.', 'wplnst');
+			$this->response['reason'] = __('Given URL missing.', 'jrdigi');
 		
 		// Check status info
 		} elseif (false === ($url_status = $this->scans->get_scan_url_status(array('url_id' => $url->url_id, 'scan_id' => $this->scan->id)))) {
 
 			// Retrieve error
 			$this->response['status'] = 'error';
-			$this->response['reason'] = __('No URL status info available.', 'wplnst');
+			$this->response['reason'] = __('No URL status info available.', 'jrdigi');
 		
 		// Check valid redirect
 		} elseif ('3' != $url_status[0]->status_level || empty($url_status[0]->redirect_url) || empty($url_status[0]->redirect_url_id)) {
 
 			// Retrieve error
 			$this->response['status'] = 'error';
-			$this->response['reason'] = __('No allowed redirections.', 'wplnst');
+			$this->response['reason'] = __('No allowed redirections.', 'jrdigi');
 		
 		// Retrieve URL redirection
 		} elseif (false === ($url_redir = $this->scans->get_scan_url(array('id' => $url_status[0]->redirect_url_id)))) {
 
 			// Destination URL error
 			$this->response['status'] = 'error';
-			$this->response['reason'] = __('No redirection found.', 'wplnst');
+			$this->response['reason'] = __('No redirection found.', 'jrdigi');
 			
 		// Done
 		} else {
@@ -1662,7 +1662,7 @@ class WPLNST_Core_Pro_Results extends WPLNST_Core_Module {
 		
 		// Localize total size
 		if ($status->total_bytes > 0) {
-			wplnst_require('core', 'util-math');
+			jrdigi_require('core', 'util-math');
 			$status->total_size = wplnst_format_bytes($status->total_bytes);
 		}
 		
@@ -1712,8 +1712,8 @@ class WPLNST_Core_Pro_Results extends WPLNST_Core_Module {
 			set_time_limit(0);
 			
 			// Dependencies
-			wplnst_require('core',  'status');
-			wplnst_require('core',  'curl');
+			jrdigi_require('core',  'status');
+			jrdigi_require('core',  'curl');
 		}
 		
 		// Prepare POST fields
@@ -1731,7 +1731,7 @@ class WPLNST_Core_Pro_Results extends WPLNST_Core_Module {
 		
 		// Request crawler API
 		$response = WPLNST_Core_CURL::post(array(
-			'CURLOPT_URL' 				=> plugins_url('core/requests/http.php', WPLNST_FILE),
+			'CURLOPT_URL' 				=> plugins_url('core/requests/http.php', JRDIGI_FILE),
 			'CURLOPT_CONNECTTIMEOUT' 	=> $postfields['connect_timeout'],
 			'CURLOPT_TIMEOUT' 			=> $postfields['connect_timeout'] + (2 * $postfields['request_timeout']),
 			'CURLOPT_USERAGENT' 		=> wplnst_get_tsetting('user_agent'),
@@ -1851,7 +1851,7 @@ class WPLNST_Core_Pro_Results extends WPLNST_Core_Module {
 					if ($status->code > 0) {
 						
 						// Retrieve status codes
-						$status_codes = WPLNST_Core_Types::get_status_codes_raw();
+						$status_codes = JRDIGI_Core_Types::get_status_codes_raw();
 						
 						// Check status desc
 						if (isset($status_codes[$status->code]))
@@ -1869,11 +1869,11 @@ class WPLNST_Core_Pro_Results extends WPLNST_Core_Module {
 							} elseif ($status->redirect_curl_errno > 0) {
 								
 								// Load dependencies
-								wplnst_require('core', 'types-curl');
+								jrdigi_require('core', 'types-curl');
 								
 								// Retrieve error type
-								$curl_error = WPLNST_Core_Types_CURL::get_code_info($status->redirect_curl_errno);
-								$status->redirect_curl_err_title = empty($curl_error)? __('Error code ', 'wplnst').$status->redirect_curl_errno : $curl_error['title'];
+								$curl_error = JRDIGI_Core_Types_CURL::get_code_info($status->redirect_curl_errno);
+								$status->redirect_curl_err_title = empty($curl_error)? __('Error code ', 'jrdigi').$status->redirect_curl_errno : $curl_error['title'];
 								$status->redirect_curl_err_desc  = empty($curl_error)? '' : $curl_error['desc'];
 							}
 						}
@@ -1882,11 +1882,11 @@ class WPLNST_Core_Pro_Results extends WPLNST_Core_Module {
 					} elseif ($status->curl_errno > 0) {
 						
 						// Load dependencies
-						wplnst_require('core', 'types-curl');
+						jrdigi_require('core', 'types-curl');
 						
 						// Retrieve error type
-						$curl_error = WPLNST_Core_Types_CURL::get_code_info($status->curl_errno);
-						$status->curl_err_title = empty($curl_error)? __('Error code ', 'wplnst').$status->curl_errno : $curl_error['title'];
+						$curl_error = JRDIGI_Core_Types_CURL::get_code_info($status->curl_errno);
+						$status->curl_err_title = empty($curl_error)? __('Error code ', 'jrdigi').$status->curl_errno : $curl_error['title'];
 						$status->curl_err_desc  = empty($curl_error)? '' : $curl_error['desc'];
 					}
 				}
@@ -1981,7 +1981,7 @@ class WPLNST_Core_Pro_Results extends WPLNST_Core_Module {
 				
 				// Object not found
 				$this->response['status'] = 'error';
-				$this->response['reason'] = __('Post not found', 'wplnst');
+				$this->response['reason'] = __('Post not found', 'jrdigi');
 				
 				// Error
 				return false;
@@ -1991,7 +1991,7 @@ class WPLNST_Core_Pro_Results extends WPLNST_Core_Module {
 				
 				// Object not editable
 				$this->response['status'] = 'error';
-				$this->response['reason'] = __('Current user can`t edit this post', 'wplnst');
+				$this->response['reason'] = __('Current user can`t edit this post', 'jrdigi');
 				
 				// Error
 				return false;
@@ -2011,7 +2011,7 @@ class WPLNST_Core_Pro_Results extends WPLNST_Core_Module {
 				
 				// Object not found
 				$this->response['status'] = 'error';
-				$this->response['reason'] = __('Comment not found', 'wplnst');
+				$this->response['reason'] = __('Comment not found', 'jrdigi');
 				
 				// Error
 				return false;
@@ -2021,7 +2021,7 @@ class WPLNST_Core_Pro_Results extends WPLNST_Core_Module {
 				
 				// Object not editable
 				$this->response['status'] = 'error';
-				$this->response['reason'] = __('Current user can`t edit this comment', 'wplnst');
+				$this->response['reason'] = __('Current user can`t edit this comment', 'jrdigi');
 				
 				// Error
 				return false;
@@ -2041,7 +2041,7 @@ class WPLNST_Core_Pro_Results extends WPLNST_Core_Module {
 				
 				// Object not found
 				$this->response['status'] = 'error';
-				$this->response['reason'] = __('Bookmark record not found', 'wplnst');
+				$this->response['reason'] = __('Bookmark record not found', 'jrdigi');
 				
 				// Error
 				return false;
@@ -2051,7 +2051,7 @@ class WPLNST_Core_Pro_Results extends WPLNST_Core_Module {
 				
 				// Object not editable
 				$this->response['status'] = 'error';
-				$this->response['reason'] = __('Current user can`t edit this bookmark', 'wplnst');
+				$this->response['reason'] = __('Current user can`t edit this bookmark', 'jrdigi');
 				
 				// Error
 				return false;

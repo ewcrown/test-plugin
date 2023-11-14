@@ -9,10 +9,10 @@ if(!class_exists('WP_List_Table'))
 	require_once(ABSPATH.'wp-admin/includes/class-wp-list-table.php');
 
 /**
- * WP Link Status Views Scans class
+ * Juriys Digital Views Scans class
  *
- * @package WP Link Status
- * @subpackage WP Link Status Views
+ * @package Juriys Digital
+ * @subpackage Juriys Digital Views
  */
 class WPLNST_Views_Scans extends WP_List_Table {
 
@@ -53,7 +53,7 @@ class WPLNST_Views_Scans extends WP_List_Table {
 		$this->results = $results;
 		
 		// Base link for filters
-		$this->base_url = esc_url(WPLNST_Core_Plugin::get_url_scans());
+		$this->base_url = esc_url(JRDIGI_Core_Plugin::get_url_scans());
 	}
 
 
@@ -102,8 +102,8 @@ class WPLNST_Views_Scans extends WP_List_Table {
 		
 		// All columns
 		return array_merge($columns, array(
-			'wplnst-scans-name' 			=> __('Scan info', 		'wplnst'),
-			'wplnst-scans-configuration' 	=> __('Configuration',	'wplnst'),
+			'wplnst-scans-name' 			=> __('Scan info', 		'jrdigi'),
+			'wplnst-scans-configuration' 	=> __('Configuration',	'jrdigi'),
 		));
 	}
 
@@ -118,7 +118,7 @@ class WPLNST_Views_Scans extends WP_List_Table {
 		$this->items = array();
 		
 		// Warning image
-		$warning_img = '<img src="'.plugins_url('assets/images/scan-warning.png', WPLNST_FILE).'" width="16" height="16" border="0" style="margin-right: 5px;" title="'.__('Some critical values of this scan are not completed', 'wplnst').'">';
+		$warning_img = '<img src="'.plugins_url('assets/images/scan-warning.png', JRDIGI_FILE).'" width="16" height="16" border="0" style="margin-right: 5px;" title="'.__('Some critical values of this scan are not completed', 'jrdigi').'">';
 		
 		// Populate data
 		foreach ($this->results->rows as $scan) {
@@ -131,7 +131,7 @@ class WPLNST_Views_Scans extends WP_List_Table {
 			$item = array('ID' => $scan->id, 'hash' => $scan->hash, 'status' => $scan->status, 'ready' => $scan->ready);
 			
 			// Check processed posts
-			$message = ('play' != $scan->status)? '' : __('Waiting...', 'wplnst');
+			$message = ('play' != $scan->status)? '' : __('Waiting...', 'jrdigi');
 			
 			// Initialize
 			$processed = array();
@@ -141,7 +141,7 @@ class WPLNST_Views_Scans extends WP_List_Table {
 			if (isset($scan->trace['total_posts'])) {
 				$running_back = empty($scan->trace['populated_posts']);
 				$posts_index = empty($scan->trace['posts_index'])? 0 : number_format_i18n($scan->trace['posts_index']);
-				$processed[] = empty($scan->trace['populated_posts'])? '<span class="wplnst-scan-object-info wplnst-scan-object-running">'.$posts_index.'/'.number_format_i18n($scan->trace['total_posts']).' '.__('entries', 'wplnst').'</span>' : '<span class="wplnst-scan-object-info '.$class_completed.'">'.number_format_i18n($scan->trace['total_posts']).' '.__('entries', 'wplnst').'</span>';
+				$processed[] = empty($scan->trace['populated_posts'])? '<span class="wplnst-scan-object-info wplnst-scan-object-running">'.$posts_index.'/'.number_format_i18n($scan->trace['total_posts']).' '.__('entries', 'jrdigi').'</span>' : '<span class="wplnst-scan-object-info '.$class_completed.'">'.number_format_i18n($scan->trace['total_posts']).' '.__('entries', 'jrdigi').'</span>';
 			}
 			
 			if (isset($scan->trace['total_comments'])) {
@@ -149,14 +149,14 @@ class WPLNST_Views_Scans extends WP_List_Table {
 				$running_back = $running? true : $running_back;
 				$class_running = $running? 'wplnst-scan-object-running' : 'wplnst-scan-object-wait';
 				$comments_index = empty($scan->trace['comments_index'])? 0 : number_format_i18n($scan->trace['comments_index']);
-				$processed[] = empty($scan->trace['populated_comments'])? '<span class="wplnst-scan-object-info '.$class_running.'">'.$comments_index.'/'.number_format_i18n($scan->trace['total_comments']).' '.__('comments', 'wplnst').'</span>' : '<span class="wplnst-scan-object-info '.$class_completed.'">'.number_format_i18n($scan->trace['total_comments']).' '.__('comments', 'wplnst').'</span>';
+				$processed[] = empty($scan->trace['populated_comments'])? '<span class="wplnst-scan-object-info '.$class_running.'">'.$comments_index.'/'.number_format_i18n($scan->trace['total_comments']).' '.__('comments', 'jrdigi').'</span>' : '<span class="wplnst-scan-object-info '.$class_completed.'">'.number_format_i18n($scan->trace['total_comments']).' '.__('comments', 'jrdigi').'</span>';
 			}
 			
 			if (isset($scan->trace['total_blogroll'])) {
 				$running = !$running_back && empty($scan->trace['populated_blogroll']);
 				$class_running = $running? 'wplnst-scan-object-running' : 'wplnst-scan-object-wait';
 				$blogroll_index = empty($scan->trace['blogroll_index'])? 0 : number_format_i18n($scan->trace['blogroll_index']);
-				$processed[] = empty($scan->trace['populated_blogroll'])? '<span class="wplnst-scan-object-info '.$class_running.'">'.$blogroll_index.'/'.number_format_i18n($scan->trace['total_blogroll']).' '.__('blogroll', 'wplnst').'</span>' : '<span class="wplnst-scan-object-info '.$class_completed.'">'.number_format_i18n($scan->trace['total_blogroll']).' '.__('blogroll', 'wplnst').'</span>';
+				$processed[] = empty($scan->trace['populated_blogroll'])? '<span class="wplnst-scan-object-info '.$class_running.'">'.$blogroll_index.'/'.number_format_i18n($scan->trace['total_blogroll']).' '.__('blogroll', 'jrdigi').'</span>' : '<span class="wplnst-scan-object-info '.$class_completed.'">'.number_format_i18n($scan->trace['total_blogroll']).' '.__('blogroll', 'jrdigi').'</span>';
 			}
 			
 			// Check info
@@ -187,19 +187,19 @@ class WPLNST_Views_Scans extends WP_List_Table {
 					if ($start_date == $today_date) {
 						
 						// Today
-						$started_at = sprintf(__('Today from %s', 'wplnst'), $start_hour);
+						$started_at = sprintf(__('Today from %s', 'jrdigi'), $start_hour);
 					
 					// Check yesterday
 					} elseif ($start_date == $yesterday_date) {
 					
 						// Yesterday
-						$started_at = sprintf(__('Yesterday at %s', 'wplnst'), $start_hour);
+						$started_at = sprintf(__('Yesterday at %s', 'jrdigi'), $start_hour);
 					
 					// Other
 					} else {
 						
 						// Date and hour
-						$started_at = sprintf(__('%s at %s', 'wplnst'), $start_date, $start_hour);
+						$started_at = sprintf(__('%s at %s', 'jrdigi'), $start_date, $start_hour);
 					}
 					
 					// Start date
@@ -225,13 +225,13 @@ class WPLNST_Views_Scans extends WP_List_Table {
 							if ($start_date == $today_date) {
 								
 								// Started and finished today
-								$timeinfo .= ' '.sprintf(__('to %s', 'wplnst'), $end_hour);
+								$timeinfo .= ' '.sprintf(__('to %s', 'jrdigi'), $end_hour);
 								
 							// Date to today
 							} else {
 									
 								// Started another date and finished today
-								$timeinfo .= ' '.sprintf(__('to today at %s', 'wplnst'), $end_hour);
+								$timeinfo .= ' '.sprintf(__('to today at %s', 'jrdigi'), $end_hour);
 							}
 						
 						// Check yesterday
@@ -241,26 +241,26 @@ class WPLNST_Views_Scans extends WP_List_Table {
 							if ($start_date == $yesterday_date) {
 								
 								// Started and finished today
-								$timeinfo .= ' '.sprintf(__('to %s', 'wplnst'), $end_hour);
+								$timeinfo .= ' '.sprintf(__('to %s', 'jrdigi'), $end_hour);
 								
 							// Date to yesterday
 							} else {
 									
 								// Started another date and finished today
-								$timeinfo .= ' '.sprintf(__('to yesterday at %s', 'wplnst'), $end_hour);
+								$timeinfo .= ' '.sprintf(__('to yesterday at %s', 'jrdigi'), $end_hour);
 							}
 						
 						// Check same day
 						} elseif ($end_date == $start_date) {
 							
 							// Same day
-							$timeinfo .= ' '.sprintf(__('until %s', 'wplnst'), $end_hour);
+							$timeinfo .= ' '.sprintf(__('until %s', 'jrdigi'), $end_hour);
 							
 						// Before
 						} else {
 						
 							// Different days
-							$timeinfo .= ' '.sprintf(__('until %s at %s', 'wplnst'), $end_date, $end_hour);
+							$timeinfo .= ' '.sprintf(__('until %s at %s', 'jrdigi'), $end_date, $end_hour);
 						}
 						
 						// Time stopped correction
@@ -281,7 +281,7 @@ class WPLNST_Views_Scans extends WP_List_Table {
 							$time_end -= $time_stopped;
 						
 						// Elapsed time
-						$timeinfo .= ' &#8212; '.sprintf(__('Running time %s', 'wplnst'), human_time_diff($time_start, $time_end));
+						$timeinfo .= ' &#8212; '.sprintf(__('Running time %s', 'jrdigi'), human_time_diff($time_start, $time_end));
 					}
 					
 					
@@ -303,26 +303,26 @@ class WPLNST_Views_Scans extends WP_List_Table {
 						$items = array();
 						
 						// All results
-						$items[] = (isset($scan->summary['status_total']) && $scan->summary['status_total'] > 0)? sprintf(__('<strong>%s</strong> results', 'wplnst'), number_format_i18n((int) $scan->summary['status_total'])) : __('No results', 'wplnst');
+						$items[] = (isset($scan->summary['status_total']) && $scan->summary['status_total'] > 0)? sprintf(__('<strong>%s</strong> results', 'jrdigi'), number_format_i18n((int) $scan->summary['status_total'])) : __('No results', 'jrdigi');
 						
 						// Total processed
 						if (!empty($phases['processed'])) {
 							
 							// Add uniques
-							$items[] = sprintf(__('<strong>%s</strong> unique URLs', 'wplnst'), number_format_i18n((int) $phases['processed']));
+							$items[] = sprintf(__('<strong>%s</strong> unique URLs', 'jrdigi'), number_format_i18n((int) $phases['processed']));
 						}
 						
 						// Enqueued URLs
 						if ('end' != $scan->status)
-							$items[] = sprintf(__('%s enqueued', 'wplnst'), (isset($phases['wait'])? number_format_i18n((int) $phases['wait']) : '0'));
+							$items[] = sprintf(__('%s enqueued', 'jrdigi'), (isset($phases['wait'])? number_format_i18n((int) $phases['wait']) : '0'));
 						
 						// Waiting
 						if ('play' == $scan->status)
-							$items[] = sprintf(__('%s processing', 'wplnst'), (empty($phases['play'])? wplnst_get_nsetting('max_threads', $scan->threads->max) : (int) $phases['play']));
+							$items[] = sprintf(__('%s processing', 'jrdigi'), (empty($phases['play'])? wplnst_get_nsetting('max_threads', $scan->threads->max) : (int) $phases['play']));
 						
 						// End crawler
 						if ('end' == $scan->status)
-							$items[] = sprintf(__('<strong>%s</strong> Request error', 'wplnst'), (isset($scan->summary['status_level_0'])? (int) number_format_i18n($scan->summary['status_level_0']) : '0'));
+							$items[] = sprintf(__('<strong>%s</strong> Request error', 'jrdigi'), (isset($scan->summary['status_level_0'])? (int) number_format_i18n($scan->summary['status_level_0']) : '0'));
 						
 						// Join items
 						if (!empty($items))
@@ -349,35 +349,35 @@ class WPLNST_Views_Scans extends WP_List_Table {
 				if ($created_date == $today_date) {
 					
 					// Created today
-					$timeinfo = sprintf(__('Created today at %s', 'wplnst'), $created_hour);
+					$timeinfo = sprintf(__('Created today at %s', 'jrdigi'), $created_hour);
 				
 				// Yesterday
 				} elseif ($created_date == $yesterday_date) {
 					
 					// Created yesterday
-					$timeinfo = sprintf(__('Created yesterday at %s', 'wplnst'), $created_hour);
+					$timeinfo = sprintf(__('Created yesterday at %s', 'jrdigi'), $created_hour);
 				
 				// Any date
 				} else {
 					
 					// Created date and hour
-					$timeinfo = sprintf(__('Created %s at %s', 'wplnst'), $created_date, $created_hour);
+					$timeinfo = sprintf(__('Created %s at %s', 'jrdigi'), $created_date, $created_hour);
 				}
 			}
 			
 			
 			
 			// Item name, possible warning and link to edit
-			$statuses = WPLNST_Core_Types::get_scan_statuses();
+			$statuses = JRDIGI_Core_Types::get_scan_statuses();
 			$item['wplnst-scans-name']  = '<strong class="wplnst-scan-name'.($scan->ready? '' : ' wplnst-scan-name-warning').'">'.($scan->ready? '' : $warning_img);
 			if ('wait' != $scan->status)
 				$item['wplnst-scans-name'] .= '<span class="wplnst-scan-status wplnst-scan-status-'.esc_attr($scan->status).'">'.$statuses[$scan->status].'</span>&nbsp;';
-			$item['wplnst-scans-name'] .= '<a class="row-title" href="'.esc_url(WPLNST_Core_Plugin::get_url_scans_results($scan->id)).'">'.(empty($scan->name)? __('(no name)', 'wplnst') : esc_html($scan->name)).'</a></strong>';
+			$item['wplnst-scans-name'] .= '<a class="row-title" href="'.esc_url(JRDIGI_Core_Plugin::get_url_scans_results($scan->id)).'">'.(empty($scan->name)? __('(no name)', 'jrdigi') : esc_html($scan->name)).'</a></strong>';
 			$item['wplnst-scans-name'] .= '<div class="wplnst-scan-status-line">'.$message.'</div>';
 			
 			// Check ready message
 			if ('wait' == $scan->status && $scan->ready)
-				$item['wplnst-scans-name'] .= '<div class="wplnst-scan-ready-info">'.sprintf(__('Ready to <a href="%s">start the crawler</a>', 'wplnst'), esc_url(WPLNST_Core_Plugin::get_url_scans_crawler($scan->id, 'on', $scan->hash))).'</div>';
+				$item['wplnst-scans-name'] .= '<div class="wplnst-scan-ready-info">'.sprintf(__('Ready to <a href="%s">start the crawler</a>', 'jrdigi'), esc_url(JRDIGI_Core_Plugin::get_url_scans_crawler($scan->id, 'on', $scan->hash))).'</div>';
 			
 			// Check datatime info
 			if (!empty($timeinfo))
@@ -393,13 +393,13 @@ class WPLNST_Views_Scans extends WP_List_Table {
 			
 			// Scan scope
 			$link_types = (empty($scan->link_types_names)? '' : implode(', ', array_map('esc_html', $scan->link_types_names)));
-			$item['wplnst-scans-configuration'] .= '<tr><td class="wplnst-scans-configuration-row"><strong>'.__('Scope', 'wplnst').'</strong></td><td>'.(empty($link_types)? '' : $link_types.', ').esc_html($scan->destination_type_name).', '.esc_html($scan->time_scope_name).', '.esc_html(__('Order by', 'wplnst')).' '.esc_html($scan->crawl_order_name).', '.($scan->redir_status? __('Check redirection status', 'wplnst') : __('Redirections not checked', 'wplnst')).($scan->malformed? ', '.__('Malformed', 'wplnst') : '').'</td></tr>';
+			$item['wplnst-scans-configuration'] .= '<tr><td class="wplnst-scans-configuration-row"><strong>'.__('Scope', 'jrdigi').'</strong></td><td>'.(empty($link_types)? '' : $link_types.', ').esc_html($scan->destination_type_name).', '.esc_html($scan->time_scope_name).', '.esc_html(__('Order by', 'jrdigi')).' '.esc_html($scan->crawl_order_name).', '.($scan->redir_status? __('Check redirection status', 'jrdigi') : __('Redirections not checked', 'jrdigi')).($scan->malformed? ', '.__('Malformed', 'jrdigi') : '').'</td></tr>';
 			
 			// Post types and status
-			$item['wplnst-scans-configuration'] .= (empty($scan->post_types_names) && empty($scan->post_status_names))? '' : '<tr><td class="wplnst-scans-configuration-row"><strong>'.__('Post types', 'wplnst').'</strong></td><td>'.(empty($scan->post_types_names)? '' : implode(', ', array_map('esc_html', $scan->post_types_names))).(empty($scan->post_status_names)? '' : (empty($scan->post_types_names)? '' : ', ').__('Post status', 'wplnst').' '.implode(', ', array_map('esc_html', $scan->post_status_names))).'</td></tr>';
+			$item['wplnst-scans-configuration'] .= (empty($scan->post_types_names) && empty($scan->post_status_names))? '' : '<tr><td class="wplnst-scans-configuration-row"><strong>'.__('Post types', 'jrdigi').'</strong></td><td>'.(empty($scan->post_types_names)? '' : implode(', ', array_map('esc_html', $scan->post_types_names))).(empty($scan->post_status_names)? '' : (empty($scan->post_types_names)? '' : ', ').__('Post status', 'jrdigi').' '.implode(', ', array_map('esc_html', $scan->post_status_names))).'</td></tr>';
 			
 			// Links status
-			$item['wplnst-scans-configuration'] .= empty($scan->links_status_names)? '' : '<tr><td class="wplnst-scans-configuration-row"><strong>'.__('Link status', 'wplnst').'</strong></td><td>'.implode(', ', array_map('esc_html', $scan->links_status_names)).'</td></tr>';
+			$item['wplnst-scans-configuration'] .= empty($scan->links_status_names)? '' : '<tr><td class="wplnst-scans-configuration-row"><strong>'.__('Link status', 'jrdigi').'</strong></td><td>'.implode(', ', array_map('esc_html', $scan->links_status_names)).'</td></tr>';
 			
 			// End configuration
 			$item['wplnst-scans-configuration'] .= '</table>';
@@ -428,17 +428,17 @@ class WPLNST_Views_Scans extends WP_List_Table {
 			$actions = array();
 			
 			// Results link
-			$actions['results'] = '<a href="'.esc_url(WPLNST_Core_Plugin::get_url_scans_results($item['ID'])).'">'.__('Show results', 'wplnst').'</a>';
+			$actions['results'] = '<a href="'.esc_url(JRDIGI_Core_Plugin::get_url_scans_results($item['ID'])).'">'.__('Show results', 'jrdigi').'</a>';
 			
 			// Edit link
-			$actions['edit'] = '<span class="edit"><a href="'.esc_url(WPLNST_Core_Plugin::get_url_scans_edit($item['ID'])).'">'.__('Edit scan', 'wplnst').'</a></span>';
+			$actions['edit'] = '<span class="edit"><a href="'.esc_url(JRDIGI_Core_Plugin::get_url_scans_edit($item['ID'])).'">'.__('Edit scan', 'jrdigi').'</a></span>';
 			
 			// Stop or start crawler
 			if ('end' != $item['status'] && ($item['ready'] || 'play' == $item['status']))
-				$actions['crawler'] = '<a href="'.esc_url(WPLNST_Core_Plugin::get_url_scans_crawler($item['ID'], ('play' == $item['status'] || 'queued' == $item['status'])? 'off' : 'on', $item['hash'])).'">'.(in_array($item['status'], array('wait', 'stop'))? __('Start crawler', 'wplnst') : (('queued' == $item['status'])? __('Unqueue crawling', 'wplnst')  : __('Stop crawler', 'wplnst'))).'</a>';
+				$actions['crawler'] = '<a href="'.esc_url(JRDIGI_Core_Plugin::get_url_scans_crawler($item['ID'], ('play' == $item['status'] || 'queued' == $item['status'])? 'off' : 'on', $item['hash'])).'">'.(in_array($item['status'], array('wait', 'stop'))? __('Start crawler', 'jrdigi') : (('queued' == $item['status'])? __('Unqueue crawling', 'jrdigi')  : __('Stop crawler', 'jrdigi'))).'</a>';
 			
 			// Remove scan
-			$actions['delete'] = '<span class="trash"><a href="'.esc_url(WPLNST_Core_Plugin::get_url_scans_delete($item['ID'], $item['hash'])).'" class="wplnst-scan-delete">'.esc_html(WPLNST_Admin::get_text('scan_delete')).'</a></span>';
+			$actions['delete'] = '<span class="trash"><a href="'.esc_url(JRDIGI_Core_Plugin::get_url_scans_delete($item['ID'], $item['hash'])).'" class="wplnst-scan-delete">'.esc_html(JRDIGI_Admin::get_text('scan_delete')).'</a></span>';
 			
 			// Done
 			return sprintf('%1$s %2$s', $item[$column_name], $this->row_actions($actions));
@@ -458,7 +458,7 @@ class WPLNST_Views_Scans extends WP_List_Table {
 	 */
 	protected function get_bulk_actions() {
 		return array(
-			'delete' => __('Delete', 'wplnst'),
+			'delete' => __('Delete', 'jrdigi'),
 		);
 	}
 
@@ -495,7 +495,7 @@ class WPLNST_Views_Scans extends WP_List_Table {
 	public function display() {
 		
 		// Wrapper form
-		echo  '<form method="get" action="'.esc_url($this->base_url).'" id="wplnst-scans" data-href-delete="'.WPLNST_Core_Plugin::get_url_scans_delete('%scan_id%', 'bulk-scans-delete').'" data-confirm-delete="'.esc_attr(WPLNST_Admin::get_text('scan_delete_confirm')).'" data-confirm-delete-bulk="'.esc_attr__('Do you want to remove these scans?', 'wplnst').'">';
+		echo  '<form method="get" action="'.esc_url($this->base_url).'" id="wplnst-scans" data-href-delete="'.JRDIGI_Core_Plugin::get_url_scans_delete('%scan_id%', 'bulk-scans-delete').'" data-confirm-delete="'.esc_attr(JRDIGI_Admin::get_text('scan_delete_confirm')).'" data-confirm-delete-bulk="'.esc_attr__('Do you want to remove these scans?', 'jrdigi').'">';
 		
 		// Check isolated classes
 		$extra_classes = array();

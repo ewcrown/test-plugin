@@ -1,10 +1,10 @@
 <?php
 
 /**
- * WP Link Status Core Notify class
+ * Juriys Digital Core Notify class
  *
- * @package WP Link Status
- * @subpackage WP Link Status Core
+ * @package Juriys Digital
+ * @subpackage Juriys Digital Core
  */
 class WPLNST_Core_Notify {
 
@@ -24,7 +24,7 @@ class WPLNST_Core_Notify {
 			self::set_notifications($notifications);
 			
 			// Spawn admin ajax URL
-			wplnst_require('core', 'curl');
+			jrdigi_require('core', 'curl');
 			WPLNST_Core_CURL::spawn(array('CURLOPT_URL' => add_query_arg(array(
 				'wplnst_notify_email' => 'on',
 				'wplnst_notify_nonce' => WPLNST_Core_Alive::get_notify_nonce(),
@@ -88,7 +88,7 @@ class WPLNST_Core_Notify {
 			return;
 		
 		// Send
-		$result = wp_mail(array_unique($emails), __('WP Link Status scan completed', 'wplnst'),
+		$result = wp_mail(array_unique($emails), __('Juriys Digital scan completed', 'jrdigi'),
 sprintf(__('
 
 Your scan is completed, you can see the results here:
@@ -96,7 +96,7 @@ Your scan is completed, you can see the results here:
 %s
 %s
 
-', 'wplnst'), empty($scan_row->name)? __('(no name)', 'wplnst') : $scan_row->name, WPLNST_Core_Plugin::get_url_scans_results($scan_id)));
+', 'jrdigi'), empty($scan_row->name)? __('(no name)', 'jrdigi') : $scan_row->name, JRDIGI_Core_Plugin::get_url_scans_results($scan_id)));
 	}
 
 

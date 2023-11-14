@@ -4,12 +4,12 @@
 require_once(dirname(dirname(__FILE__)).'/admin/scans.php');
 
 /**
- * WP Link Status Pro Admin Scans class
+ * Jurius Digital Pro Admin Scans class
  *
- * @package WP Link Status
- * @subpackage WP Link Status Pro Admin
+ * @package Jurius Digital
+ * @subpackage Jurius Digital Pro Admin
  */
-class WPLNST_Admin_Pro_Scans extends WPLNST_Admin_Scans {
+class JRDIGI_Admin_Pro_Scans extends JRDIGI_Admin_Scans {
 
 
 
@@ -22,7 +22,7 @@ class WPLNST_Admin_Pro_Scans extends WPLNST_Admin_Scans {
 	 * Show a list table for scan results
 	 */
 	protected function scans_results_views_table($args) {
-		wplnst_require('views-pro', 'scans-results');
+		jrdigi_require('views-pro', 'scans-results');
 		$list = new WPLNST_Views_Pro_Scans_Results($args['results']);
 		$list->prepare_items();
 		$list->display();
@@ -48,7 +48,7 @@ class WPLNST_Admin_Pro_Scans extends WPLNST_Admin_Scans {
 		// Processing div
 		?><div id="wplnst-results-processing" class="wplnst-display-none">
 			<div class="wplnst-results-processing-container">
-				<p class="wplnst-results-processing-action wplnst-results-processing-action-run"><?php _e('Processing <b>%s</b>', 'wplnst'); ?></p>
+				<p class="wplnst-results-processing-action wplnst-results-processing-action-run"><?php _e('Processing <b>%s</b>', 'jrdigi'); ?></p>
 			</div>
 		</div><?php
 		
@@ -56,7 +56,7 @@ class WPLNST_Admin_Pro_Scans extends WPLNST_Admin_Scans {
 		?><div id="wplnst-results-error" class="wplnst-display-none">
 			<div class="wplnst-results-update-box wplnst-results-update-box-error wplnst-clearfix">
 				<p class="alignleft">%s</p>
-				<div class="alignright"><a href="#" class="wplnst-results-output-cancel button button-small"><?php _e('Close', 'wplnst'); ?></a></div>
+				<div class="alignright"><a href="#" class="wplnst-results-output-cancel button button-small"><?php _e('Close', 'jrdigi'); ?></a></div>
 			</div>
 		</div><?php
 		
@@ -64,7 +64,7 @@ class WPLNST_Admin_Pro_Scans extends WPLNST_Admin_Scans {
 		?><div id="wplnst-results-error-bulk" class="wplnst-display-none">
 			<div class="wplnst-results-update-box wplnst-clearfix">
 				<p class="alignleft">%s</p>
-				<div class="alignright"><a href="#" class="wplnst-results-output-cancel-bulk button button-small"><?php _e('Close', 'wplnst'); ?></a></div>
+				<div class="alignright"><a href="#" class="wplnst-results-output-cancel-bulk button button-small"><?php _e('Close', 'jrdigi'); ?></a></div>
 			</div>
 		</div><?php
 		
@@ -73,8 +73,8 @@ class WPLNST_Admin_Pro_Scans extends WPLNST_Admin_Scans {
 			<div class="wplnst-results-update-box wplnst-clearfix">
 				<div class="wplnst-results-update-box-edit"><input type="text" class="regular-text" value="%s" /></div>
 				<div class="wplnst-results-update-box-buttons alignright">
-					<a href="#" class="wplnst-results-output-update button button-primary button-small"><?php _e('Update URL', 'wplnst'); ?></a>
-					<a href="#" class="wplnst-results-output-cancel button button-small"><?php _e('Cancel', 'wplnst'); ?></a>
+					<a href="#" class="wplnst-results-output-update button button-primary button-small"><?php _e('Update URL', 'jrdigi'); ?></a>
+					<a href="#" class="wplnst-results-output-cancel button button-small"><?php _e('Cancel', 'jrdigi'); ?></a>
 				</div>
 			</div>
 		</div><?php
@@ -82,10 +82,10 @@ class WPLNST_Admin_Pro_Scans extends WPLNST_Admin_Scans {
 		// Confirm unlink
 		?><div id="wplnst-results-unlink-confirm" class="wplnst-display-none">
 			<div class="wplnst-results-update-box wplnst-clearfix">
-				<div class="alignleft"><p><?php _e('Confirm <b>Unlink this URL</b>', 'wplnst'); ?></p></div>
+				<div class="alignleft"><p><?php _e('Confirm <b>Unlink this URL</b>', 'jrdigi'); ?></p></div>
 				<div class="alignright">
-					<a href="#" class="wplnst-results-output-confirm button button-primary button-small"><?php _e('Unlink', 'wplnst'); ?></a>
-					<a href="#" class="wplnst-results-output-cancel button button-small"><?php _e('Cancel', 'wplnst'); ?></a>
+					<a href="#" class="wplnst-results-output-confirm button button-primary button-small"><?php _e('Unlink', 'jrdigi'); ?></a>
+					<a href="#" class="wplnst-results-output-cancel button button-small"><?php _e('Cancel', 'jrdigi'); ?></a>
 				</div>
 			</div>
 		</div><?php
@@ -93,10 +93,10 @@ class WPLNST_Admin_Pro_Scans extends WPLNST_Admin_Scans {
 		// Confirm unlink bulk
 		?><div id="wplnst-results-unlink-confirm-bulk" class="wplnst-display-none">
 			<div class="wplnst-results-update-box wplnst-clearfix">
-				<div class="alignleft"><p><?php _e('Confirm <b>Unlink selected URLs</b>', 'wplnst'); ?></p></div>
+				<div class="alignleft"><p><?php _e('Confirm <b>Unlink selected URLs</b>', 'jrdigi'); ?></p></div>
 				<div class="alignright">
-					<a href="#" class="wplnst-results-output-confirm-bulk button button-primary button-small"><?php _e('Unlink', 'wplnst'); ?></a>
-					<a href="#" class="wplnst-results-output-cancel-bulk button button-small"><?php _e('Cancel', 'wplnst'); ?></a>
+					<a href="#" class="wplnst-results-output-confirm-bulk button button-primary button-small"><?php _e('Unlink', 'jrdigi'); ?></a>
+					<a href="#" class="wplnst-results-output-cancel-bulk button button-small"><?php _e('Cancel', 'jrdigi'); ?></a>
 				</div>
 			</div>
 		</div><?php
@@ -104,10 +104,10 @@ class WPLNST_Admin_Pro_Scans extends WPLNST_Admin_Scans {
 		// Confirm ignore
 		?><div id="wplnst-results-ignore-confirm" class="wplnst-display-none">
 			<div class="wplnst-results-update-box wplnst-clearfix">
-				<div class="alignleft"><p><?php _e('Confirm <b>Ignore this link</b>', 'wplnst'); ?></p></div>
+				<div class="alignleft"><p><?php _e('Confirm <b>Ignore this link</b>', 'jrdigi'); ?></p></div>
 				<div class="alignright">
-					<a href="#" class="wplnst-results-output-confirm button button-primary button-small"><?php _e('Ignore', 'wplnst'); ?></a>
-					<a href="#" class="wplnst-results-output-cancel button button-small"><?php _e('Cancel', 'wplnst'); ?></a>
+					<a href="#" class="wplnst-results-output-confirm button button-primary button-small"><?php _e('Ignore', 'jrdigi'); ?></a>
+					<a href="#" class="wplnst-results-output-cancel button button-small"><?php _e('Cancel', 'jrdigi'); ?></a>
 				</div>
 			</div>
 		</div><?php
@@ -115,10 +115,10 @@ class WPLNST_Admin_Pro_Scans extends WPLNST_Admin_Scans {
 		// Confirm ignore bulk
 		?><div id="wplnst-results-ignore-confirm-bulk" class="wplnst-display-none">
 			<div class="wplnst-results-update-box wplnst-clearfix">
-				<div class="alignleft"><p><?php _e('Confirm <b>Ignore selected results</b>', 'wplnst'); ?></p></div>
+				<div class="alignleft"><p><?php _e('Confirm <b>Ignore selected results</b>', 'jrdigi'); ?></p></div>
 				<div class="alignright">
-					<a href="#" class="wplnst-results-output-confirm-bulk button button-primary button-small"><?php _e('Ignore', 'wplnst'); ?></a>
-					<a href="#" class="wplnst-results-output-cancel-bulk button button-small"><?php _e('Cancel', 'wplnst'); ?></a>
+					<a href="#" class="wplnst-results-output-confirm-bulk button button-primary button-small"><?php _e('Ignore', 'jrdigi'); ?></a>
+					<a href="#" class="wplnst-results-output-cancel-bulk button button-small"><?php _e('Cancel', 'jrdigi'); ?></a>
 				</div>
 			</div>
 		</div><?php
@@ -126,10 +126,10 @@ class WPLNST_Admin_Pro_Scans extends WPLNST_Admin_Scans {
 		// Undo Confirm ignore
 		?><div id="wplnst-results-unignore-confirm" class="wplnst-display-none">
 			<div class="wplnst-results-update-box wplnst-clearfix">
-				<div class="alignleft"><p><?php _e('Confirm <b>Undo Ignore this link</b>', 'wplnst'); ?></p></div>
+				<div class="alignleft"><p><?php _e('Confirm <b>Undo Ignore this link</b>', 'jrdigi'); ?></p></div>
 				<div class="alignright">
-					<a href="#" class="wplnst-results-output-confirm button button-primary button-small"><?php _e('Undo Ignore', 'wplnst'); ?></a>
-					<a href="#" class="wplnst-results-output-cancel button button-small"><?php _e('Cancel', 'wplnst'); ?></a>
+					<a href="#" class="wplnst-results-output-confirm button button-primary button-small"><?php _e('Undo Ignore', 'jrdigi'); ?></a>
+					<a href="#" class="wplnst-results-output-cancel button button-small"><?php _e('Cancel', 'jrdigi'); ?></a>
 				</div>
 			</div>
 		</div><?php
@@ -137,10 +137,10 @@ class WPLNST_Admin_Pro_Scans extends WPLNST_Admin_Scans {
 		// Undo Confirm ignore bulk
 		?><div id="wplnst-results-unignore-confirm-bulk" class="wplnst-display-none">
 			<div class="wplnst-results-update-box wplnst-clearfix">
-				<div class="alignleft"><p><?php _e('Confirm <b>Undo Ignore selected results</b>', 'wplnst'); ?></p></div>
+				<div class="alignleft"><p><?php _e('Confirm <b>Undo Ignore selected results</b>', 'jrdigi'); ?></p></div>
 				<div class="alignright">
-					<a href="#" class="wplnst-results-output-confirm-bulk button button-primary button-small"><?php _e('Undo Ignore', 'wplnst'); ?></a>
-					<a href="#" class="wplnst-results-output-cancel-bulk button button-small"><?php _e('Cancel', 'wplnst'); ?></a>
+					<a href="#" class="wplnst-results-output-confirm-bulk button button-primary button-small"><?php _e('Undo Ignore', 'jrdigi'); ?></a>
+					<a href="#" class="wplnst-results-output-cancel-bulk button button-small"><?php _e('Cancel', 'jrdigi'); ?></a>
 				</div>
 			</div>
 		</div><?php
@@ -148,10 +148,10 @@ class WPLNST_Admin_Pro_Scans extends WPLNST_Admin_Scans {
 		// Confirm redirection
 		?><div id="wplnst-results-redir-confirm" class="wplnst-display-none">
 			<div class="wplnst-results-update-box wplnst-clearfix">
-				<div class="alignleft"><p><?php _e('Confirm <b>Apply Redirection</b>', 'wplnst'); ?></p></div>
+				<div class="alignleft"><p><?php _e('Confirm <b>Apply Redirection</b>', 'jrdigi'); ?></p></div>
 				<div class="alignright">
-					<a href="#" class="wplnst-results-output-confirm button button-primary button-small"><?php _e('Set Redirection', 'wplnst'); ?></a>
-					<a href="#" class="wplnst-results-output-cancel button button-small"><?php _e('Cancel', 'wplnst'); ?></a>
+					<a href="#" class="wplnst-results-output-confirm button button-primary button-small"><?php _e('Set Redirection', 'jrdigi'); ?></a>
+					<a href="#" class="wplnst-results-output-cancel button button-small"><?php _e('Cancel', 'jrdigi'); ?></a>
 				</div>
 			</div>
 		</div><?php
@@ -159,10 +159,10 @@ class WPLNST_Admin_Pro_Scans extends WPLNST_Admin_Scans {
 		// Confirm redirection bulk
 		?><div id="wplnst-results-redir-confirm-bulk" class="wplnst-display-none">
 			<div class="wplnst-results-update-box wplnst-clearfix">
-				<div class="alignleft"><p><?php _e('Confirm <b>Bulk apply redirections</b>', 'wplnst'); ?></p></div>
+				<div class="alignleft"><p><?php _e('Confirm <b>Bulk apply redirections</b>', 'jrdigi'); ?></p></div>
 				<div class="alignright">
-					<a href="#" class="wplnst-results-output-confirm-bulk button button-primary button-small"><?php _e('Set Redirections', 'wplnst'); ?></a>
-					<a href="#" class="wplnst-results-output-cancel-bulk button button-small"><?php _e('Cancel', 'wplnst'); ?></a>
+					<a href="#" class="wplnst-results-output-confirm-bulk button button-primary button-small"><?php _e('Set Redirections', 'jrdigi'); ?></a>
+					<a href="#" class="wplnst-results-output-cancel-bulk button button-small"><?php _e('Cancel', 'jrdigi'); ?></a>
 				</div>
 			</div>
 		</div><?php
@@ -170,10 +170,10 @@ class WPLNST_Admin_Pro_Scans extends WPLNST_Admin_Scans {
 		// Confirm nofollow
 		?><div id="wplnst-results-nofollow-confirm" class="wplnst-display-none">
 			<div class="wplnst-results-update-box wplnst-clearfix">
-				<div class="alignleft"><p><?php _e('Confirm <b>Add nofollow</b>', 'wplnst'); ?></p></div>
+				<div class="alignleft"><p><?php _e('Confirm <b>Add nofollow</b>', 'jrdigi'); ?></p></div>
 				<div class="alignright">
-					<a href="#" class="wplnst-results-output-confirm button button-primary button-small"><?php _e('Add nofollow', 'wplnst'); ?></a>
-					<a href="#" class="wplnst-results-output-cancel button button-small"><?php _e('Cancel', 'wplnst'); ?></a>
+					<a href="#" class="wplnst-results-output-confirm button button-primary button-small"><?php _e('Add nofollow', 'jrdigi'); ?></a>
+					<a href="#" class="wplnst-results-output-cancel button button-small"><?php _e('Cancel', 'jrdigi'); ?></a>
 				</div>
 			</div>
 		</div><?php
@@ -181,10 +181,10 @@ class WPLNST_Admin_Pro_Scans extends WPLNST_Admin_Scans {
 		// Confirm nofollow bulk
 		?><div id="wplnst-results-nofollow-confirm-bulk" class="wplnst-display-none">
 			<div class="wplnst-results-update-box wplnst-clearfix">
-				<div class="alignleft"><p><?php _e('Confirm <b>Bulk add nofollow</b>', 'wplnst'); ?></p></div>
+				<div class="alignleft"><p><?php _e('Confirm <b>Bulk add nofollow</b>', 'jrdigi'); ?></p></div>
 				<div class="alignright">
-					<a href="#" class="wplnst-results-output-confirm-bulk button button-primary button-small"><?php _e('Add nofollow', 'wplnst'); ?></a>
-					<a href="#" class="wplnst-results-output-cancel-bulk button button-small"><?php _e('Cancel', 'wplnst'); ?></a>
+					<a href="#" class="wplnst-results-output-confirm-bulk button button-primary button-small"><?php _e('Add nofollow', 'jrdigi'); ?></a>
+					<a href="#" class="wplnst-results-output-cancel-bulk button button-small"><?php _e('Cancel', 'jrdigi'); ?></a>
 				</div>
 			</div>
 		</div><?php
@@ -192,10 +192,10 @@ class WPLNST_Admin_Pro_Scans extends WPLNST_Admin_Scans {
 		// Confirm dofollow
 		?><div id="wplnst-results-dofollow-confirm" class="wplnst-display-none">
 			<div class="wplnst-results-update-box wplnst-clearfix">
-				<div class="alignleft"><p><?php _e('Confirm <b>Remove nofollow</b>', 'wplnst'); ?></p></div>
+				<div class="alignleft"><p><?php _e('Confirm <b>Remove nofollow</b>', 'jrdigi'); ?></p></div>
 				<div class="alignright">
-					<a href="#" class="wplnst-results-output-confirm button button-primary button-small"><?php _e('Remove nofollow', 'wplnst'); ?></a>
-					<a href="#" class="wplnst-results-output-cancel button button-small"><?php _e('Cancel', 'wplnst'); ?></a>
+					<a href="#" class="wplnst-results-output-confirm button button-primary button-small"><?php _e('Remove nofollow', 'jrdigi'); ?></a>
+					<a href="#" class="wplnst-results-output-cancel button button-small"><?php _e('Cancel', 'jrdigi'); ?></a>
 				</div>
 			</div>
 		</div><?php
@@ -203,10 +203,10 @@ class WPLNST_Admin_Pro_Scans extends WPLNST_Admin_Scans {
 		// Confirm dofollow bulk
 		?><div id="wplnst-results-dofollow-confirm-bulk" class="wplnst-display-none">
 			<div class="wplnst-results-update-box wplnst-clearfix">
-				<div class="alignleft"><p><?php _e('Confirm <b>Bulk remove nofollow</b>', 'wplnst'); ?></p></div>
+				<div class="alignleft"><p><?php _e('Confirm <b>Bulk remove nofollow</b>', 'jrdigi'); ?></p></div>
 				<div class="alignright">
-					<a href="#" class="wplnst-results-output-confirm-bulk button button-primary button-small"><?php _e('Remove nofollow', 'wplnst'); ?></a>
-					<a href="#" class="wplnst-results-output-cancel-bulk button button-small"><?php _e('Cancel', 'wplnst'); ?></a>
+					<a href="#" class="wplnst-results-output-confirm-bulk button button-primary button-small"><?php _e('Remove nofollow', 'jrdigi'); ?></a>
+					<a href="#" class="wplnst-results-output-cancel-bulk button button-small"><?php _e('Cancel', 'jrdigi'); ?></a>
 				</div>
 			</div>
 		</div><?php
@@ -216,8 +216,8 @@ class WPLNST_Admin_Pro_Scans extends WPLNST_Admin_Scans {
 			<div class="wplnst-results-update-box wplnst-clearfix">
 				<div class="wplnst-results-update-box-edit"><input type="text" class="regular-text" value="%s" /></div>
 				<div class="wplnst-results-update-box-buttons alignright">
-					<a href="#" class="wplnst-results-output-update button button-primary button-small"><?php _e('Update anchor text', 'wplnst'); ?></a>
-					<a href="#" class="wplnst-results-output-cancel button button-small"><?php _e('Cancel', 'wplnst'); ?></a>
+					<a href="#" class="wplnst-results-output-update button button-primary button-small"><?php _e('Update anchor text', 'jrdigi'); ?></a>
+					<a href="#" class="wplnst-results-output-cancel button button-small"><?php _e('Cancel', 'jrdigi'); ?></a>
 				</div>
 			</div>
 		</div><?php
@@ -225,24 +225,24 @@ class WPLNST_Admin_Pro_Scans extends WPLNST_Admin_Scans {
 		// Recheck bulk
 		?><div id="wplnst-results-recheck-confirm-bulk" class="wplnst-display-none">
 			<div class="wplnst-results-update-box wplnst-clearfix">
-				<div class="alignleft"><p><?php _e('Confirm <b>Recheck URL status</b>', 'wplnst'); ?></p></div>
+				<div class="alignleft"><p><?php _e('Confirm <b>Recheck URL status</b>', 'jrdigi'); ?></p></div>
 				<div class="alignright">
-					<a href="#" class="wplnst-results-output-confirm-bulk button button-primary button-small"><?php _e('Recheck status', 'wplnst'); ?></a>
-					<a href="#" class="wplnst-results-output-cancel-bulk button button-small"><?php _e('Cancel', 'wplnst'); ?></a>
+					<a href="#" class="wplnst-results-output-confirm-bulk button button-primary button-small"><?php _e('Recheck status', 'jrdigi'); ?></a>
+					<a href="#" class="wplnst-results-output-cancel-bulk button button-small"><?php _e('Cancel', 'jrdigi'); ?></a>
 				</div>
 			</div>
 		</div><?php
 		
 		// Headers window
-		?><div id="wplnst-results-headers" class="wplnst-display-none" data-caption="<?php esc_attr(_e('Link headers', 'wplnst')); ?>"></div><?php
+		?><div id="wplnst-results-headers" class="wplnst-display-none" data-caption="<?php esc_attr(_e('Link headers', 'jrdigi')); ?>"></div><?php
 		
 		// Headers window content template
 		?><div id="wplnst-results-headers-template" class="wplnst-display-none"><div>
 			<div class="wplnst-results-headers-container">
 				<p class="wplnst-results-headers-url"></p>
-				<h3><?php _e('Response headers', 'wplnst'); ?></h3>
+				<h3><?php _e('Response headers', 'jrdigi'); ?></h3>
 				<div class="wplnst-results-headers-response"></div>
-				<h3><?php _e('Request headers', 'wplnst'); ?></h3>
+				<h3><?php _e('Request headers', 'jrdigi'); ?></h3>
 				<div class="wplnst-results-headers-request"></div>
 			</div>
 		</div></div><?php
@@ -271,28 +271,28 @@ class WPLNST_Admin_Pro_Scans extends WPLNST_Admin_Scans {
 		$unlinkable= !('blogroll' == $item['object_type'] || ('comments' == $item['object_type'] && 'comment_author_url' == $item['object_field']) || ('posts' == $item['object_type'] && 0 === strpos($item['object_field'], 'custom_field_url_')));
 		
 		// Edit link action
-		$actions['wplnst-action-url-edit'] = '<a href="#" '.$data_loc_id.' data-action="url_edit" class="wplnst-results-action">'.__('Edit URL', 'wplnst').'</a>';
+		$actions['wplnst-action-url-edit'] = '<a href="#" '.$data_loc_id.' data-action="url_edit" class="wplnst-results-action">'.__('Edit URL', 'jrdigi').'</a>';
 		
 		// Redirection action
 		if ('3' == $item['status_level'] && !empty($item['redirect_url']) && !empty($item['redirect_url_id']))
-			$actions['wplnst-action-url-redir'] = '<a href="#" id="wplnst-action-url-redir-'.$item['loc_id'].'" '.$data_loc_id.' data-action="url_redir" class="wplnst-results-action">'.__('Apply Redirection', 'wplnst').'</a>';
+			$actions['wplnst-action-url-redir'] = '<a href="#" id="wplnst-action-url-redir-'.$item['loc_id'].'" '.$data_loc_id.' data-action="url_redir" class="wplnst-results-action">'.__('Apply Redirection', 'jrdigi').'</a>';
 		
 		// Unlink action
 		if ($unlinkable && ('links' == $item['link_type'] || 'images' == $item['link_type']))
-			$actions['wplnst-action-url-unlink'] = '<span class="trash"><a href="#" '.$data_loc_id.' data-action="url_unlink" class="wplnst-results-action" title="'.(('links' == $item['link_type'])? __('Remove link but leave anchor text', 'wplnst') : __('Remove image from content', 'wplnst')).'">'.(('links' == $item['link_type'])? __('Unlink', 'wplnst') : __('Remove', 'wplnst')).'</a></span>';
+			$actions['wplnst-action-url-unlink'] = '<span class="trash"><a href="#" '.$data_loc_id.' data-action="url_unlink" class="wplnst-results-action" title="'.(('links' == $item['link_type'])? __('Remove link but leave anchor text', 'jrdigi') : __('Remove image from content', 'jrdigi')).'">'.(('links' == $item['link_type'])? __('Unlink', 'jrdigi') : __('Remove', 'jrdigi')).'</a></span>';
 		
 		// Nofollow
 		if ($unlinkable && 'links' == $item['link_type']) {
-			$actions['wplnst-action-url-nofollow']  = '<a href="#" id="wplnst-action-url-nofollow-'.$item['loc_id'].'" '.$data_loc_id.' data-action="url_nofollow" class="wplnst-results-action'.($item['nofollow']? ' wplnst-display-none' : '').'">'.__('Add nofollow', 'wplnst').'</a>';
-			$actions['wplnst-action-url-nofollow'] .= '<a href="#" id="wplnst-action-url-dofollow-'.$item['loc_id'].'" '.$data_loc_id.' data-action="url_dofollow" class="wplnst-results-action'.($item['nofollow']? '' : ' wplnst-display-none').'">'.__('Remove nofollow', 'wplnst').'</a>';
+			$actions['wplnst-action-url-nofollow']  = '<a href="#" id="wplnst-action-url-nofollow-'.$item['loc_id'].'" '.$data_loc_id.' data-action="url_nofollow" class="wplnst-results-action'.($item['nofollow']? ' wplnst-display-none' : '').'">'.__('Add nofollow', 'jrdigi').'</a>';
+			$actions['wplnst-action-url-nofollow'] .= '<a href="#" id="wplnst-action-url-dofollow-'.$item['loc_id'].'" '.$data_loc_id.' data-action="url_dofollow" class="wplnst-results-action'.($item['nofollow']? '' : ' wplnst-display-none').'">'.__('Remove nofollow', 'jrdigi').'</a>';
 		}
 		
 		// Ignore or unignore result
-		$actions['wplnst-action-url-ignore']   = '<a href="#" id="wplnst-action-url-ignore-'.$item['loc_id'].'" '.$data_loc_id.' data-action="url_ignore" class="wplnst-results-action'.($item['ignored']? ' wplnst-display-none' : '').'">'.__('Ignore', 'wplnst').'</a>';
-		$actions['wplnst-action-url-ignore']  .= '<a href="#" id="wplnst-action-url-unignore-'.$item['loc_id'].'" '.$data_loc_id.' data-action="url_unignore" class="wplnst-results-action'.($item['ignored']? '' : ' wplnst-display-none').'">'.__('Undo Ignore', 'wplnst').'</a>';
+		$actions['wplnst-action-url-ignore']   = '<a href="#" id="wplnst-action-url-ignore-'.$item['loc_id'].'" '.$data_loc_id.' data-action="url_ignore" class="wplnst-results-action'.($item['ignored']? ' wplnst-display-none' : '').'">'.__('Ignore', 'jrdigi').'</a>';
+		$actions['wplnst-action-url-ignore']  .= '<a href="#" id="wplnst-action-url-unignore-'.$item['loc_id'].'" '.$data_loc_id.' data-action="url_unignore" class="wplnst-results-action'.($item['ignored']? '' : ' wplnst-display-none').'">'.__('Undo Ignore', 'jrdigi').'</a>';
 		
 		// Visit URL
-		$actions['wplnst-action-url-visit'] = '<a href="'.esc_url($item['url']).'" target="_blank">'.__('Visit', 'wplnst').'</a>';
+		$actions['wplnst-action-url-visit'] = '<a href="'.esc_url($item['url']).'" target="_blank">'.__('Visit', 'jrdigi').'</a>';
 		
 		// Done
 		return $actions;
@@ -309,10 +309,10 @@ class WPLNST_Admin_Pro_Scans extends WPLNST_Admin_Scans {
 		$data_loc_id = 'data-loc-id="'.((int) $item['loc_id']).'"';
 		
 		// Recheck status
-		$actions['wplnst-action-url-status'] = '<a href="#" '.$data_loc_id.' data-action="url_status" target="_blank" class="wplnst-results-action">'.__('Recheck status', 'wplnst').'</a>';
+		$actions['wplnst-action-url-status'] = '<a href="#" '.$data_loc_id.' data-action="url_status" target="_blank" class="wplnst-results-action">'.__('Recheck status', 'jrdigi').'</a>';
 		
 		// Show headers
-		$actions['wplnst-action-url-headers'] = '<a href="#" '.$data_loc_id.' data-action="url_headers" target="_blank" class="wplnst-results-action">'.__('Show headers', 'wplnst').'</a>';
+		$actions['wplnst-action-url-headers'] = '<a href="#" '.$data_loc_id.' data-action="url_headers" target="_blank" class="wplnst-results-action">'.__('Show headers', 'jrdigi').'</a>';
 		
 		// Done
 		return $actions;
@@ -329,7 +329,7 @@ class WPLNST_Admin_Pro_Scans extends WPLNST_Admin_Scans {
 		$data_loc_id = 'data-loc-id="'.((int) $item['loc_id']).'"';
 		
 		// Edit link action
-		$actions['wplnst-action-anchor-edit'] = '<a href="#" '.$data_loc_id.' data-action="anchor_edit" class="wplnst-results-action">'.__('Edit anchor text', 'wplnst').'</a>';
+		$actions['wplnst-action-anchor-edit'] = '<a href="#" '.$data_loc_id.' data-action="anchor_edit" class="wplnst-results-action">'.__('Edit anchor text', 'jrdigi').'</a>';
 		
 		// Done
 		return $actions;

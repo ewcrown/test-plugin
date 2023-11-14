@@ -1,12 +1,12 @@
 <?php
 
 /**
- * WP Link Status Core Types class
+ * Juriys Digital Core Types class
  *
- * @package WP Link Status
- * @subpackage WP Link Status Core
+ * @package Juriys Digital
+ * @subpackage Juriys Digital Core
  */
-class WPLNST_Core_Types {
+class JRDIGI_Core_Types {
 
 
 
@@ -97,9 +97,9 @@ class WPLNST_Core_Types {
 	 */
 	public static function get_objects_types() {
 		return array(
-			'posts' 	=> __('Entries',  'wplnst'),
-			'comments' 	=> __('Comments', 'wplnst'),
-			'blogroll' 	=> __('Blogroll', 'wplnst'),
+			'posts' 	=> __('Entries',  'jrdigi'),
+			'comments' 	=> __('Comments', 'jrdigi'),
+			'blogroll' 	=> __('Blogroll', 'jrdigi'),
 		);
 	}
 
@@ -110,11 +110,11 @@ class WPLNST_Core_Types {
 	 */
 	public static function get_scan_statuses() {
 		return array(
-			'wait' 		=> __('Waiting', 	'wplnst'),
-			'queued' 	=> __('Queued',  	'wplnst'),
-			'play'		=> __('Running', 	'wplnst'),
-			'stop'		=> __('Stopped', 	'wplnst'),
-			'end'		=> __('Completed', 	'wplnst'),
+			'wait' 		=> __('Waiting', 	'jrdigi'),
+			'queued' 	=> __('Queued',  	'jrdigi'),
+			'play'		=> __('Running', 	'jrdigi'),
+			'stop'		=> __('Stopped', 	'jrdigi'),
+			'end'		=> __('Completed', 	'jrdigi'),
 		);
 	}
 
@@ -125,9 +125,9 @@ class WPLNST_Core_Types {
 	 */
 	public static function get_destination_types() {
 		return array(
-			'all' 		=> __('All URLs', 		'wplnst'),
-			'internal' 	=> __('Internal URLs', 	'wplnst'),
-			'external' 	=> __('External URLs', 	'wplnst'),
+			'all' 		=> __('All URLs', 		'jrdigi'),
+			'internal' 	=> __('Internal URLs', 	'jrdigi'),
+			'external' 	=> __('External URLs', 	'jrdigi'),
 		);
 	}
 
@@ -138,14 +138,14 @@ class WPLNST_Core_Types {
 	 */
 	public static function get_time_scopes() {
 		return array(
-			'anytime' 	=> __('Anytime content', 'wplnst'),
-			'yesterday' => __('From yesterday',  'wplnst'),
-			'7days' 	=> __('Last 7 days', 	 'wplnst'),
-			'15days' 	=> __('Last 15 days', 	 'wplnst'),
-			'month' 	=> __('One month', 		 'wplnst'),
-			'3months'	=> __('Last 3 months', 	 'wplnst'),
-			'6months'	=> __('Last 6 months', 	 'wplnst'),
-			'year'		=> __('One year', 		 'wplnst'),
+			'anytime' 	=> __('Anytime content', 'jrdigi'),
+			'yesterday' => __('From yesterday',  'jrdigi'),
+			'7days' 	=> __('Last 7 days', 	 'jrdigi'),
+			'15days' 	=> __('Last 15 days', 	 'jrdigi'),
+			'month' 	=> __('One month', 		 'jrdigi'),
+			'3months'	=> __('Last 3 months', 	 'jrdigi'),
+			'6months'	=> __('Last 6 months', 	 'jrdigi'),
+			'year'		=> __('One year', 		 'jrdigi'),
 			/* 'custom' => 'Custom' */
 		);
 	}
@@ -157,8 +157,8 @@ class WPLNST_Core_Types {
 	 */
 	public static function get_link_types() {
 		return array(
-			'links'  => __('Links',  'wplnst'),
-			'images' => __('Images', 'wplnst'),
+			'links'  => __('Links',  'jrdigi'),
+			'images' => __('Images', 'jrdigi'),
 		);
 	}
 
@@ -169,8 +169,8 @@ class WPLNST_Core_Types {
 	 */
 	public static function get_crawl_order() {
 		return array(
-			'desc' 	=> __('Most recent content',  'wplnst'),
-			'asc' 	=> __('Oldest content first', 'wplnst'),
+			'desc' 	=> __('Most recent content',  'jrdigi'),
+			'asc' 	=> __('Oldest content first', 'jrdigi'),
 		);
 	}
 
@@ -193,8 +193,8 @@ class WPLNST_Core_Types {
 	 */
 	public static function get_comment_types() {
 		return array(
-			'approved' 	=> __('Approved', 'wplnst'),
-			'pending'	=> __('Pending',  'wplnst'),
+			'approved' 	=> __('Approved', 'jrdigi'),
+			'pending'	=> __('Pending',  'jrdigi'),
 		);
 	}
 
@@ -220,13 +220,13 @@ class WPLNST_Core_Types {
 	 */
 	public static function get_anchor_filters() {
 		return array(
-			'contains' 		=> __('Contains', 		'wplnst'),
-			'not-contains' 	=> __('Not contains', 	'wplnst'),
-			'equal-to' 		=> __('Is equal to', 	'wplnst'),
-			'not-equal-to' 	=> __('Not equal to', 	'wplnst'),
-			'begins-with' 	=> __('Starts with', 	'wplnst'),
-			'ends-by' 		=> __('Ends by', 		'wplnst'),
-			'empty' 		=> __('Empty', 			'wplnst'),
+			'contains' 		=> __('Contains', 		'jrdigi'),
+			'not-contains' 	=> __('Not contains', 	'jrdigi'),
+			'equal-to' 		=> __('Is equal to', 	'jrdigi'),
+			'not-equal-to' 	=> __('Not equal to', 	'jrdigi'),
+			'begins-with' 	=> __('Starts with', 	'jrdigi'),
+			'ends-by' 		=> __('Ends by', 		'jrdigi'),
+			'empty' 		=> __('Empty', 			'jrdigi'),
 		);
 	}
 
@@ -237,10 +237,10 @@ class WPLNST_Core_Types {
 	 */
 	public static function get_anchor_search_filters() {
 		return array(
-			'm' => __('Matched string', 'wplnst'),
-			'p' => __('Starts with', 	'wplnst'),
-			's' => __('Ends by', 		'wplnst'),
-			'f' => __('Full anchor', 	'wplnst'),
+			'm' => __('Matched string', 'jrdigi'),
+			'p' => __('Starts with', 	'jrdigi'),
+			's' => __('Ends by', 		'jrdigi'),
+			'f' => __('Full anchor', 	'jrdigi'),
 		);
 	}
 
@@ -251,10 +251,10 @@ class WPLNST_Core_Types {
 	 */
 	public static function get_url_filters() {
 		return array(
-			'matched-string' => __('Matched string', 'wplnst'),
-			'url-prefix' 	 => __('URL prefix', 	 'wplnst'),
-			'url-suffix' 	 => __('URL suffix', 	 'wplnst'),
-			'full-url' 		 => __('Full URL', 		 'wplnst'),
+			'matched-string' => __('Matched string', 'jrdigi'),
+			'url-prefix' 	 => __('URL prefix', 	 'jrdigi'),
+			'url-suffix' 	 => __('URL suffix', 	 'jrdigi'),
+			'full-url' 		 => __('Full URL', 		 'jrdigi'),
 		);
 	}
 
@@ -265,11 +265,11 @@ class WPLNST_Core_Types {
 	 */
 	public static function get_url_search_filters() {
 		return array(
-			'm' => __('Matched string', 'wplnst'),
-			'p' => __('URL prefix', 	'wplnst'),
-			's' => __('URL suffix', 	'wplnst'),
-			'r' => __('URL fragment #', 'wplnst'),
-			'f' => __('Full URL', 		'wplnst'),
+			'm' => __('Matched string', 'jrdigi'),
+			'p' => __('URL prefix', 	'jrdigi'),
+			's' => __('URL suffix', 	'jrdigi'),
+			'r' => __('URL fragment #', 'jrdigi'),
+			'f' => __('Full URL', 		'jrdigi'),
 		);
 	}
 
@@ -280,8 +280,8 @@ class WPLNST_Core_Types {
 	 */
 	public static function get_html_attributes_having() {
 		return array(
-			'have' 		=> __('Has', 	  'wplnst'),
-			'not-have' 	=> __('Not have', 'wplnst'),
+			'have' 		=> __('Has', 	  'jrdigi'),
+			'not-have' 	=> __('Not have', 'jrdigi'),
 		);
 	}
 
@@ -292,12 +292,12 @@ class WPLNST_Core_Types {
 	 */
 	public static function get_html_attributes_operators() {
 		return array(
-			'contains' 		=> __('Contains', 		'wplnst'),
-			'not-contains' 	=> __('Not contains', 	'wplnst'),
-			'equal' 		=> __('Is equal to', 	'wplnst'),
-			'not-equal' 	=> __('Not equal to', 	'wplnst'),
-			'not-empty' 	=> __('Not empty', 		'wplnst'),
-			'empty' 		=> __('Empty', 			'wplnst'),
+			'contains' 		=> __('Contains', 		'jrdigi'),
+			'not-contains' 	=> __('Not contains', 	'jrdigi'),
+			'equal' 		=> __('Is equal to', 	'jrdigi'),
+			'not-equal' 	=> __('Not equal to', 	'jrdigi'),
+			'not-empty' 	=> __('Not empty', 		'jrdigi'),
+			'empty' 		=> __('Empty', 			'jrdigi'),
 		);
 	}
 
@@ -308,10 +308,10 @@ class WPLNST_Core_Types {
 	 */
 	public static function get_status_levels() {
 		return array(
-			'2' => __('Success', 		'wplnst'),
-			'3' => __('Redirections', 	'wplnst'),
-			'4' => __('Errors', 		'wplnst'),
-			'5' => __('Server Error', 	'wplnst'),
+			'2' => __('Success', 		'jrdigi'),
+			'3' => __('Redirections', 	'jrdigi'),
+			'4' => __('Errors', 		'jrdigi'),
+			'5' => __('Server Error', 	'jrdigi'),
 		);
 	}
 
@@ -323,50 +323,50 @@ class WPLNST_Core_Types {
 	public static function get_status_codes() {
 		return array(
 			'2' => array(
-				'200' => __('OK', 								'wplnst'),
-				'201' => __('Created', 							'wplnst'),
-				'202' => __('Accepted', 						'wplnst'),
-				'203' => __('Non-Authoritative Information', 	'wplnst'),
-				'204' => __('No Content', 						'wplnst'),
-				'205' => __('Reset Content', 					'wplnst'),
-				'206' => __('Partial Content', 					'wplnst'),
+				'200' => __('OK', 								'jrdigi'),
+				'201' => __('Created', 							'jrdigi'),
+				'202' => __('Accepted', 						'jrdigi'),
+				'203' => __('Non-Authoritative Information', 	'jrdigi'),
+				'204' => __('No Content', 						'jrdigi'),
+				'205' => __('Reset Content', 					'jrdigi'),
+				'206' => __('Partial Content', 					'jrdigi'),
 			),
 			'3' => array(
-				'300' => __('Multiple Choices', 				'wplnst'),
-				'301' => __('Moved Permanently', 				'wplnst'),
-				'302' => __('Found', 							'wplnst'),
-				'303' => __('See Other', 						'wplnst'),
-				'304' => __('Not Modified', 					'wplnst'),
-				'305' => __('Use Proxy', 						'wplnst'),
-				'307' => __('Temporary Redirect', 				'wplnst'),
+				'300' => __('Multiple Choices', 				'jrdigi'),
+				'301' => __('Moved Permanently', 				'jrdigi'),
+				'302' => __('Found', 							'jrdigi'),
+				'303' => __('See Other', 						'jrdigi'),
+				'304' => __('Not Modified', 					'jrdigi'),
+				'305' => __('Use Proxy', 						'jrdigi'),
+				'307' => __('Temporary Redirect', 				'jrdigi'),
 			),
 			'4' => array(
-				'400' => __('Bad Request', 						'wplnst'),
-				'401' => __('Unauthorized', 					'wplnst'),
-				'402' => __('Payment Required', 				'wplnst'),
-				'403' => __('Forbidden', 						'wplnst'),
-				'404' => __('Not Found', 						'wplnst'),
-				'405' => __('Method Not Allowed', 				'wplnst'),
-				'406' => __('Not Acceptable', 					'wplnst'),
-				'407' => __('Proxy Authentication Required', 	'wplnst'),
-				'408' => __('Request Timeout', 					'wplnst'),
-				'409' => __('Conflict', 						'wplnst'),
-				'410' => __('Gone', 							'wplnst'),
-				'411' => __('Length Required', 					'wplnst'),
-				'412' => __('Precondition Failed', 				'wplnst'),
-				'413' => __('Request Entity Too Large', 		'wplnst'),
-				'414' => __('Request-URI Too Long', 			'wplnst'),
-				'415' => __('Unsupported Media Type', 			'wplnst'),
-				'416' => __('Requested Range Not Satisfiable', 	'wplnst'),
-				'417' => __('Expectation Failed', 				'wplnst'),
+				'400' => __('Bad Request', 						'jrdigi'),
+				'401' => __('Unauthorized', 					'jrdigi'),
+				'402' => __('Payment Required', 				'jrdigi'),
+				'403' => __('Forbidden', 						'jrdigi'),
+				'404' => __('Not Found', 						'jrdigi'),
+				'405' => __('Method Not Allowed', 				'jrdigi'),
+				'406' => __('Not Acceptable', 					'jrdigi'),
+				'407' => __('Proxy Authentication Required', 	'jrdigi'),
+				'408' => __('Request Timeout', 					'jrdigi'),
+				'409' => __('Conflict', 						'jrdigi'),
+				'410' => __('Gone', 							'jrdigi'),
+				'411' => __('Length Required', 					'jrdigi'),
+				'412' => __('Precondition Failed', 				'jrdigi'),
+				'413' => __('Request Entity Too Large', 		'jrdigi'),
+				'414' => __('Request-URI Too Long', 			'jrdigi'),
+				'415' => __('Unsupported Media Type', 			'jrdigi'),
+				'416' => __('Requested Range Not Satisfiable', 	'jrdigi'),
+				'417' => __('Expectation Failed', 				'jrdigi'),
 			),
 			'5' => array(
-				'500' => __('Internal Server Error', 			'wplnst'),
-				'501' => __('Not Implemented', 					'wplnst'),
-				'502' => __('Bad Gateway', 						'wplnst'),
-				'503' => __('Service Unavailable', 				'wplnst'),
-				'504' => __('Gateway Timeout', 					'wplnst'),
-				'505' => __('HTTP Version Not Supported', 		'wplnst'),
+				'500' => __('Internal Server Error', 			'jrdigi'),
+				'501' => __('Not Implemented', 					'jrdigi'),
+				'502' => __('Bad Gateway', 						'jrdigi'),
+				'503' => __('Service Unavailable', 				'jrdigi'),
+				'504' => __('Gateway Timeout', 					'jrdigi'),
+				'505' => __('HTTP Version Not Supported', 		'jrdigi'),
 			)
 		);
 	}
@@ -393,8 +393,8 @@ class WPLNST_Core_Types {
 	 */
 	public static function get_seo_link_types() {
 		return array(
-			'nf' => __('NoFollow', 'wplnst'),
-			'df' => __('DoFollow', 'wplnst'),
+			'nf' => __('NoFollow', 'jrdigi'),
+			'df' => __('DoFollow', 'jrdigi'),
 		);
 	}
 
@@ -418,10 +418,10 @@ class WPLNST_Core_Types {
 	 */
 	public static function get_special_types() {
 		return array(
-			'rel' => __('Relative',  'wplnst'),
-			'abs' => __('Absolute',  'wplnst'),
-			'spa' => __('Spaced', 	 'wplnst'),
-			'mal' => __('Malformed', 'wplnst'),
+			'rel' => __('Relative',  'jrdigi'),
+			'abs' => __('Absolute',  'jrdigi'),
+			'spa' => __('Spaced', 	 'jrdigi'),
+			'mal' => __('Malformed', 'jrdigi'),
 		);
 	}
 
@@ -432,10 +432,10 @@ class WPLNST_Core_Types {
 	 */
 	public static function get_action_types() {
 		return array(
-			'unl' => __('Unlinked', 	'wplnst'),
-			'mod' => __('Modified', 	'wplnst'),
-			'umd' => __('Unmodified', 	'wplnst'),
-			'rec' => __('Rechecked', 	'wplnst'),
+			'unl' => __('Unlinked', 	'jrdigi'),
+			'mod' => __('Modified', 	'jrdigi'),
+			'umd' => __('Unmodified', 	'jrdigi'),
+			'rec' => __('Rechecked', 	'jrdigi'),
 		);
 	}
 
@@ -446,8 +446,8 @@ class WPLNST_Core_Types {
 	 */
 	public static function get_ignored_types() {
 		return array(
-			'oir' => __('Only ignored results', 	'wplnst'),
-			'ian' => __('Ignored and not ignored', 	'wplnst'),
+			'oir' => __('Only ignored results', 	'jrdigi'),
+			'ian' => __('Ignored and not ignored', 	'jrdigi'),
 		);
 	}
 
@@ -458,12 +458,12 @@ class WPLNST_Core_Types {
 	 */
 	public static function get_order_types() {
 		return array(
-			'dma' => __('Domain name ASC',    'wplnst'),
-			'dmd' => __('Domain name DESC',   'wplnst'),
-			'dta' => __('Download time ASC',  'wplnst'),
-			'dtd' => __('Download time DESC', 'wplnst'),
-			'dsa' => __('Download size ASC',  'wplnst'),
-			'dsd' => __('Download size DESC', 'wplnst'),
+			'dma' => __('Domain name ASC',    'jrdigi'),
+			'dmd' => __('Domain name DESC',   'jrdigi'),
+			'dta' => __('Download time ASC',  'jrdigi'),
+			'dtd' => __('Download time DESC', 'jrdigi'),
+			'dsa' => __('Download size ASC',  'jrdigi'),
+			'dsd' => __('Download size DESC', 'jrdigi'),
 		);
 	}
 
@@ -663,9 +663,11 @@ class WPLNST_Core_Types {
 		
 		// Arrange index
 		$index = -1;
-		foreach ($elist as &$value) {
-			if (is_array($value))
-				$value['index'] = ++$index;
+		if(!empty($elist)){
+			foreach ($elist as &$value) {
+				if (is_array($value))
+					$value['index'] = ++$index;
+			}
 		}
 		
 		// Done
@@ -696,7 +698,7 @@ class WPLNST_Core_Types {
 	 * Check numeric array value
 	 */
 	public static function check_array_numeric_value($array, $param, $default = 0) {
-		return empty($array[$param]) ? $default : (int) $array[$param];
+		return empty($array[$param])? $default : (int) $array[$param];
 	}
 
 
@@ -705,8 +707,8 @@ class WPLNST_Core_Types {
 	 * Check a json array value
 	 */
 	public static function check_array_json($array, $param, $default = array()) {
-		$value = (empty($array) && is_array($array) && isset($array[$param])) ? @json_decode($array[$param], true) : array();
-		return (empty($value) || !is_array($value))? $default : $value;
+		$value = (!empty($array) && is_array($array) && isset($array[$param])) ? @json_decode($array[$param], true) : array();
+		return (empty($value) || !is_array($value)) ? $default : $value;
 	}
 
 

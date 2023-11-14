@@ -4,10 +4,10 @@
 require_once(dirname(__FILE__).'/views.php');
 
 /**
- * WP Link Status Views Extensions class
+ * Juriys Digital Views Extensions class
  *
- * @package WP Link Status
- * @subpackage WP Link Status Views
+ * @package Juriys Digital
+ * @subpackage Juriys Digital Views
  */
 class WPLNST_Views_Extensions extends WPLNST_Views {
 
@@ -22,19 +22,9 @@ class WPLNST_Views_Extensions extends WPLNST_Views {
 		extract($args);
 		
 		// Plugin images
-		$base_url = plugins_url('assets/images/extensions/', WPLNST_FILE);
+		$base_url = plugins_url('assets/images/extensions/', JRDIGI_FILE);
 		
 		?><div id="wplnst-extensions">
-			
-			
-			<div class="wplnst-extensions-section">
-			
-				<p><a href="http://seedplugins.com/wp-link-status/" target="_blank"><img src="<?php echo $base_url.'pro-banner.jpg'; ?>" width="590" height="300" border="0" /></a></p>
-				
-				<p style="width: 590px; text-align: center;"><a href="http://seedplugins.com/wp-link-status/" target="_blank" class="button-primary">Get WP Link Status Pro version</a></p>
-				
-			</div>
-			
 			
 			<div class="wplnst-extensions-section">
 				
@@ -65,8 +55,6 @@ class WPLNST_Views_Extensions extends WPLNST_Views {
 				<p><img src="<?php echo $base_url.'wpls-web-crawler-url-tools-results.png'; ?>" width="800" height="427" border="0" /></p>
 				
 			</div>
-			
-			<p style="width: 800px; text-align: center;"><a href="http://seedplugins.com/wp-link-status/" target="_blank" class="button-primary">Get WP Link Status Pro version</a></p>
 			
 			
 		</div><?php

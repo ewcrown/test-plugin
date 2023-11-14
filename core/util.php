@@ -1,10 +1,10 @@
 <?php
 
 /**
- * WP Link Status Core Util functions
+ * Juriys Digital Core Util functions
  *
- * @package WP Link Status
- * @subpackage WP Link Status Core
+ * @package Juriys Digital
+ * @subpackage Juriys Digital Core
  */
 
 
@@ -17,8 +17,8 @@ require_once(dirname(__FILE__).'/settings.php');
 /**
  * Requires a plugin file
  */
-function wplnst_require($section, $filename) {
-	require_once(WPLNST_PATH.'/'.$section.'/'.$filename.'.php');
+function jrdigi_require($section, $filename) {
+	require_once(JRDIGI_PATH.'/'.$section.'/'.$filename.'.php');
 }
 
 
@@ -26,9 +26,9 @@ function wplnst_require($section, $filename) {
 /**
  * Requires multiple files for the same section
  */
-function wplnst_require_section($section, $filenames) {
+function jrdigi_require_section($section, $filenames) {
 	foreach ($filenames as $filename)
-		wplnst_require($section, $filename);
+		jrdigi_require($section, $filename);
 }
 
 

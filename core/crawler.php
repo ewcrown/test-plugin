@@ -4,10 +4,10 @@
 require_once(dirname(__FILE__).'/module.php');
 
 /**
- * WP Link Status Core Crawler class
+ * Jurius Digital Core Crawler class
  *
- * @package WP Link Status
- * @subpackage WP Link Status Core
+ * @package Jurius Digital
+ * @subpackage Jurius Digital Core
  */
 class WPLNST_Core_Crawler extends WPLNST_Core_Module {
 
@@ -180,7 +180,7 @@ class WPLNST_Core_Crawler extends WPLNST_Core_Module {
 		$redirection = (!empty($_GET['wplnst_redirection']) && '1' == $_GET['wplnst_redirection']);
 		
 		// Analyze request
-		wplnst_require('core', 'status');
+		jrdigi_require('core', 'status');
 		$status = new WPLNST_Core_Status($_POST);
 
 		// Check discarded response
@@ -366,11 +366,11 @@ class WPLNST_Core_Crawler extends WPLNST_Core_Module {
 				);
 				
 				// Load cURL wrapper library
-				wplnst_require('core', 'curl');
+				jrdigi_require('core', 'curl');
 				
 				// Spawn crawler call
 				WPLNST_Core_CURL::spawn(array(
-					'CURLOPT_URL' 				=> plugins_url('core/requests/http.php', WPLNST_FILE),
+					'CURLOPT_URL' 				=> plugins_url('core/requests/http.php', JRDIGI_FILE),
 					'CURLOPT_USERAGENT' 		=> wplnst_get_tsetting('user_agent'),
 					'CURLOPT_POST'				=> true,
 					'CURLOPT_POSTFIELDS' 		=> http_build_query($postfields, null, '&'),
@@ -420,7 +420,7 @@ class WPLNST_Core_Crawler extends WPLNST_Core_Module {
 			
 			// Check notifications
 			if ($this->scan->notify_default || ($this->scan->notify_address && !empty($this->scan->notify_address_email))) {
-				wplnst_require('core', 'notify');
+				jrdigi_require('core', 'notify');
 				WPLNST_Core_Notify::completed($this->scan);
 			}
 			
@@ -533,7 +533,7 @@ class WPLNST_Core_Crawler extends WPLNST_Core_Module {
 		$this->comment_args = array();
 		
 		// Comment status
-		$comment_types = WPLNST_Core_Types::get_comment_types_values($this->scan->comment_types);
+		$comment_types = JRDIGI_Core_Types::get_comment_types_values($this->scan->comment_types);
 		$this->comment_args['comment_status'] = ' AND comment_approved '.((1 == count($comment_types))? '= "'.esc_sql($comment_types[0]).'"' : 'IN ("'.implode('", "', array_map('esc_sql', $comment_types)).'")');
 		
 		// Time scope argument
@@ -684,7 +684,7 @@ class WPLNST_Core_Crawler extends WPLNST_Core_Module {
 			return '';
 		
 		// Check real value
-		if (!in_array($this->scan->time_scope, array_keys(WPLNST_Core_Types::get_time_scopes())))
+		if (!in_array($this->scan->time_scope, array_keys(JRDIGI_Core_Types::get_time_scopes())))
 			return '';
 		
 		// Yesterday
@@ -2165,7 +2165,7 @@ class WPLNST_Core_Crawler extends WPLNST_Core_Module {
 		$permalinks[$post_id] = false;
 		
 		// Load cURL wrapper library
-		wplnst_require('core', 'curl');
+		jrdigi_require('core', 'curl');
 		
 		// cURL request
 		$response = WPLNST_Core_CURL::request(array(
